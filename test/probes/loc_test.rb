@@ -10,11 +10,16 @@ context "Loc" do
   end
 
   test "files" do
-    file = File.join(@probe.path, 'app.rb')
-    assert_equal [file], @probe.files
+    app    = File.join(@probe.path, 'app.rb')
+    readme = File.join(@probe.path, 'README.md')
+    assert_equal [app,readme], @probe.files
   end
 
-  test "lines" do
-    assert_equal 10, @probe.lines
+  test "all lines" do
+    assert_equal 13, @probe.lines
+  end
+
+  test "ruby lines" do
+    assert_equal 10, @probe.ruby_lines
   end
 end

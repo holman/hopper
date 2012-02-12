@@ -13,5 +13,12 @@ module Hopper
         sum + File.read(file).lines.count
       end
     end
+
+    def ruby_lines
+      files.inject(0) do |sum,file|
+        return sum if File.extname(file) != '.rb'
+        sum + File.read(file).lines.count
+      end
+    end
   end
 end

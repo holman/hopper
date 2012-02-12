@@ -8,4 +8,5 @@ require 'mustache/sinatra'
 
 require 'app'
 
-require 'probe'
+require 'models/probe'
+require 'models/project'

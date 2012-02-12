@@ -7,3 +7,5 @@ require 'sinatra/base'
 require 'mustache/sinatra'
 
 require 'app'
+
+require 'probe'

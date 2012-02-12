@@ -1,11 +1,17 @@
 module Hopper
   class Probe
+    # Load all probes.
+    Dir["app/probes/*.rb"].each {|file| require file }
+
     def name
-      __FILE__
+      File.basename(__FILE__, '.rb').capitalize
     end
 
     def description
-      raise "This needs to be implemented by the individual probe."
+      raise NotImplementedError
+    end
+
+    class NotImplementedError < StandardError
     end
   end
 end

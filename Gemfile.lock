@@ -1,10 +1,20 @@
+GIT
+  remote: git://gist.github.com/1806986.git
+  revision: 7bddf998c0fc46ab3ef0fb0cdf429dd302dd1431
+  specs:
+    test-spec-mini (0.0.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
+    SystemTimer (1.2.3)
     mustache (0.99.4)
     rack (1.4.1)
     rack-protection (1.2.0)
       rack
+    rack-test (0.6.1)
+      rack (>= 1.0)
+    redgreen (1.2.2)
     redis (2.2.2)
     sinatra (1.3.2)
       rack (~> 1.3, >= 1.3.6)
@@ -16,6 +26,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  SystemTimer
   mustache
+  rack-test
+  redgreen
   redis
   sinatra
+  test-spec-mini!

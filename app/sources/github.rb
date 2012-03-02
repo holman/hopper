@@ -29,7 +29,7 @@ module Hopper
       "#{url}.git"
     end
 
-    # THe clone command needed to clone down this source.
+    # The clone command needed to clone down this source.
     #
     # Returns a String.
     def clone_command

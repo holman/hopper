@@ -13,5 +13,12 @@ module Hopper
     def self.url
       "https://github.com"
     end
+
+    # The Git clone URL that lets us pull down this source.
+    #
+    # Returns a String.
+    def clone_url
+      "#{url}.git"
+    end
   end
 end

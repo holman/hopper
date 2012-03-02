@@ -4,6 +4,7 @@ Bundler.setup(:default, :test)
 Bundler.require(:default, :test)
 
 require 'test/unit'
+require 'test/spec/mini'
 require 'rack/test'
 
 ENV['RACK_ENV'] = 'test'

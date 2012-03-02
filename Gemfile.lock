@@ -1,9 +1,3 @@
-GIT
-  remote: git://gist.github.com/1806986.git
-  revision: 7bddf998c0fc46ab3ef0fb0cdf429dd302dd1431
-  specs:
-    test-spec-mini (0.0.1)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -32,4 +26,3 @@ DEPENDENCIES
   redgreen
   redis
   sinatra
-  test-spec-mini!

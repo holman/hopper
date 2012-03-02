@@ -7,13 +7,13 @@ context "Source" do
 
   test "name raises exception" do
     assert_raise Source::NotImplementedError do
-      Source.new.name
+      Source.name
     end
   end
 
   test "url raises exception" do
     assert_raise Source::NotImplementedError do
-      Source.new.url
+      Source.url
     end
   end
 end

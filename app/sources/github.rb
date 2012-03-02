@@ -3,14 +3,14 @@ module Hopper
     # The name of the Source.
     #
     # Returns a String.
-    def name
+    def self.name
       "GitHub"
     end
 
     # The main URL of the Source.
     #
     # Returns a String.
-    def url
+    def self.url
       "https://github.com"
     end
   end

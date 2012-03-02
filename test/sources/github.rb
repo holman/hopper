@@ -6,10 +6,10 @@ context "Github" do
   end
 
   test "name" do
-    assert_match "GitHub", @source.name
+    assert_match "GitHub", Github.name
   end
 
   test "url" do
-    assert_match "https://github.com", @source.url
+    assert_match "https://github.com", Github.url
   end
 end

@@ -8,14 +8,14 @@ module Hopper
     # The name of the Source.
     #
     # Returns a String.
-    def name
+    def self.name
       raise NotImplementedError
     end
 
     # The main URL of the Source.
     #
     # Returns a String.
-    def url
+    def self.url
       raise NotImplementedError
     end
 

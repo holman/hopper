@@ -5,6 +5,11 @@ context "Probe" do
     @project = Project.new('github.com')
   end
 
+  test "list probes" do
+    assert Probe.all.include?('loc')
+    assert Probe.all.include?('swearing')
+  end
+
   test "name" do
     assert_equal 'Probe', Probe.new(@project).name
   end

@@ -17,6 +17,13 @@ module Hopper
       @project = project
     end
 
+    # The Probes we have available for use.
+    #
+    # Returns an Array of Strings.
+    def self.all
+      Dir["app/probes/*.rb"].map{|file| File.basename(file,'.rb')}
+    end
+
     # The name of the probe, generated from the file name.
     #
     # Returns a String.

@@ -6,6 +6,12 @@ context "Project" do
   end
 
   test "path" do
-    assert_equal 'stub', @project.path
+    assert_equal 'test/examples/simple', @project.path
+  end
+
+  test "files" do
+    app    = File.join(@project.path, 'app.rb')
+    readme = File.join(@project.path, 'README.md')
+    assert_equal [app,readme], @project.files
   end
 end

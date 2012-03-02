@@ -3,16 +3,18 @@ module Hopper
     # Load all probes.
     Dir["app/probes/*.rb"].each {|file| require file }
 
-    # The String path to the project.
-    attr_accessor :path
+    # The Project this Probe is probing.
+    #
+    # Returns a Project.
+    attr_accessor :project
 
     # Creates a new Probe.
     #
-    # path - The relative String path to the project.
+    # project - The Project that we're analyzing.
     #
     # Returns a new Probe.
-    def initialize(path='')
-      @path = File.expand_path(path)
+    def initialize(project)
+      @project = project
     end
 
     # The name of the probe, generated from the file name.

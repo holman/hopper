@@ -2,6 +2,9 @@ GEM
   remote: http://rubygems.org/
   specs:
     SystemTimer (1.2.3)
+    metaclass (0.0.1)
+    mocha (0.10.0)
+      metaclass (~> 0.0.1)
     mustache (0.99.4)
     rack (1.4.1)
     rack-protection (1.2.0)
@@ -21,6 +24,7 @@ PLATFORMS
 
 DEPENDENCIES
   SystemTimer
+  mocha
   mustache
   rack-test
   redgreen

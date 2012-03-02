@@ -7,4 +7,5 @@ gem 'sinatra'
 group :test do
   gem 'rack-test'
   gem 'redgreen'
+  gem 'mocha'
 end

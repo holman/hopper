@@ -10,5 +10,6 @@ require 'app'
 
 require 'models/probe'
 require 'models/project'
+require 'models/source'
 
 $redis = Redis.connect(:url => 'redis://127.0.0.1', :thread_safe => true)

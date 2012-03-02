@@ -31,6 +31,13 @@ module Hopper
       raise NotImplementedError
     end
 
+    # A unique (for this source) name that we can use.
+    #
+    # Returns a String.
+    def name
+      raise NotImplementedError
+    end
+
     # The URL used to download this Source.
     #
     # Returns a String.
@@ -50,6 +57,20 @@ module Hopper
     # Returns nothing.
     def clone_command!
       exec clone_command
+    end
+
+    # The #name attribute, but with special characters subbed out.
+    #
+    # Returns a String.
+    def directory_name
+      name.gsub('/','-')
+    end
+
+    # The local path of the repository on-disk.
+    #
+    # Returns a String.
+    def local_path
+      "#{Hopper.temp_dir}/#{directory_name}"
     end
 
     # Raised if the method hasn't been properly defined in the subclass.

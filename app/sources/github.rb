@@ -14,6 +14,14 @@ module Hopper
       "https://github.com"
     end
 
+    # An informal, unique name that we can give it. For GitHub, that's our
+    # favorite nwo, like holman/hopper.
+    #
+    # Returns a String.
+    def name
+      url.split('/')[-2..-1].join('/')
+    end
+
     # The Git clone URL that lets us pull down this source.
     #
     # Returns a String.
@@ -25,7 +33,7 @@ module Hopper
     #
     # Returns a String.
     def clone_command
-      "git clone #{clone_url}"
+      "git clone #{clone_url} #{local_path}"
     end
   end
 end

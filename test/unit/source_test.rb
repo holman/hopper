@@ -19,6 +19,12 @@ context "Source" do
 
   test "clone_url raises exception" do
     assert_raise Source::NotImplementedError do
+      @source.name
+    end
+  end
+
+  test "clone_url raises exception" do
+    assert_raise Source::NotImplementedError do
       @source.clone_url
     end
   end

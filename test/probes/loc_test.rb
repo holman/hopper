@@ -2,7 +2,6 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Loc" do
   setup do
-    clean
     @probe = Loc.new('test/examples/simple')
   end
 

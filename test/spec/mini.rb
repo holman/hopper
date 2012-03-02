@@ -16,7 +16,13 @@ def context(*args, &block)
       define_method(:setup) { self.class.setups.each { |s| instance_eval(&s) } }
       setups << block
     end
-    def self.setups; @setups ||= [] end
+    def self.setups
+      # Clear the redis db each time
+      $redis.flushdb
+
+      # Initialize the setups
+      @setups ||= []
+    end
     def self.teardown(&block) define_method(:teardown, &block) end
   end
   (class << klass; self end).send(:define_method, :name) { name.gsub(/\W/,'_') }

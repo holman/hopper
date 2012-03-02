@@ -17,11 +17,6 @@ include Rack::Test::Methods
 # Select a new db to keep our data separate
 $redis.select 12
 
-# Cleans out the redis db on each invokation (usually each test)
-def clean
-  $redis.flushdb
-end
-
 def app
   Hopper::App
 end

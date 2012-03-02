@@ -1,10 +1,6 @@
 require File.expand_path("../../helper", __FILE__)
 
 context "Probe" do
-  setup do
-    clean
-  end
-
   test "name" do
     assert_equal 'Probe', Probe.new.name
   end

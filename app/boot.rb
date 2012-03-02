@@ -16,6 +16,6 @@ $redis = Redis.connect(:url => 'redis://127.0.0.1', :thread_safe => true)
 
 module Hopper
   def self.temp_dir
-    'tmp/'
+    'tmp'
   end
 end

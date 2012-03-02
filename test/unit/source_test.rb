@@ -35,9 +35,9 @@ context "Source" do
     end
   end
 
-  test "clone_command! runs clone_command" do
+  test "clone! runs clone_command" do
     @source.expects(:clone_command).returns('clone-stub')
     @source.expects(:exec).with('clone-stub').returns(true)
-    assert @source.clone_command!
+    assert @source.clone!
   end
 end

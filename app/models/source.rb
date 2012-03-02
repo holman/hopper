@@ -55,7 +55,7 @@ module Hopper
     # Runs the clone_command.
     #
     # Returns nothing.
-    def clone_command!
+    def clone!
       exec clone_command
     end
 

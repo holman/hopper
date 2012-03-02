@@ -38,6 +38,20 @@ module Hopper
       raise NotImplementedError
     end
 
+    # The clone command needed to pull down the data.
+    #
+    # Returns a String.
+    def clone_command
+      raise NotImplementedError
+    end
+
+    # Runs the clone_command.
+    #
+    # Returns nothing.
+    def clone_command!
+      exec clone_command
+    end
+
     # Raised if the method hasn't been properly defined in the subclass.
     class NotImplementedError < StandardError ; end
   end

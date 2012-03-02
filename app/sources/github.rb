@@ -20,5 +20,12 @@ module Hopper
     def clone_url
       "#{url}.git"
     end
+
+    # THe clone command needed to clone down this source.
+    #
+    # Returns a String.
+    def clone_command
+      "git clone #{clone_url}"
+    end
   end
 end

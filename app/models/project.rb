@@ -11,7 +11,7 @@ module Hopper
     #
     # path - The String path to this project.
     def initialize(url)
-      @url  = url
+      @url = url
     end
 
     # The path to this project on-disk.

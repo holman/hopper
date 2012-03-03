@@ -14,4 +14,9 @@ context "Project" do
     readme = File.join(@project.path, 'README.md')
     assert_equal [app,readme], @project.files
   end
+
+  test "analyze!" do
+    Probe.expects(:analyze!).returns(true)
+    assert @project.analyze!
+  end
 end

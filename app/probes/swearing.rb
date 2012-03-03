@@ -28,5 +28,12 @@ module Hopper
         project.file_contents.join(' ').scan(/\b#{word}\b/).size
       end.inject(:+)
     end
+
+    # Save swearing counts.
+    #
+    # Returns a Boolean of whether or not it saved.
+    def save
+      puts "saved!"
+    end
   end
 end

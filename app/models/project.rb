@@ -36,5 +36,13 @@ module Hopper
         File.read(file)
       end
     end
+
+    # The Great Bambino. Runs through all Probes and gives us an analysis of
+    # this Project.
+    #
+    # Returns nothing.
+    def analyze!
+      Probe.analyze!(self)
+    end
   end
 end

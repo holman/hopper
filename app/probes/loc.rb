@@ -16,5 +16,12 @@ module Hopper
         sum + File.read(file).lines.count
       end
     end
+
+    # Save LOC counts.
+    #
+    # Returns a Boolean of whether or not it saved.
+    def save
+      puts "saved!"
+    end
   end
 end

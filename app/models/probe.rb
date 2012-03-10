@@ -51,17 +51,17 @@ module Hopper
       File.basename(__FILE__, '.rb').capitalize
     end
 
-    # Public: Get the Probe to analyze data and store it away.
-    #
-    # Returns nothing.
-    def save
-      raise NotImplementedError
-    end
-
     # Public: The description of the probe.
     #
     # Returns a String.
     def description
+      raise NotImplementedError
+    end
+
+    # Public: Get the Probe to analyze data and store it away.
+    #
+    # Returns nothing.
+    def save
       raise NotImplementedError
     end
 

@@ -1,6 +1,6 @@
 module Hopper
   module Views
-    class Index < Layout
+    class Home < Layout
     end
   end
 end

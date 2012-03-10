@@ -13,7 +13,11 @@ module Hopper
     }
 
     get '/' do
-      'Hopper'
+      mustache :index
+    end
+
+    get '/projects' do
+      mustache :projects
     end
   end
 end

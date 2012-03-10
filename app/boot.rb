@@ -7,6 +7,7 @@ require 'sinatra/base'
 require 'mustache/sinatra'
 
 require 'app'
+require 'app/views/layout'
 
 require 'models/index'
 require 'models/probe'

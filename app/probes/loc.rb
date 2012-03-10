@@ -1,4 +1,11 @@
 module Hopper
+  # A measurement of Lines of Code in a Project.
+  #
+  # In practice, there's a few things we look at:
+  #
+  #   - lines
+  #   - lines of actual code
+  #   - lines of documentation
   class Loc < Probe
     # The description.
     #

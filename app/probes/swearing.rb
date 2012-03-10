@@ -1,4 +1,7 @@
 module Hopper
+  # How much swearing goes on in a Project?
+  #
+  # No really. Just fucking tell me already.
   class Swearing < Probe
     # The description.
     #

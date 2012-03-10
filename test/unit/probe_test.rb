@@ -3,6 +3,7 @@ require File.expand_path("../../helper", __FILE__)
 context "Probe" do
   setup do
     @project = Project.new('github.com')
+    @probe   = Probe.new(@project)
   end
 
   test "all probes" do
@@ -19,10 +20,10 @@ context "Probe" do
     assert_equal 'Probe', Probe.new(@project).name
   end
 
-  test "data raises exception" do
-    assert_raise Probe::NotImplementedError do
-      Probe.new(@project).data
-    end
+  test "exposes data" do
+    Probe.exposes :name
+    hash = {:name => 'Probe'}
+    assert_equal hash, @probe.data
   end
 
   test "save raises exception" do

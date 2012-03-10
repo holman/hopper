@@ -11,15 +11,42 @@ module Hopper
   #
   #   - data: A Hash representation of all of the Probe's data. This is a
   #           schemaless Hash, as each Probe can have different needs.
-  #   - save: Persists all data to Redis
+  #   - save: Persists all data to Redis.
   class Probe
-    # Load all probes.
-    Dir["app/probes/*.rb"].each {|file| require file }
-
     # Public: The Project this Probe is probing.
     #
     # Returns a Project.
     attr_accessor :project
+
+    # Public: A Hash representation of all of the data persisted by this Probe.
+    #
+    # Returns a Hash. This Hash is schemaless and is dependent on each Probe's
+    # implementation. It generally corresponds to a basic key/value format,
+    # where the key maps to a particular metric, and the value is the
+    # persisted data we prepared.
+    def data
+      hash = {}
+      @@methods.collect do |method|
+        hash[method.to_sym] = self.send(method)
+      end
+      hash
+    end
+
+    # Public: A convenience method for setting the methods we use to populate
+    # the `data` Hash for each Probe.
+    #
+    # methods - An Array of Symbols that correspond to method names in the Probe
+    #           to query against.
+    #
+    # Examples:
+    #
+    #   # Each Probe can declare the data it exposes by something like:
+    #   exposes :count, :lines, :total
+    #
+    # Sets the Hash as accessibile from `data` and returns as such.
+    def self.exposes(*methods)
+      @@methods = methods
+    end
 
     # Public: Creates a new Probe.
     #
@@ -65,16 +92,6 @@ module Hopper
       raise NotImplementedError
     end
 
-    # Public: A Hash representation of all of the data persisted by this Probe.
-    #
-    # Returns a Hash. This Hash is schemaless and is dependent on each Probe's
-    # implementation. It generally corresponds to a basic key/value format,
-    # where the key maps to a particular metric, and the value is the
-    # persisted data we prepared.
-    def data
-      raise NotImplementedError
-    end
-
     # Public: Get the Probe to analyze data and store it away.
     #
     # Returns nothing.
@@ -84,5 +101,8 @@ module Hopper
 
     # Public: Raised if the method hasn't been properly defined in the subclass.
     class NotImplementedError < StandardError ; end
+
+    # Load all probes.
+    Dir["app/probes/*.rb"].each {|file| require file }
   end
 end

@@ -7,6 +7,9 @@ module Hopper
   #   - lines of actual code
   #   - lines of documentation
   class Loc < Probe
+    # The data for this Probe.
+    exposes :lines, :ruby_lines, :comment_lines
+
     # The description.
     #
     # Returns a String.
@@ -44,17 +47,6 @@ module Hopper
           first == '#' ? 1 : 0
         end.sum
       end
-    end
-
-    # Public: The data for this Probe.
-    #
-    # Returns a Hash.
-    def data
-      {
-        :lines         => lines,
-        :ruby_lines    => ruby_lines,
-        :comment_lines => comment_lines
-      }
     end
 
     # Save LOC counts.

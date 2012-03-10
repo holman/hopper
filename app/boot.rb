@@ -13,6 +13,8 @@ require 'models/probe'
 require 'models/project'
 require 'models/source'
 
+require 'lib/ext/array'
+
 $redis = Redis.connect(:url => 'redis://127.0.0.1', :thread_safe => true)
 
 module Hopper

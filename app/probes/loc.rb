@@ -26,6 +26,19 @@ module Hopper
       end
     end
 
+    # Number of lines in the project that are commented.
+    #
+    # Returns an Integer.
+    def comment_lines
+      project.files.inject(0) do |sum,file|
+        sum + File.read(file).lines.collect do |line|
+          first = line.strip[0]
+          first = first.chr if first
+          first == '#' ? 1 : 0
+        end.sum
+      end
+    end
+
     # Save LOC counts.
     #
     # Returns a Boolean of whether or not it saved.

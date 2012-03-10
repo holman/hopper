@@ -17,4 +17,8 @@ context "Loc" do
   test "ruby lines" do
     assert_equal 10, @probe.ruby_lines
   end
+
+  test "comment lines" do
+    assert_equal 4, @probe.comment_lines
+  end
 end

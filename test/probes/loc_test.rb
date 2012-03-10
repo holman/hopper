@@ -10,6 +10,10 @@ context "Loc" do
     assert_match "lines of code", @probe.description
   end
 
+  test "data" do
+    assert !@probe.data.keys.empty?
+  end
+
   test "all lines" do
     assert_equal 13, @probe.lines
   end

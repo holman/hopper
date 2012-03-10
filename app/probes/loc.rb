@@ -46,6 +46,17 @@ module Hopper
       end
     end
 
+    # Public: The data for this Probe.
+    #
+    # Returns a Hash.
+    def data
+      {
+        :lines         => lines,
+        :ruby_lines    => ruby_lines,
+        :comment_lines => comment_lines
+      }
+    end
+
     # Save LOC counts.
     #
     # Returns a Boolean of whether or not it saved.

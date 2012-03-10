@@ -2,9 +2,11 @@ GEM
   remote: http://rubygems.org/
   specs:
     SystemTimer (1.2.3)
+    hike (1.2.1)
     metaclass (0.0.1)
     mocha (0.10.0)
       metaclass (~> 0.0.1)
+    multi_json (1.1.0)
     mustache (0.99.4)
     rack (1.4.1)
     rack-protection (1.2.0)
@@ -17,6 +19,11 @@ GEM
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
+    sprockets (2.3.1)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
     tilt (1.3.3)
 
 PLATFORMS
@@ -30,3 +37,4 @@ DEPENDENCIES
   redgreen
   redis
   sinatra
+  sprockets

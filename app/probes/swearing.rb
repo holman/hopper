@@ -1,5 +1,8 @@
 module Hopper
   class Swearing < Probe
+    # The description.
+    #
+    # Returns a String.
     def description
       "Analyze code for dirty words."
     end

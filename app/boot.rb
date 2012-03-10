@@ -24,6 +24,9 @@ require 'lib/ext/array'
 $redis = Redis.connect(:url => 'redis://127.0.0.1', :thread_safe => true)
 
 module Hopper
+  # The temporary directory that we can extract downloads to.
+  #
+  # Returns a relative String path.
   def self.temp_dir
     'tmp'
   end

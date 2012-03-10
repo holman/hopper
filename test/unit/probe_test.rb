@@ -19,6 +19,18 @@ context "Probe" do
     assert_equal 'Probe', Probe.new(@project).name
   end
 
+  test "data raises exception" do
+    assert_raise Probe::NotImplementedError do
+      Probe.new(@project).data
+    end
+  end
+
+  test "save raises exception" do
+    assert_raise Probe::NotImplementedError do
+      Probe.new(@project).save
+    end
+  end
+
   test "description raises exception" do
     assert_raise Probe::NotImplementedError do
       Probe.new(@project).description

@@ -5,6 +5,13 @@ module Hopper
   # this main class, which provides a common interface for some convenience
   # methods, like identifiers and helper methods, as well as some global finders
   # and accessors.
+  #
+  # Each Probe is responsible for stashing and retreiving its own data. Each
+  # Probe MUST implement the following:
+  #
+  #   - data: A Hash representation of all of the Probe's data. This is a
+  #           schemaless Hash, as each Probe can have different needs.
+  #   - save: Persists all data to Redis
   class Probe
     # Load all probes.
     Dir["app/probes/*.rb"].each {|file| require file }
@@ -55,6 +62,16 @@ module Hopper
     #
     # Returns a String.
     def description
+      raise NotImplementedError
+    end
+
+    # Public: A Hash representation of all of the data persisted by this Probe.
+    #
+    # Returns a Hash. This Hash is schemaless and is dependent on each Probe's
+    # implementation. It generally corresponds to a basic key/value format,
+    # where the key maps to a particular metric, and the value is the
+    # persisted data we prepared.
+    def data
       raise NotImplementedError
     end
 

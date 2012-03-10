@@ -3,6 +3,7 @@ gem 'mustache'
 gem 'redis'
 gem 'SystemTimer'
 gem 'sinatra'
+gem 'sprockets'
 
 group :test do
   gem 'rack-test'

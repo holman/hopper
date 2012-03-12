@@ -37,6 +37,14 @@ module Hopper
       @id  = sha1
     end
 
+    # Finds a Project from an ID.
+    #
+    # Returns the Project.
+    def self.find(id)
+      hash = $redis.hgetall("#{Project.key}:id")
+      new(hash['url'])
+    end
+
     # The main redis key.
     #
     # Returns a String.
@@ -63,6 +71,9 @@ module Hopper
     # Returns nothing.
     def save
       $redis.sadd Project.key, id
+
+      hash_id = "#{Project.key}:id"
+      $redis.hset hash_id, :url, url
     end
 
     # The path to this project on-disk.

@@ -20,6 +20,16 @@ task :console do
   sh "irb -rubygems -r ./app/boot"
 end
 
+desc "Sets up your install with some demo data"
+task :setup do
+  puts "Clearing your redis database"
+  Rake::Task['redis:reset'].invoke
+
+  puts "Generating some test data"
+  project = Hopper::Project.new('github.com/holman/boom')
+  project.save
+end
+
 namespace :redis do
   desc "Wipe all data in redis"
   task :reset do

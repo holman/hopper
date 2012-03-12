@@ -19,3 +19,10 @@ desc "Open an irb session preloaded with this library"
 task :console do
   sh "irb -rubygems -r ./app/boot"
 end
+
+namespace :redis do
+  desc "Wipe all data in redis"
+  task :reset do
+    $redis.flushdb
+  end
+end

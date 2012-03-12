@@ -17,6 +17,7 @@ module Hopper
     end
 
     get '/projects' do
+      @projects = Project.all
       mustache :projects
     end
   end

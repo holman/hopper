@@ -19,4 +19,15 @@ context "Project" do
     Probe.expects(:analyze!).returns(true)
     assert @project.analyze!
   end
+
+  test "save" do
+    assert_equal 0, Project.all.count
+    @project.save
+    assert_equal 1, Project.all.count
+  end
+
+  test "all" do
+    @project.save
+    assert_equal 1, Project.all.count
+  end
 end

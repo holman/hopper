@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 module Hopper
   # A collection of code that we grab from somewhere. This is our common
   # interface for manipulating the project itself once we have it locally.
@@ -6,10 +8,34 @@ module Hopper
   #
   #   hopper:projects - All of the Project URLs.
   class Project
-    # The relative URL of this project.
+    # The ID of the Project.
+    #
+    # Returns a String (the sha).
+    attr_accessor :id
+
+    # Set the URL of the project. Removes www., removes http(s) protocol.
     #
     # Returns a String.
-    attr_accessor :url
+    def url=(url)
+      host = URI.parse(url).host
+      path = URI.parse(url).path
+      url  = "#{host}#{path}"
+
+      @url = url.gsub(/^www\./,'')
+    end
+
+    # The URL of the project.
+    #
+    # Returns a String.
+    attr_reader :url
+
+    # Initializes a new Project.
+    #
+    # path - The String path to this project.
+    def initialize(url)
+      @url = url
+      @id  = sha1
+    end
 
     # The main redis key.
     #
@@ -18,18 +44,18 @@ module Hopper
       "#{Hopper.redis_namespace}:projects"
     end
 
-    # Initializes a new Project.
-    #
-    # path - The String path to this project.
-    def initialize(url)
-      @url = url
-    end
-
     # All Projects.
     #
     # Returns an Array.
     def self.all
       $redis.smembers key
+    end
+
+    # The SHA1 representation of the URL.
+    #
+    # Returns a String.
+    def sha1
+      Digest::SHA1.hexdigest url
     end
 
     # Saves the project to the database.

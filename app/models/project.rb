@@ -62,7 +62,7 @@ module Hopper
     #
     # Returns nothing.
     def save
-      $redis.sadd Project.key, url
+      $redis.sadd Project.key, id
     end
 
     # The path to this project on-disk.

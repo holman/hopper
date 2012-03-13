@@ -16,6 +16,11 @@ module Hopper
       mustache :home
     end
 
+    get '/probes' do
+      @probes = Probe.all
+      mustache :probes
+    end
+
     get '/projects' do
       @projects = Project.all
       mustache :projects

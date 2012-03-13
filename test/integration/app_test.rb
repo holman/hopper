@@ -9,6 +9,11 @@ context "App" do
     assert_match "Hopper", last_response.body.strip
   end
 
+  test "/probes" do
+    get "/probes"
+    assert_match "Probes", last_response.body.strip
+  end
+
   test "/projects" do
     get "/projects"
     assert_match "projects", last_response.body.strip

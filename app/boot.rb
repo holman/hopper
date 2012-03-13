@@ -14,7 +14,6 @@ require 'yajl'
 require 'app'
 
 # Models
-require 'models/index'
 require 'models/probe'
 require 'models/project'
 require 'models/source'

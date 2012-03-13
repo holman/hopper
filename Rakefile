@@ -26,8 +26,10 @@ task :setup do
   Rake::Task['redis:reset'].invoke
 
   puts "Generating some test data"
-  project = Hopper::Project.new('github.com/holman/boom')
-  project.save
+  Hopper::Project.new('github.com/holman/boom').save
+  Hopper::Project.new('github.com/holman/play').save
+  Hopper::Project.new('github.com/github/github-services').save
+  Hopper::Project.new('github.com/defunkt/mustache').save
 end
 
 namespace :redis do

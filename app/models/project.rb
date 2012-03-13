@@ -103,6 +103,8 @@ module Hopper
     #
     # Returns nothing.
     def save
+      async_analyze
+
       $redis.sadd Project.key, id
 
       hash_id = "#{Project.key}:#{id}"

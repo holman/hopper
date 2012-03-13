@@ -5,6 +5,7 @@ require 'rubygems'
 # Dependencies
 
 require 'redis'
+require 'resque'
 require 'sinatra/base'
 require 'mustache/sinatra'
 require 'yajl'
@@ -27,6 +28,7 @@ require 'lib/ext/array'
 
 # Connect to Redis
 $redis = Redis.connect(:url => 'redis://127.0.0.1', :thread_safe => true)
+Resque.redis = $redis
 
 module Hopper
   # The temporary directory that we can extract downloads to.

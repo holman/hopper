@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 gem 'mustache'
-gem 'rake'
+gem 'rake', '0.8.7'
 gem 'redis'
 gem 'resque'
 gem 'SystemTimer'

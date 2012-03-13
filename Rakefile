@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'rake'
 require 'yaml'
+require 'resque/tasks'
 
 $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__) + '/app')
 

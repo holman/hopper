@@ -15,14 +15,14 @@ module Hopper
     #
     # Returns an Integer.
     def total_count
-      `git shortlog -s | wc -l`.strip.to_i
+      `cd #{project.path} && git shortlog -s | wc -l`.strip.to_i
     end
 
     # The contributors to this project.
     #
     # Returns an Array of Hashes, with keys as :author, :email, :count.
     def contributors
-      `git shortlog -s -e`.map do |line|
+      `cd #{project.path} && git shortlog -s -e`.map do |line|
         count  = line.split("\t").first.to_i
         email  = line.scan(/<(.*)>/).first.first.strip
         author = line.scan(/(.*)</).first.first.split("\t").last.strip

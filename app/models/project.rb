@@ -41,7 +41,7 @@ module Hopper
     #
     # Returns the Project.
     def self.find(id)
-      hash = $redis.hgetall("#{Project.key}:id")
+      hash = $redis.hgetall("#{Project.key}:#{id}")
       new(hash['url'])
     end
 
@@ -86,7 +86,7 @@ module Hopper
     def save
       $redis.sadd Project.key, id
 
-      hash_id = "#{Project.key}:id"
+      hash_id = "#{Project.key}:#{id}"
       $redis.hset hash_id, :url, url
     end
 

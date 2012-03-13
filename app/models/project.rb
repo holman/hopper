@@ -131,7 +131,7 @@ module Hopper
     #
     # Returns an Array of Strings.
     def files
-      Dir.glob(File.join(path,"*"))
+      Dir.glob("#{path}/**/*")
     end
 
     # All of the contents of each file in this project.

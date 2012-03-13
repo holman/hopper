@@ -26,7 +26,7 @@ module Hopper
     # persisted data we prepared.
     def data
       hash = {}
-      @@methods.collect do |method|
+      self.class.exposed.collect do |method|
         hash[method.to_sym] = self.send(method)
       end
       hash
@@ -35,7 +35,7 @@ module Hopper
     # Public: A convenience method for setting the methods we use to populate
     # the `data` Hash for each Probe.
     #
-    # methods - An Array of Symbols that correspond to method names in the Probe
+    # exposed - An Array of Symbols that correspond to method names in the Probe
     #           to query against.
     #
     # Examples:
@@ -44,8 +44,14 @@ module Hopper
     #   exposes :count, :lines, :total
     #
     # Sets the Hash as accessibile from `data` and returns as such.
-    def self.exposes(*methods)
-      @@methods = methods
+    def self.exposes(*exposed)
+      self.exposed = exposed
+    end
+
+    # Hack to stash `exposed` methods and make them available in the `exposes`
+    # API.
+    class << self
+      attr_accessor :exposed
     end
 
     # Public: Creates a new Probe.

@@ -38,3 +38,13 @@ namespace :redis do
     $redis.flushdb
   end
 end
+
+namespace :test do
+  namespace :git do
+    desc "Package repos"
+    task :package do
+      system "rm -rf test/examples/simple.tgz"
+      system "tar cvzf test/examples/simple.tgz test/examples/simple"
+    end
+  end
+end

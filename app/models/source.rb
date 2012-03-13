@@ -17,6 +17,14 @@ module Hopper
       @url = url
     end
 
+    # Initializes a new Source from a URL.
+    #
+    # Returns a new Source subclass.
+    def self.new_from_url(url)
+      # We only have GitHub at the moment. Deal with it.
+      Github.new(url)
+    end
+
     # The name of the Source.
     #
     # Returns a String.
@@ -55,7 +63,7 @@ module Hopper
     # Runs the clone_command.
     #
     # Returns nothing.
-    def clone!
+    def clone
       exec clone_command
     end
 

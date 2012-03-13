@@ -2,7 +2,7 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Project" do
   setup do
-    @project = Project.new('stub')
+    @project = Project.new('github.com/holman/hopper')
   end
 
   test "initializes" do
@@ -35,6 +35,7 @@ context "Project" do
   end
 
   test "analyze" do
+    Github.any_instance.expects(:clone).returns(true)
     Probe.expects(:analyze).returns(true)
     assert @project.analyze
   end
@@ -42,6 +43,10 @@ context "Project" do
   test "sha1" do
     @project.url = 'github.com/holman/boom'
     assert_equal 'f40942d357a7df851462c52b15328250ae103879', @project.sha1
+  end
+
+  test "source" do
+    assert_equal "GitHub", @project.source.class.name
   end
 
   test "save" do

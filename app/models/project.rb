@@ -66,6 +66,13 @@ module Hopper
       Digest::SHA1.hexdigest url
     end
 
+    # Accesses the Source for this Project.
+    #
+    # Returns a Source.
+    def source
+      Source.new_from_url(url)
+    end
+
     # Saves the project to the database.
     #
     # Returns nothing.
@@ -113,6 +120,7 @@ module Hopper
     #
     # Returns nothing.
     def analyze
+      source.clone
       Probe.analyze(self)
     end
   end

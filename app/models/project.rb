@@ -8,6 +8,9 @@ module Hopper
   #
   #   hopper:projects - All of the Project URLs.
   class Project
+    # Set Project up in resque to run under the "index" queue.
+    @queue = :index
+
     # The ID of the Project.
     #
     # Returns a String (the sha).
@@ -50,6 +53,22 @@ module Hopper
     # Returns a String.
     def self.key
       "#{Hopper.redis_namespace}:projects"
+    end
+
+    # The method Resque uses to asynchronously do the dirty.
+    #
+    # id - The ID of the Project.
+    #
+    # Returns whatever Resque returns.
+    def self.perform(id)
+      Project.find(id).analyze
+    end
+
+    # Queue up a job to analyze this project.
+    #
+    # Returns a boolean.
+    def async_analyze
+      Resque.enqueue(Project, self.id)
     end
 
     # All Projects.

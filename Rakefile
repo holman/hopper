@@ -34,7 +34,7 @@ task :setup do
   Hopper::Project.new('github.com/twitter/bootstrap').save
 
   # Analyze everything
-  Hopper::Project.all.each{|p| Hopper::Project.find(p).analyze}
+  Hopper::Project.all.each{|p| Hopper::Project.find(p).async_analyze }
 end
 
 namespace :redis do

@@ -23,13 +23,14 @@ context "Probe" do
   test "exposes data" do
     Probe.exposes :name
     hash = {:name => 'Probe'}
+    @probe.save
     assert_equal hash, @probe.data
   end
 
-  test "save raises exception" do
-    assert_raise Probe::NotImplementedError do
-      Probe.new(@project).save
-    end
+  test "save saves attributes" do
+    Probe.exposes :name
+    @probe.save
+    assert_equal 'Probe', @probe.data[:name]
   end
 
   test "description raises exception" do

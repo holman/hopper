@@ -27,7 +27,8 @@ module Hopper
     def data
       hash = {}
       self.class.exposed.collect do |method|
-        hash[method.to_sym] = self.send(method)
+        value = $redis.get "#{key}:#{method}"
+        hash[method.to_sym] = value
       end
       hash
     end
@@ -70,6 +71,13 @@ module Hopper
       all_as_constants.each{|probe| probe.new(project).save }
     end
 
+    # The key for this probe in redis.
+    #
+    # Returns a String.
+    def key
+      "#{Hopper.redis_namespace}:probes:#{name.downcase}"
+    end
+
     # Public: The Probes we have available for use.
     #
     # Returns an Array of Strings.
@@ -102,7 +110,9 @@ module Hopper
     #
     # Returns nothing.
     def save
-      raise NotImplementedError
+      self.class.exposed.collect do |method|
+        $redis.set "#{key}:#{method}", self.send(method)
+      end
     end
 
     # Public: Raised if the method hasn't been properly defined in the subclass.

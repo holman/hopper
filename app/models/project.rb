@@ -66,6 +66,13 @@ module Hopper
       Digest::SHA1.hexdigest url
     end
 
+    # An URL. Just assume HTTP for now.
+    #
+    # Returns a String.
+    def url_with_protocol
+      "https://#{url}"
+    end
+
     # Accesses the Source for this Project.
     #
     # Returns a Source.

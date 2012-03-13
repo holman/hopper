@@ -20,12 +20,5 @@ module Hopper
         File.basename(file).match(/readme/i) ? 1 : 0
       end.sum
     end
-
-    # Save swearing counts.
-    #
-    # Returns a Boolean of whether or not it saved.
-    def save
-      puts "saved!"
-    end
   end
 end

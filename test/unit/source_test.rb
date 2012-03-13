@@ -37,7 +37,7 @@ context "Source" do
 
   test "clone! runs clone_command" do
     @source.expects(:clone_command).returns('clone-stub')
-    @source.expects(:exec).with('clone-stub').returns(true)
+    @source.expects(:system).with('clone-stub').returns(true)
     assert @source.clone
   end
 end

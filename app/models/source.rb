@@ -64,7 +64,7 @@ module Hopper
     #
     # Returns nothing.
     def clone
-      exec clone_command
+      system clone_command
     end
 
     # The #name attribute, but with special characters subbed out.

@@ -30,6 +30,10 @@ task :setup do
   Hopper::Project.new('github.com/holman/play').save
   Hopper::Project.new('github.com/github/github-services').save
   Hopper::Project.new('github.com/defunkt/mustache').save
+  Hopper::Project.new('github.com/twitter/bootstrap').save
+
+  # Analyze everything
+  Hopper::Project.all.each{|p| Hopper::Project.find(p).analyze}
 end
 
 namespace :redis do

@@ -3,6 +3,9 @@ module Hopper
   #
   # No really. Just fucking tell me already.
   class Swearing < Probe
+    # The data for this Probe.
+    exposes :word_count
+
     # The description.
     #
     # Returns a String.

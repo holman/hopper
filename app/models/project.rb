@@ -101,7 +101,7 @@ module Hopper
 
     def probes
       Probe.all_as_constants.collect do |probe|
-        probe.new(url)
+        probe.new(self)
       end
     end
 

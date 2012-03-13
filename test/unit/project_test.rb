@@ -63,6 +63,11 @@ context "Project" do
     assert_equal 1, Project.all.count
   end
 
+  test "create" do
+    project = Project.create('github.com/holman/hopper')
+    assert_equal 1, Project.all.count
+  end
+
   test "find" do
     @project.save
     assert_equal @project.url, Project.find(@project.id).url

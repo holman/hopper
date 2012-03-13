@@ -40,6 +40,15 @@ module Hopper
       @id  = sha1
     end
 
+    # Initializes and saves a new Project.
+    #
+    # Returns the Project.
+    def self.create(url)
+      project = new(url)
+      project.save
+      project
+    end
+
     # Finds a Project from an ID.
     #
     # Returns the Project.

@@ -23,6 +23,11 @@ class Hopper::Project
   end
 end
 
+# Extract the sample repo
+if !File.exist?('test/examples/simple')
+  system "tar xvzf test/examples/simple.tgz"
+end
+
 def app
   Hopper::App
 end

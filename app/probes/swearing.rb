@@ -35,7 +35,7 @@ module Hopper
     def word_count
       words.map do |word|
         project.file_contents.join(' ').scan(/\b#{word}\b/).size
-      end.inject(:+)
+      end.sum
     end
   end
 end

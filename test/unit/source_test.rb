@@ -35,7 +35,8 @@ context "Source" do
     end
   end
 
-  test "clone! runs clone_command" do
+  test "clone runs clone_command" do
+    @source.expects(:local_path).returns('nonexistent')
     @source.expects(:clone_command).returns('clone-stub')
     @source.expects(:system).with('clone-stub').returns(true)
     assert @source.clone

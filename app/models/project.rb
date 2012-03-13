@@ -109,7 +109,7 @@ module Hopper
     # Returns an Array of Strings.
     def file_contents
       files.map do |file|
-        File.read(file)
+        File.directory?(file) ? '' : File.read(file)
       end
     end
 

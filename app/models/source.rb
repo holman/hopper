@@ -64,6 +64,7 @@ module Hopper
     #
     # Returns nothing.
     def clone
+      return if File.exist?(local_path)
       system clone_command
     end
 

@@ -27,7 +27,7 @@ module Hopper
     def data
       hash = {}
       self.class.exposed.collect do |method|
-        value = $redis.get "#{key}:#{method}"
+        value = $redis.get "#{key}:#{method}:#{project.id}"
         hash[method.to_sym] = value
       end
       hash
@@ -111,7 +111,7 @@ module Hopper
     # Returns nothing.
     def save
       self.class.exposed.collect do |method|
-        $redis.set "#{key}:#{method}", self.send(method)
+        $redis.set "#{key}:#{method}:#{project.id}", self.send(method)
       end
     end
 

@@ -17,6 +17,12 @@ include Rack::Test::Methods
 # Select a new db to keep our data separate
 $redis.select 12
 
+class Hopper::Project
+  def path
+    "test/examples/simple"
+  end
+end
+
 def app
   Hopper::App
 end

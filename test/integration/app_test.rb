@@ -13,4 +13,11 @@ context "App" do
     get "/projects"
     assert_match "projects", last_response.body.strip
   end
+
+  test "/projects/:id" do
+    project = Project.new('github.com/holman/hopper')
+    project.save
+    get "/projects/#{project.id}"
+    assert_match 'holman/hopper', last_response.body.strip
+  end
 end

@@ -4,6 +4,10 @@ module Hopper
       def project
         @project
       end
+
+      def probes
+        Probe.all_as_constants
+      end
     end
   end
 end

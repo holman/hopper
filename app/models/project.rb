@@ -99,6 +99,9 @@ module Hopper
       end
     end
 
+    # Access this project's probes (which should be all probes available).
+    #
+    # Returns an Array of Probe instances.
     def probes
       Probe.all_as_constants.collect do |probe|
         probe.new(self)

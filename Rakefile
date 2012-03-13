@@ -27,17 +27,23 @@ task :setup do
   Rake::Task['redis:reset'].invoke
 
   puts "Generating some test data"
-  Hopper::Project.new('github.com/holman/boom').save
-  Hopper::Project.new('github.com/holman/play').save
-  Hopper::Project.new('github.com/github/github-services').save
-  Hopper::Project.new('github.com/defunkt/mustache').save
-  Hopper::Project.new('github.com/twitter/bootstrap').save
+  Hopper::Project.create('github.com/holman/boom')
+  Hopper::Project.create('github.com/holman/play')
+  Hopper::Project.create('github.com/github/github-services')
+  Hopper::Project.create('github.com/defunkt/mustache')
+  Hopper::Project.create('github.com/twitter/bootstrap')
+  Hopper::Project.create('github.com/rails/rails')
 end
 
 namespace :redis do
   desc "Wipe all data in redis"
   task :reset do
     $redis.flushdb
+  end
+
+  desc "Start resque-web"
+  task 'resque-web' do
+    exec 'resque-web -p 8282'
   end
 end
 

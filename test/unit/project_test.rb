@@ -34,9 +34,9 @@ context "Project" do
     assert_equal [app,readme], @project.files
   end
 
-  test "analyze!" do
-    Probe.expects(:analyze!).returns(true)
-    assert @project.analyze!
+  test "analyze" do
+    Probe.expects(:analyze).returns(true)
+    assert @project.analyze
   end
 
   test "sha1" do

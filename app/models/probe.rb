@@ -60,7 +60,7 @@ module Hopper
     # Public: Analyzes a Project with all the Probes we have at our disposal.
     #
     # Returns nothing.
-    def self.analyze!(project)
+    def self.analyze(project)
       all_as_constants.each{|probe| probe.new(project).save }
     end
 

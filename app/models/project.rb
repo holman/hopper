@@ -106,11 +106,11 @@ module Hopper
     end
 
     # The Great Bambino. Runs through all Probes and gives us an analysis of
-    # this Project. TODO: bang! is unnecessary.
+    # this Project.
     #
     # Returns nothing.
-    def analyze!
-      Probe.analyze!(self)
+    def analyze
+      Probe.analyze(self)
     end
   end
 end

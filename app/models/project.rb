@@ -99,8 +99,14 @@ module Hopper
       end
     end
 
+    def probes
+      Probe.all_as_constants.collect do |probe|
+        probe.new(url)
+      end
+    end
+
     # The Great Bambino. Runs through all Probes and gives us an analysis of
-    # this Project.
+    # this Project. TODO: bang! is unnecessary.
     #
     # Returns nothing.
     def analyze!

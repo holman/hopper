@@ -82,7 +82,7 @@ module Hopper
     #
     # Returns a String.
     def name
-      File.basename(__FILE__, '.rb').capitalize
+      self.class.name.split('::').last.capitalize
     end
 
     # Public: The description of the probe.

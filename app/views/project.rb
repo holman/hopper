@@ -6,7 +6,7 @@ module Hopper
       end
 
       def probes
-        Probe.all_as_constants
+        @project.probes
       end
     end
   end

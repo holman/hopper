@@ -31,8 +31,7 @@ module Hopper
     # Returns an Integer.
     def ruby_lines
       project.files.map do |file|
-        return 0 if File.extname(file) != '.rb'
-        return File.read(file).lines.count
+        File.extname(file) != '.rb' ? 0 : File.read(file).lines.count
       end.sum
     end
 

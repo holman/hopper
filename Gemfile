@@ -4,6 +4,7 @@ gem 'redis'
 gem 'SystemTimer'
 gem 'sinatra'
 gem 'sprockets'
+gem 'yajl-ruby'
 
 group :test do
   gem 'rack-test'

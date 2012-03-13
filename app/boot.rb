@@ -7,6 +7,7 @@ require 'rubygems'
 require 'redis'
 require 'sinatra/base'
 require 'mustache/sinatra'
+require 'yajl'
 
 # App
 require 'app'

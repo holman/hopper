@@ -35,5 +35,28 @@ module Hopper
     def clone_command
       "git clone #{clone_url} #{local_path}"
     end
+
+    # The project metadata we fetch from the wire.
+    #
+    # TODO: This is getting run multiple times on each `metadata` call.
+    #
+    # Returns a Hash
+    def metadata
+      Yajl::Parser.parse(`curl https://api.github.com/repos/#{name} --silent`)
+    end
+
+    # The number of followers for this project.
+    #
+    # Returns an Integer.
+    def followers
+      metadata['watchers']
+    end
+
+    # The number of forks for this project.
+    #
+    # Returns an Integer.
+    def forks
+      metadata['forks']
+    end
   end
 end

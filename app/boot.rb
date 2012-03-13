@@ -10,13 +10,16 @@ require 'mustache/sinatra'
 
 # App
 require 'app'
-require 'app/views/layout'
 
 # Models
 require 'models/index'
 require 'models/probe'
 require 'models/project'
 require 'models/source'
+
+# Non-autoloaded views
+require 'app/views/layout'
+require 'app/views/project'
 
 # Extensions
 require 'lib/ext/array'

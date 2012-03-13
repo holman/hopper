@@ -20,5 +20,10 @@ module Hopper
       @projects = Project.all
       mustache :projects
     end
+
+    get '/projects/:id' do
+      @project = Project.find(params[:id])
+      mustache :project
+    end
   end
 end

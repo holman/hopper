@@ -46,7 +46,7 @@ DEPENDENCIES
   mocha
   mustache
   rack-test
-  rake (= 0.8.7)
+  rake
   redgreen
   redis
   resque

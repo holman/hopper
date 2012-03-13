@@ -94,7 +94,7 @@ module Hopper
     #
     # Returns a String.
     def path
-      "test/examples/simple"
+      source.local_path
     end
 
     # All files in this project.

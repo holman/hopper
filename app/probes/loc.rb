@@ -30,10 +30,10 @@ module Hopper
     #
     # Returns an Integer.
     def ruby_lines
-      project.files.inject(0) do |sum,file|
-        return sum if File.extname(file) != '.rb'
-        sum + File.read(file).lines.count
-      end
+      project.files.map do |file|
+        return 0 if File.extname(file) != '.rb'
+        return File.read(file).lines.count
+      end.sum
     end
 
     # Number of lines in the project that are commented.

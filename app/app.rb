@@ -21,6 +21,11 @@ module Hopper
       mustache :probes
     end
 
+    get '/probes/:id' do
+      @probe = Probe.find(params[:id])
+      mustache :probe
+    end
+
     get '/projects' do
       @projects = Project.all
       mustache :projects

@@ -64,6 +64,13 @@ module Hopper
       @project = project
     end
 
+    # Public: Searches for a Probe by name.
+    #
+    # Returns a Probe.
+    def self.find(name)
+      all.find{|probe| probe.name.downcase == name.downcase }
+    end
+
     # Public: Analyzes a Project with all the Probes we have at our disposal.
     #
     # Returns nothing.

@@ -13,7 +13,7 @@ module Hopper
     }
 
     get '/' do
-      mustache :home
+      mustache :index
     end
 
     get '/probes' do

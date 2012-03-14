@@ -93,6 +93,14 @@ module Hopper
       super.split('::').last.capitalize
     end
 
+    # Stub out a description by faking a class and pulling the instance
+    # description.
+    #
+    # Returns a String.
+    def self.description
+      self.new('stub').description
+    end
+
     # Public: The name of the probe, generated from the file name.
     #
     # Returns a String.

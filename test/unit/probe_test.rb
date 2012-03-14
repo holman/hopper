@@ -37,4 +37,10 @@ context "Probe" do
       Probe.new(@project).description
     end
   end
+
+  test "class description" do
+    assert_raise Probe::NotImplementedError do
+      Probe.description
+    end
+  end
 end

@@ -147,7 +147,7 @@ module Hopper
     #
     # Returns an Array of Probe instances.
     def probes
-      Probe.all_as_constants.collect do |probe|
+      Probe.all.collect do |probe|
         probe.new(self)
       end
     end

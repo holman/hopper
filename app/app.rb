@@ -17,7 +17,7 @@ module Hopper
     end
 
     get '/probes' do
-      @probes = Probe.all_as_constants
+      @probes = Probe.all
       mustache :probes
     end
 

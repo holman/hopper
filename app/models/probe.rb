@@ -68,7 +68,7 @@ module Hopper
     #
     # Returns nothing.
     def self.analyze(project)
-      all_as_constants.each{|probe| probe.new(project).save }
+      all.each{|probe| probe.new(project).save }
     end
 
     # The key for this probe in redis.
@@ -78,18 +78,12 @@ module Hopper
       "#{Hopper.redis_namespace}:probes:#{name.downcase}"
     end
 
-    # Public: The Probes we have available for use.
-    #
-    # Returns an Array of Strings.
-    def self.all
-      Dir["app/probes/*.rb"].map{|file| File.basename(file,'.rb')}
-    end
-
-    # Public: All Probes, except constantized.
+    # Public: All Probes.
     #
     # Returns an Array of Constants.
-    def self.all_as_constants
-      all.map{|klass| Hopper.const_get(klass.capitalize)}
+    def self.all
+      names = Dir["app/probes/*.rb"].map{|file| File.basename(file,'.rb')}
+      names.map{|klass| Hopper.const_get(klass.capitalize)}
     end
 
     # Public: The name of the probe, generated from the file name.

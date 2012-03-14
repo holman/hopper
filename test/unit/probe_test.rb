@@ -6,14 +6,9 @@ context "Probe" do
     @probe   = Probe.new(@project)
   end
 
-  test "all probes" do
-    assert Probe.all.include?('loc')
-    assert Probe.all.include?('swearing')
-  end
-
   test "all probes as constants" do
-    assert Probe.all_as_constants.include?(Hopper::Loc)
-    assert Probe.all_as_constants.include?(Hopper::Swearing)
+    assert Probe.all.include?(Hopper::Loc)
+    assert Probe.all.include?(Hopper::Swearing)
   end
 
   test "name" do

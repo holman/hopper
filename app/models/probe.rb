@@ -89,6 +89,13 @@ module Hopper
     # Public: The name of the probe, generated from the file name.
     #
     # Returns a String.
+    def self.name
+      super.split('::').last.capitalize
+    end
+
+    # Public: The name of the probe, generated from the file name.
+    #
+    # Returns a String.
     def name
       self.class.name.split('::').last.capitalize
     end

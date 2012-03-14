@@ -11,7 +11,11 @@ context "Probe" do
     assert Probe.all.include?(Hopper::Swearing)
   end
 
-  test "name" do
+  test "class name" do
+    assert_equal 'Probe', Probe.name
+  end
+
+  test "instance name" do
     assert_equal 'Probe', Probe.new(@project).name
   end
 

@@ -33,6 +33,16 @@ module Hopper
       hash
     end
 
+    # The aggregate data from all of this mess.
+    #
+    # Returns a Hash of Arrays.
+    def self.aggregates
+      exposed.map do |method|
+        value = $redis.lrange "#{key}:#{method}", 0, 10
+        Hopper::Views::Aggregate.new(method, value)
+      end
+    end
+
     # Public: A convenience method for setting the methods we use to populate
     # the `data` Hash for each Probe.
     #
@@ -76,6 +86,13 @@ module Hopper
     # Returns nothing.
     def self.analyze(project)
       all.each{|probe| probe.new(project).save }
+    end
+
+    # The key for this probe in redis.
+    #
+    # Returns a String.
+    def self.key
+      "#{Hopper.redis_namespace}:probes:#{self.name.downcase}"
     end
 
     # The key for this probe in redis.
@@ -127,7 +144,14 @@ module Hopper
     # Returns nothing.
     def save
       self.class.exposed.collect do |method|
-        $redis.set "#{key}:#{method}:#{project.id}", self.send(method)
+        # Cache the result
+        result = self.send(method)
+
+        # Add the individual record
+        $redis.set "#{key}:#{method}:#{project.id}", result
+
+        # Add the aggregate record
+        $redis.rpush "#{key}:#{method}", result
       end
     end
 

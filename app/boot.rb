@@ -20,6 +20,7 @@ require 'models/source'
 
 # Non-autoloaded views
 require 'app/views/layout'
+require 'app/views/aggregate'
 require 'app/views/project'
 
 # Extensions

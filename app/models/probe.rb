@@ -154,7 +154,7 @@ module Hopper
           # Add the aggregate record
           $redis.rpush "#{key}:#{method}", result
         rescue Exception => e
-          puts "Problem saving #{method}: #{e}"
+          puts "Problem saving #{name}:#{method} - #{e}"
         end
       end
     end

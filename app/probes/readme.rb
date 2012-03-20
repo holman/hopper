@@ -20,5 +20,19 @@ module Hopper
         File.basename(file).match(/readme/i) ? 1 : 0
       end.sum
     end
+
+    # How many READMEs are in Markdown format?
+    #
+    # Returns an Integer.
+    def markdown_format_count
+      readmes.select do |file|
+        %w(.md .markdown .mdown .markd .mkd).include?(File.extname(file.chomp).downcase)
+      end.count
+    end
+
+  private
+    def readmes
+      `ls #{project.path} | grep -i readme`
+    end
   end
 end

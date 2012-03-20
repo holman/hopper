@@ -15,11 +15,11 @@ context "Loc" do
   end
 
   test "all lines" do
-    assert_equal 13, @probe.lines
+    assert_equal 17, @probe.lines
   end
 
   test "ruby lines" do
-    assert_equal 10, @probe.ruby_lines
+    assert_equal 14, @probe.ruby_lines
   end
 
   test "comment lines" do

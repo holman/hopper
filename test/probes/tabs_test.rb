@@ -11,11 +11,11 @@ context "Tabs" do
   end
 
   test "two_spaces_count" do
-    assert_equal 9, @probe.two_spaces_count
+    assert_equal 16, @probe.two_spaces_count
   end
 
   test "four_spaces_count" do
-    assert_equal 2, @probe.four_spaces_count
+    assert_equal 5, @probe.four_spaces_count
   end
 
   test "tabs_used?" do

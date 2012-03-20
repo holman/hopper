@@ -15,7 +15,7 @@ context "Loc" do
   end
 
   test "all lines" do
-    assert_equal 17, @probe.lines
+    assert_equal 38, @probe.lines
   end
 
   test "ruby lines" do

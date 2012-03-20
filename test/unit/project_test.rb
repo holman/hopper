@@ -31,7 +31,8 @@ context "Project" do
   test "files" do
     app    = File.join(@project.path, 'app.rb')
     readme = File.join(@project.path, 'README.md')
-    assert_equal [app,readme], @project.files
+    license= File.join(@project.path, 'LICENSE')
+    assert_equal [app,license,readme], @project.files
   end
 
   test "analyze" do

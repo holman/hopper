@@ -144,14 +144,18 @@ module Hopper
     # Returns nothing.
     def save
       self.class.exposed.collect do |method|
-        # Cache the result
-        result = self.send(method)
+        begin
+          # Cache the result
+          result = self.send(method)
 
-        # Add the individual record
-        $redis.set "#{key}:#{method}:#{project.id}", result
+          # Add the individual record
+          $redis.set "#{key}:#{method}:#{project.id}", result
 
-        # Add the aggregate record
-        $redis.rpush "#{key}:#{method}", result
+          # Add the aggregate record
+          $redis.rpush "#{key}:#{method}", result
+        rescue Exception => e
+          puts "Problem saving #{method}: #{e}"
+        end
       end
     end
 

@@ -2,6 +2,9 @@ GEM
   remote: http://rubygems.org/
   specs:
     SystemTimer (1.2.3)
+    flay (1.4.3)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
     flog (2.5.3)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
@@ -49,6 +52,7 @@ PLATFORMS
 
 DEPENDENCIES
   SystemTimer
+  flay
   flog
   mocha
   mustache

@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+gem 'flay'
 gem 'flog'
 gem 'mustache'
 gem 'rake'

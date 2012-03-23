@@ -30,6 +30,15 @@ module Hopper
     end
 
   private
+
+    # Count the number of specific occurances of the AST. This is a private
+    # convenience method so we can rescue on parse errors.
+    #
+    # call - The Symbol AST object we're looking for. For example, :defs for
+    #        class methods, :defn for instance methods, and so on.
+    # file - The String file contents to investigate.
+    #
+    # Returns an Integer of the number of occurances found.
     def count_calls(call,file)
       code = RubyParser.new.parse(file)
       code ? code.flatten.count(call) : 0

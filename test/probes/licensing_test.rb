@@ -2,6 +2,8 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Licensing" do
   setup do
+    fixture :simple
+
     @project = Project.new('github.com')
     @probe = Licensing.new(@project)
   end

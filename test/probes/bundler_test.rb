@@ -1,9 +1,10 @@
 require File.expand_path("../../helper", __FILE__)
 
 context "Bundler" do
-  fixture :files
 
   setup do
+    fixture :files
+
     @project = Project.new('github.com')
     @probe = Hopper::Bundler.new(@project)
   end

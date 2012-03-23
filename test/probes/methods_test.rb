@@ -2,6 +2,8 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Methods" do
   setup do
+    fixture :simple
+
     @project = Project.new('github.com')
     @probe = Methods.new(@project)
   end

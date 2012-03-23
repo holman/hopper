@@ -2,6 +2,8 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Popularity" do
   setup do
+    fixture :simple
+
     @project = Project.new('github.com/holman/hopper')
     @probe = Popularity.new(@project)
   end

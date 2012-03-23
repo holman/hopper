@@ -2,6 +2,8 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Containers" do
   setup do
+    fixture :simple
+
     @project = Project.new('github.com')
     @probe = Containers.new(@project)
   end

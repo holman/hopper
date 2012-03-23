@@ -2,6 +2,8 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Swearing" do
   setup do
+    fixture :simple
+
     @project = Project.new('github.com')
     @probe = Swearing.new(@project)
   end

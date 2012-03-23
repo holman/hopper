@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+gem 'flog'
 gem 'mustache'
 gem 'rake'
 gem 'redis'

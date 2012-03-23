@@ -1,6 +1,6 @@
 module Hopper
   class Methods < Probe
-    exposes :class_count, :instance_count
+    exposes :class_count, :instance_count, :method_name_length
 
     # The description.
     #
@@ -27,6 +27,15 @@ module Hopper
       end
     end
 
+    # The average length of method names in this project.
+    #
+    # Returns an Integer.
+    def method_name_length
+      project.ruby_file_contents.map do |file|
+        count_method_length(:defn,file) + count_method_length(:defs,file)
+      end.average
+    end
+
   private
 
     # Count the number of specific occurances of the AST. This is a private
@@ -42,6 +51,18 @@ module Hopper
       code ? code.flatten.count(call) : 0
     rescue Racc::ParseError => e
       0
+    end
+
+    def count_method_length(target,file)
+      total = []
+      RubyParser.new.parse(file).each_of_type(target) do |method|
+        if target == :defn
+          total << method[1].to_s.length
+        else
+          total << method[2].to_s.length
+        end
+      end
+      total
     end
   end
 end

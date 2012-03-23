@@ -15,4 +15,8 @@ context "Methods" do
   test "instance_count" do
     assert_equal 1, @probe.instance_count
   end
+
+  test "method_name_length" do
+    assert_equal 6.5, @probe.method_name_length
+  end
 end

@@ -13,7 +13,7 @@ module Hopper
     #
     # Returns an Integer.
     def total_score
-      `cd #{project.path} && find . -name \*.rb |
+      `cd #{project.path} && find . -name '\*.rb' |
        xargs flay -s |
        sed -n 2p |
        tr "=", "\n" |

@@ -18,6 +18,6 @@ class Array
   # Returns a Float.
   def average
     self.flatten!
-    self.sum / self.size
+    self.sum.to_f / self.size
   end
 end

@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     SystemTimer (1.2.3)
+    columnize (0.3.4)
     flay (1.4.3)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
@@ -10,6 +11,8 @@ GEM
       sexp_processor (~> 3.0)
     hike (1.2.1)
     json (1.4.6)
+    linecache (0.46)
+      rbx-require-relative (> 0.0.4)
     metaclass (0.0.1)
     mocha (0.10.0)
       metaclass (~> 0.0.1)
@@ -21,6 +24,7 @@ GEM
     rack-test (0.6.1)
       rack (>= 1.0)
     rake (0.8.7)
+    rbx-require-relative (0.0.5)
     redgreen (1.2.2)
     redis (2.2.2)
     redis-namespace (1.0.3)
@@ -30,6 +34,11 @@ GEM
       redis-namespace (>= 0.10.0)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4)
+      linecache (>= 0.3)
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
     sexp_processor (3.1.0)
@@ -61,6 +70,7 @@ DEPENDENCIES
   redgreen
   redis
   resque
+  ruby-debug
   ruby_parser
   sinatra
   sprockets

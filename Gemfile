@@ -14,5 +14,6 @@ gem 'yajl-ruby'
 group :test do
   gem 'rack-test'
   gem 'redgreen'
+  gem 'ruby-debug'
   gem 'mocha'
 end

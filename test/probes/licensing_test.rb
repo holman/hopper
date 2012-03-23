@@ -25,4 +25,8 @@ context "Licensing" do
   test "apache" do
     assert_equal 0, @probe.gpl
   end
+
+  test "bsd" do
+    assert_equal 0, @probe.bsd
+  end
 end

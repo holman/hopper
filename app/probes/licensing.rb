@@ -45,6 +45,13 @@ module Hopper
       count("Apache License") > 0 ? 1 : 0
     end
 
+    # Does the project use a BSD-style license?
+    #
+    # Returns an Integer. 1 if yes, 0 if no.
+    def bsd
+      count("Redistribution and use in source and binary forms") > 0 ? 1 : 0
+    end
+
   private
     def licenses
       `ls #{project.path} | grep -i license`

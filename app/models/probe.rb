@@ -165,7 +165,7 @@ module Hopper
     # result - An Array of objects.
     #
     # Returns 1 if values present, 0 if not.
-    def numeric_binary(result)
+    def binary_integer(result)
       result.empty? ? 0 : 1
     end
 

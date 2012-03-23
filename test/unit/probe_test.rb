@@ -37,10 +37,10 @@ context "Probe" do
   end
 
   test "numeric_binary" do
-    result = @probe.numeric_binary(%w(one two three four))
+    result = @probe.binary_integer(%w(one two three four))
     assert_equal 1, result
 
-    result = @probe.numeric_binary([])
+    result = @probe.binary_integer([])
     assert_equal 0, result
   end
 

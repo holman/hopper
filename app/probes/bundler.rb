@@ -13,14 +13,14 @@ module Hopper
     #
     # Returns a binary integer.
     def gemfile_present
-      numeric_binary Dir.glob("#{project.path}/Gemfile")
+      binary_integer Dir.glob("#{project.path}/Gemfile")
     end
 
     # Is a Gemfile present in this project?
     #
     # Returns a binary integer.
     def gemfile_lock_present
-      numeric_binary Dir.glob("#{project.path}/Gemfile.lock")
+      binary_integer Dir.glob("#{project.path}/Gemfile.lock")
     end
 
     # The number of gems used in this Gemfile.

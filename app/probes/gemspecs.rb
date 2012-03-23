@@ -13,7 +13,7 @@ module Hopper
     #
     # Returns an Integer. 1 if present, 0 if not.
     def present
-      numeric_binary Dir.glob("#{project.path}/*.gemspec")
+      binary_integer Dir.glob("#{project.path}/*.gemspec")
     end
   end
 end

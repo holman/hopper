@@ -1,3 +1,5 @@
+require 'ruby_parser'
+
 module Hopper
   class Containers < Probe
     # The data for this Probe.
@@ -14,18 +16,14 @@ module Hopper
     #
     # Returns an Integer.
     def classes_count
-      project.file_contents.map do |file|
-        file.scan(/class /).size
-      end.sum
+      RubyParser.new.parse(project.ruby_contents_string).flatten.count(:class)
     end
 
     # The total number of modules defined.
     #
     # Returns an Integer.
     def modules_count
-      project.file_contents.map do |file|
-        file.scan(/module /).size
-      end.sum
+      RubyParser.new.parse(project.ruby_contents_string).flatten.count(:module)
     end
   end
 end

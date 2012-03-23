@@ -14,7 +14,7 @@ module Hopper
     # Returns an Integer.
     def total_score
       `cd #{project.path} && find . -name \*.rb |
-       xargs bundle exec flay -s |
+       xargs flay -s |
        sed -n 2p |
        tr "=", "\n" |
        sed -n 1p`.strip.to_f

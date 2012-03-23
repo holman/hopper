@@ -14,7 +14,7 @@ module Hopper
     # Returns an Integer.
     def method_average
       `cd #{project.path} && find . -name \*.rb |
-       xargs bundle exec flog -cm |
+       xargs flog -cm |
        sed -n 2p |
        tr ":", "\n" |
        sed -n 1p`.strip.to_f

@@ -61,6 +61,7 @@ DEPENDENCIES
   redgreen
   redis
   resque
+  ruby_parser
   sinatra
   sprockets
   yajl-ruby

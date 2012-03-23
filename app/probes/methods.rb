@@ -63,6 +63,8 @@ module Hopper
         end
       end
       total
+    rescue Exception
+      []
     end
   end
 end

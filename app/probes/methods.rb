@@ -15,14 +15,16 @@ module Hopper
     #
     # Returns an Integer.
     def class_count
-      RubyParser.new.parse(project.ruby_contents_string).flatten.count(:defs)
+      code = RubyParser.new.parse(project.ruby_contents_string)
+      code ? code.flatten.count(:defs) : 0
     end
 
     # The number of methods in a project.
     #
     # Returns an Integer.
     def instance_count
-      RubyParser.new.parse(project.ruby_contents_string).flatten.count(:defn)
+      code = RubyParser.new.parse(project.ruby_contents_string)
+      code ? code.flatten.count(:defn) : 0
     end
   end
 end

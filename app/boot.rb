@@ -9,6 +9,7 @@ require 'resque'
 require 'sinatra/base'
 require 'mustache/sinatra'
 require 'yajl'
+require 'ruby_parser'
 
 # App
 require 'app'

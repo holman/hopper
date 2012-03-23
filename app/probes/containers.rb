@@ -1,5 +1,3 @@
-require 'ruby_parser'
-
 module Hopper
   class Containers < Probe
     # The data for this Probe.

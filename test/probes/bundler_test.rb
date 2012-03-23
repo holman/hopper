@@ -16,4 +16,8 @@ context "Bundler" do
   test "gemfile_lock_present" do
     assert_equal 0, @probe.gemfile_lock_present
   end
+
+  test "gems_used" do
+    assert_equal 3, @probe.gems_used
+  end
 end

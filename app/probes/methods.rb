@@ -1,5 +1,3 @@
-require 'ruby_parser'
-
 module Hopper
   class Methods < Probe
     exposes :class_count, :instance_count

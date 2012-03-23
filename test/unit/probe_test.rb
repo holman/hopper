@@ -36,6 +36,14 @@ context "Probe" do
     assert_equal 'Probe', @probe.data[:name]
   end
 
+  test "numeric_binary" do
+    result = @probe.numeric_binary(%w(one two three four))
+    assert_equal 1, result
+
+    result = @probe.numeric_binary([])
+    assert_equal 0, result
+  end
+
   test "description raises exception" do
     assert_raise Probe::NotImplementedError do
       Probe.new(@project).description

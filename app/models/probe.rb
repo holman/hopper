@@ -159,6 +159,16 @@ module Hopper
       end
     end
 
+    # Takes a `result` and returns either 1 if there are values present, or 0 if
+    # there aren't.
+    #
+    # result - An Array of objects.
+    #
+    # Returns 1 if values present, 0 if not.
+    def numeric_binary(result)
+      result.empty? ? 0 : 1
+    end
+
     # Public: Raised if the method hasn't been properly defined in the subclass.
     class NotImplementedError < StandardError ; end
 

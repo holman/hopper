@@ -29,10 +29,11 @@ context "Project" do
   end
 
   test "files" do
-    app    = File.join(@project.path, 'app.rb')
-    readme = File.join(@project.path, 'README.md')
-    license= File.join(@project.path, 'LICENSE')
-    assert_equal [app,license,readme], @project.files
+    app     = File.join(@project.path, 'app.rb')
+    gemspec = File.join(@project.path, 'example.gemspec')
+    readme  = File.join(@project.path, 'README.md')
+    license = File.join(@project.path, 'LICENSE')
+    assert_equal [app,gemspec,license,readme], @project.files
   end
 
   test "analyze" do

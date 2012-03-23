@@ -29,7 +29,7 @@ module Hopper
     #
     # Returns a DateTime.
     def birthday
-      date = `git log --reverse --pretty=format:%ad'' | head -1`.strip
+      date = `cd #{project.path} && git log --reverse --pretty=format:%ad'' | head -1`.strip
       DateTime.parse(date)
     end
 

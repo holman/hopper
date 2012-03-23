@@ -15,16 +15,26 @@ module Hopper
     #
     # Returns an Integer.
     def class_count
-      code = RubyParser.new.parse(project.ruby_contents_string)
-      code ? code.flatten.count(:defs) : 0
+      project.ruby_file_contents.inject(0) do |total,file|
+        total += count_calls(:defs,file)
+      end
     end
 
     # The number of methods in a project.
     #
     # Returns an Integer.
     def instance_count
-      code = RubyParser.new.parse(project.ruby_contents_string)
-      code ? code.flatten.count(:defn) : 0
+      project.ruby_file_contents.inject(0) do |total,file|
+        total += count_calls(:defn,file)
+      end
+    end
+
+  private
+    def count_calls(call,file)
+      code = RubyParser.new.parse(file)
+      code ? code.flatten.count(call) : 0
+    rescue Racc::ParseError => e
+      0
     end
   end
 end

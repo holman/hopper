@@ -3,7 +3,7 @@ module Hopper
   # particular project.
   class Readme < Probe
     # The data for this Probe.
-    exposes :count
+    exposes :count, :markdown_format_count
 
     # The description.
     #

@@ -8,7 +8,7 @@ module Hopper
   #   - lines of documentation
   class Loc < Probe
     # The data for this Probe.
-    exposes :lines, :ruby_lines, :comment_lines, :average_width
+    exposes :lines, :ruby_lines, :comment_lines, :average_width, :percent_80c
 
     # The description.
     #

@@ -29,8 +29,8 @@ module Hopper
     # Returns a binary integer.
     def multiple_per_file
       binary_integer project.ruby_file_contents.map do |file|
-        if RubyParser.new.parse(file).flatten.count(:module) > 1 ||
-           RubyParser.new.parse(file).flatten.count(:class) > 1
+        parsed = RubyParser.new.parse(file).flatten
+        if parsed.count(:module) > 1 || parsed.count(:class) > 1
            1
         else
           0

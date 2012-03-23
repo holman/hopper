@@ -17,12 +17,6 @@ include Rack::Test::Methods
 # Select a new db to keep our data separate
 $redis.select 12
 
-class Hopper::Project
-  def path
-    "test/examples/simple"
-  end
-end
-
 # Extract the sample repo
 if !File.exist?('test/examples/simple')
   system "tar xvzf test/examples/simple.tgz"
@@ -30,4 +24,13 @@ end
 
 def app
   Hopper::App
+end
+
+# Set the fixture repository for this set of tests.
+def fixture(project)
+  Hopper::Project.instance_eval do
+    define_method(:path) do
+      "test/examples/#{project}"
+    end
+  end
 end

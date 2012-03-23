@@ -1,6 +1,6 @@
 module Hopper
   class Bundler < Probe
-    exposes :gemfile_present, :gemfile_lock_present
+    exposes :gemfile_present, :gemfile_lock_present, :gems_used
 
     # The description.
     #
@@ -27,7 +27,10 @@ module Hopper
     #
     # Returns an Integer.
     def gems_used
-      contents = File.read("#{project.path}/Gemfile")
+      gemfile = "#{project.path}/Gemfile"
+      return nil if !File.exist?(gemfile)
+
+      contents = File.read(gemfile)
       RubyParser.new.parse(contents).flatten.count(:gem)
     end
   end

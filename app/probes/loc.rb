@@ -8,7 +8,7 @@ module Hopper
   #   - lines of documentation
   class Loc < Probe
     # The data for this Probe.
-    exposes :lines, :ruby_lines, :comment_lines
+    exposes :lines, :ruby_lines, :comment_lines, :average_width
 
     # The description.
     #
@@ -50,6 +50,32 @@ module Hopper
           end.sum
         end
       end.sum
+    end
+
+    # Average line width of the project.
+    #
+    # Returns a Float.
+    def average_width
+      width_sum / widths.size.to_f
+    end
+
+    # The percentage of lines over 80 characters.
+    #
+    # Returns a Float.
+    def percent_80c
+      total = widths.select{|line| line > 80}.count
+      total / widths.size.to_f
+    end
+
+  private
+    def widths
+      project.file_contents.map do |line|
+        line.size
+      end
+    end
+
+    def width_sum
+      widths.sum
     end
   end
 end

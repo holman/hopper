@@ -16,7 +16,10 @@ module Hopper
     def classes_count
       parsed = RubyParser.new.parse(project.ruby_contents_string)
       return 0 if !parsed
+
       parsed.flatten.count(:class)
+    rescue Exception => e
+      0
     end
 
     # The total number of modules defined.
@@ -25,7 +28,10 @@ module Hopper
     def modules_count
       parsed = RubyParser.new.parse(project.ruby_contents_string)
       return 0 if !parsed
+
       parsed.flatten.count(:module)
+    rescue Exception => e
+      0
     end
 
     # Does this project define multiple classes or modules in a file?

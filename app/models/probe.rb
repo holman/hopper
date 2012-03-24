@@ -160,7 +160,7 @@ module Hopper
     end
 
     # Takes a `result` and returns either 1 if there are values present, or 0 if
-    # there aren't.
+    # there aren't. Designed to avoid booleans to help promote good graphing.
     #
     # result - An Array of objects.
     #

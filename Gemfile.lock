@@ -42,7 +42,7 @@ GEM
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
     sexp_processor (3.1.0)
-    shamazing (0.0.3)
+    shamazing (0.0.4)
     sinatra (1.3.2)
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)

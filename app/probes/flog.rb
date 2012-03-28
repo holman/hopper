@@ -13,11 +13,14 @@ module Hopper
     #
     # Returns an Integer.
     def method_average
-      `cd #{project.path} && find . -name '\*.rb' |
-       xargs flog -cm |
-       sed -n 2p |
-       tr ":", "\n" |
-       sed -n 1p`.strip.to_f
+      flog = ::Flog.new
+      flog.flog(files)
+      flog.average
+    end
+
+  private
+    def files
+      Dir.glob("#{project.path}/**/*.rb")
     end
   end
 end

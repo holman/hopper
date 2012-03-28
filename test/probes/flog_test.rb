@@ -9,6 +9,6 @@ context "Flog" do
   end
 
   test "method_average" do
-    assert_equal 3.6, @probe.method_average
+    assert_equal '3.6', @probe.method_average.to_s
   end
 end

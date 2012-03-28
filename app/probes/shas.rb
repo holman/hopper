@@ -14,14 +14,16 @@ module Hopper
     #
     # Returns a String.
     def longest_string
-      `cd #{project.path} && shamazing --string`.chomp
+      shas = `cd #{project.path} && git log --format="%H"`.split("\n")
+      Shamazing.string_from_array(shas)
     end
 
     # What's the longest integer in SHAs in this project?
     #
     # Returns an Integer.
     def longest_integer
-      `cd #{project.path} && shamazing --integer`.chomp.to_i
+      shas = `cd #{project.path} && git log --format="%H"`.split("\n")
+      Shamazing.integer_from_array(shas)
     end
 
     # What is the length of the longest string in SHAs in this project?

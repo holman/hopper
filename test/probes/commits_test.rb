@@ -13,7 +13,7 @@ context "Commits" do
   end
 
   test "birthday" do
-    assert_equal 2, @probe.birthday.month
+    assert_equal 3, @probe.birthday.month
   end
 
   test "commits_per_day" do

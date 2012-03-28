@@ -9,7 +9,7 @@ module Hopper
       "Runs flay against code."
     end
 
-    # The average flog score of each method.
+    # The average flay score of each method.
     #
     # Returns an Integer.
     def total_score

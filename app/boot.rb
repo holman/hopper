@@ -3,13 +3,14 @@ $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__))
 require 'rubygems'
 
 # Dependencies
-
-require 'redis'
-require 'resque'
+require 'flog'
+require 'shamazing'
 require 'sinatra/base'
 require 'mustache/sinatra'
-require 'yajl'
+require 'redis'
+require 'resque'
 require 'ruby_parser'
+require 'yajl'
 
 # App
 require 'app'

@@ -11,6 +11,18 @@ context "Project" do
     project.url = 'github.com/holman/boom'
   end
 
+  test "key" do
+    assert !Project.key.empty?
+  end
+
+  test "head key" do
+    assert !@project.head_key.empty?
+  end
+
+  test "snapshots key" do
+    assert !@project.snapshots_key.empty?
+  end
+
   test "url saves without protocol" do
     @project.url = 'https://github.com/holman/boom'
     assert_equal 'github.com/holman/boom', @project.url
@@ -59,8 +71,9 @@ context "Project" do
     Github.any_instance.expects(:commit_count).returns(5)
     @project.snapshots!
 
-    assert_equal 5,     @project.snapshots.size
-    assert_equal array, @project.snapshots
+    assert_equal 5,           @project.snapshots.size
+    assert_equal array,       @project.snapshots
+    assert_equal array.first, @project.head_revision
   end
 
   test "snapshots (selection)" do
@@ -104,8 +117,9 @@ context "Project" do
     Github.any_instance.expects(:commit_count).returns(22)
     @project.snapshots!
 
-    assert_equal 10,    @project.snapshots.size
-    assert_equal array, @project.snapshots
+    assert_equal 10,          @project.snapshots.size
+    assert_equal array,       @project.snapshots
+    assert_equal array.first, @project.head_revision
   end
 
   test "source" do

@@ -7,6 +7,7 @@ module Hopper
   # Redis Keys:
   #
   #   hopper:projects                 - All of the Project URLs.
+  #   hopper:projects:#{id}:head      - The HEAD (main) sha to analyze.
   #   hopper:projects:#{id}:snapshots - A List of shas used for snapshots.
   class Project
     # Set Project up in resque to run under the "index" queue.
@@ -65,6 +66,13 @@ module Hopper
       "#{Hopper.redis_namespace}:projects"
     end
 
+    # The HEAD revision of this project.
+    #
+    # Returns a String.
+    def head_key
+      "#{Project.key}:#{id}:head"
+    end
+
     # The redis key of snapshots. This is a redis List.
     #
     # Returns a String.
@@ -109,6 +117,14 @@ module Hopper
       "https://#{url}"
     end
 
+    # The HEAD revision of the project. In other words, what's currently the
+    # latest commit we have.
+    #
+    # Returns a String.
+    def head_revision
+      $redis.get head_key
+    end
+
     # The slices of the repository at various points in time.
     #
     # Returns an Array of Strings, each a sha hash pointing to the git repo.
@@ -132,8 +148,11 @@ module Hopper
         revisions = source.revisions.each_slice(slice_at).map(&:first)[0..9]
         save_snapshots(revisions)
       else
-        save_snapshots(source.revisions)
+        revisions = source.revisions
+        save_snapshots(revisions)
       end
+
+      $redis.set head_key, revisions.first.strip
     end
 
     # Accesses the Source for this Project.

@@ -13,7 +13,8 @@ module Hopper
     #
     # Returns an Integer.
     def count
-      `cd #{project.path} && git branch | wc -l`.strip.to_i
+      `cd #{project.path} &&
+       git branch -r | tail -n +2 | wc -l`.strip.to_i
     end
   end
 end

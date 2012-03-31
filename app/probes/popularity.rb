@@ -1,6 +1,6 @@
 module Hopper
   class Popularity < Probe
-    exposes :followers, :forks
+    exposes :followers, :forks, :open_issues
 
     def description
       "The popularity of a project, based on followers, forks, and so on."
@@ -18,6 +18,13 @@ module Hopper
     # Returns an Integer.
     def forks
       project.source.forks
+    end
+
+    # The total number of open issues this repo has.
+    #
+    # Returns an Integer.
+    def open_issues
+      project.source.open_issues
     end
   end
 end

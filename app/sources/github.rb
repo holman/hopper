@@ -58,5 +58,12 @@ module Hopper
     def forks
       metadata['forks']
     end
+
+    # The number of open issues in this project.
+    #
+    # Returns an Integer.
+    def open_issues
+      metadata['open_issues']
+    end
   end
 end

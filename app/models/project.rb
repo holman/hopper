@@ -6,7 +6,8 @@ module Hopper
   #
   # Redis Keys:
   #
-  #   hopper:projects - All of the Project URLs.
+  #   hopper:projects                 - All of the Project URLs.
+  #   hopper:projects:#{id}:snapshots - A List of shas used for snapshots.
   class Project
     # Set Project up in resque to run under the "index" queue.
     @queue = :index
@@ -64,6 +65,13 @@ module Hopper
       "#{Hopper.redis_namespace}:projects"
     end
 
+    # The redis key of snapshots. This is a redis List.
+    #
+    # Returns a String.
+    def snapshots_key
+      "#{Project.key}:#{id}:snapshots"
+    end
+
     # The method Resque uses to asynchronously do the dirty.
     #
     # id - The ID of the Project.
@@ -99,6 +107,33 @@ module Hopper
     # Returns a String.
     def url_with_protocol
       "https://#{url}"
+    end
+
+    # The slices of the repository at various points in time.
+    #
+    # Returns an Array of Strings, each a sha hash pointing to the git repo.
+    def snapshots
+      $redis.lrange snapshots_key, 0, -1
+    end
+
+    # Generate slices of the repository. This should only be run once, as shas
+    # will likely change after new commits are fetched.
+    #
+    # Slices are defined as ten snapshots in time of a repository. We basically
+    # take every nth sha in a repository so that we end up with ten values. If a
+    # repo has less than ten revisions, we just take them all.
+    #
+    # Returns nothing.
+    def snapshots!
+      count = source.commit_count
+
+      if count >= 10
+        slice_at = count / 10
+        revisions = source.revisions.each_slice(slice_at).map(&:first)[0..9]
+        save_snapshots(revisions)
+      else
+        save_snapshots(source.revisions)
+      end
     end
 
     # Accesses the Source for this Project.
@@ -189,6 +224,18 @@ module Hopper
     def analyze
       source.clone
       Probe.analyze(self)
+    end
+
+  private
+    # Save an Array of revisions to redis as snapshots.
+    #
+    # revisions - An Array of Strings.
+    #
+    # Returns nothing.
+    def save_snapshots(revisions)
+      revisions.each do |revision|
+        $redis.rpush snapshots_key, revision.strip
+      end
     end
   end
 end

@@ -18,6 +18,11 @@ module Hopper
     # Returns a Project.
     attr_accessor :project
 
+    # Public: The revision in version control to analyze.
+    #
+    # Returns a String.
+    attr_accessor :revision
+
     # Public: A Hash representation of all of the data persisted by this Probe.
     #
     # Returns a Hash. This Hash is schemaless and is dependent on each Probe's
@@ -67,11 +72,13 @@ module Hopper
 
     # Public: Creates a new Probe.
     #
-    # project - The Project that we're analyzing.
+    # project  - The Project that we're analyzing.
+    # revision - The revision (sha1) of the project we're looking at.
     #
     # Returns a new Probe.
-    def initialize(project)
-      @project = project
+    def initialize(project,revision=project.head_revision)
+      @project  = project
+      @revision = revision
     end
 
     # Public: Searches for a Probe by name.
@@ -122,7 +129,7 @@ module Hopper
     #
     # Returns a String.
     def self.description
-      self.new('stub').description
+      self.new(Project.new('stub')).description
     end
 
     # Public: The name of the probe, generated from the file name.

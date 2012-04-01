@@ -6,6 +6,12 @@ context "Probe" do
     @probe   = Probe.new(@project)
   end
 
+  test "new defaults to head revision" do
+    @project.expects(:head_revision).returns('deadbeef')
+    probe = Probe.new(@project)
+    assert_equal 'deadbeef', probe.revision
+  end
+
   test "find" do
     assert 'Swearing', Probe.find('Swearing').name
   end

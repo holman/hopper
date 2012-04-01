@@ -21,6 +21,7 @@ context "App" do
 
   test "/projects/:id" do
     project = Project.new('github.com/holman/hopper')
+    Probe.all.each{|probe| probe.any_instance.stubs(:checkout_revision).returns(true)}
     project.save
     get "/projects/#{project.id}"
     assert_match 'holman/hopper', last_response.body.strip

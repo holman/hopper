@@ -79,6 +79,16 @@ module Hopper
     def initialize(project,revision=project.head_revision)
       @project  = project
       @revision = revision
+
+      checkout_revision
+    end
+
+    # Public: Checks out the current revision so we can run operations on the
+    # repo without having to switch to it every time.
+    #
+    # Returns nothing.
+    def checkout_revision
+      system("cd #{project.path} && git checkout #{revision} --quiet")
     end
 
     # Public: Searches for a Probe by name.

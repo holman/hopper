@@ -144,7 +144,7 @@ module Hopper
       count = source.commit_count
 
       if count >= 10
-        slice_at = count / 10
+        slice_at  = count / 10
         revisions = source.revisions.each_slice(slice_at).map(&:first)[0..9]
         save_snapshots(revisions)
       else

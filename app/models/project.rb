@@ -10,9 +10,6 @@ module Hopper
   #   hopper:projects:#{id}:head      - The HEAD (main) sha to analyze.
   #   hopper:projects:#{id}:snapshots - A List of shas used for snapshots.
   class Project
-    # Set Project up in resque to run under the "index" queue.
-    @queue = :index
-
     # The ID of the Project.
     #
     # Returns a String (the sha).
@@ -78,22 +75,6 @@ module Hopper
     # Returns a String.
     def snapshots_key
       "#{Project.key}:#{id}:snapshots"
-    end
-
-    # The method Resque uses to asynchronously do the dirty.
-    #
-    # id - The ID of the Project.
-    #
-    # Returns whatever Resque returns.
-    def self.perform(id)
-      Project.find(id).analyze
-    end
-
-    # Queue up a job to analyze this project.
-    #
-    # Returns a boolean.
-    def async_analyze
-      Resque.enqueue(Project, self.id)
     end
 
     # All Projects.
@@ -166,12 +147,12 @@ module Hopper
     #
     # Returns nothing.
     def save
-      async_analyze
-
       $redis.sadd Project.key, id
 
       hash_id = "#{Project.key}:#{id}"
       $redis.hset hash_id, :url, url
+
+      analyze
     end
 
     # The path to this project on-disk.
@@ -259,8 +240,8 @@ module Hopper
     #
     # Returns nothing.
     def analyze
-      snapshots!
       source.clone
+      snapshots!
       Probe.analyze(self)
     end
 

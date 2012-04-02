@@ -114,7 +114,7 @@ module Hopper
     #
     # Returns nothing.
     def self.analyze(project)
-      all.each{|probe| probe.new(project).save }
+      all.each{|probe| probe.new(project).async_save }
     end
 
     # The key for this probe in redis.
@@ -165,6 +165,24 @@ module Hopper
     # Returns a String.
     def name
       self.class.name.split('::').last.capitalize
+    end
+
+    # The method Resque uses to asynchronously do the dirty.
+    #
+    # project_id - The String project_id.
+    # revision   - The revision to analyze.
+    #
+    # Returns whatever Resque returns.
+    def self.perform(project_id, revision)
+      project = Project.find(project_id)
+      new(project, revision).save
+    end
+
+    # Queue up a job to analyze this project.
+    #
+    # Returns a boolean.
+    def async_save
+      Resque::Job.create(:index, self.class, project.id, revision)
     end
 
     # Public: Get the Probe to analyze data and store it away.

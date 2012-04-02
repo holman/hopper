@@ -231,8 +231,25 @@ module Hopper
     #
     # Returns an Array of Probe instances.
     def probes
-      Probe.all.collect do |probe|
+      Probe.all.map do |probe|
         probe.new(self)
+      end
+    end
+
+    # Returns all probes attached to this project, *and* all versions of those
+    # probes.
+    #
+    # Returns a Hash of the form:
+    #   {
+    #     :probe_name => [all, probe, versions]
+    #   }
+    def versioned_probes
+      Probe.all.inject({}) do |hash,probe|
+        key = probe.name.downcase.to_sym
+        hash[key] = snapshots.map do |snapshot|
+          probe.new(self,snapshot)
+        end
+        hash
       end
     end
 

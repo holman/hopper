@@ -54,6 +54,17 @@ context "Project" do
     assert @project.analyze
   end
 
+  test "versioned_probes" do
+    @project.stubs(:snapshots).returns(%w(sha1 sha2 sha3))
+    Probe.all.each{|probe| probe.any_instance.stubs(:checkout_revision).returns(true)}
+
+    versioned = @project.versioned_probes
+    probes = Dir.glob("app/probes/*.rb")
+
+    assert_equal probes.size, versioned.keys.size
+    assert_equal 3, versioned[:branches].size
+  end
+
   test "sha1" do
     @project.url = 'github.com/holman/boom'
     assert_equal 'f40942d357a7df851462c52b15328250ae103879', @project.sha1

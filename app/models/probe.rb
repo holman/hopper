@@ -12,6 +12,14 @@ module Hopper
   #   - data: A Hash representation of all of the Probe's data. This is a
   #           schemaless Hash, as each Probe can have different needs.
   #   - save: Persists all data to Redis.
+  #
+  # Redis Keys:
+  #
+  #   hopper:projects:#{probe}
+  #     A List of the aggregate values for a Probe.
+  #
+  #   hopper:projects:#{probe}:#{id}:#{revision}
+  #     The value of a particular probe on a project and revision basis.
   class Probe
     # Public: The Project this Probe is probing.
     #

@@ -67,7 +67,16 @@ body {
   }
 
   .visual {
-    margin-left: 270px;
+    margin-left: 280px;
+
+    h2 {
+      margin: 0;
+      padding-top: 20px;
+
+      a {
+        text-decoration: none;
+      }
+    }
   }
 }
 

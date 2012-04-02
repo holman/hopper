@@ -2,6 +2,10 @@ module Hopper
   class Flay < Probe
     exposes :total_score
 
+    def self.queue
+      :low
+    end
+
     # The description.
     #
     # Returns a String.

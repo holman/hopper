@@ -182,11 +182,20 @@ module Hopper
       new(project, revision).save
     end
 
-    # Queue up a job to analyze this project.
+    # Default all queues to be :high.
+    #
+    # Returns a Symbol.
+    def self.queue
+      :high
+    end
+
+    # Queue up a job to analyze this project. The queue is defaulted to :high,
+    # unless the subclass overrides that (which is typically reserved in cases
+    # of really slow probes).
     #
     # Returns a boolean.
     def async_save
-      Resque::Job.create(:index, self.class, project.id, revision)
+      Resque::Job.create(self.class.queue, self.class, project.id, revision)
     end
 
     # Public: Get the Probe to analyze data and store it away.

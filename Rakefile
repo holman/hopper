@@ -31,7 +31,7 @@ task :setup do
   Hopper::Project.create('github.com/holman/play')
   Hopper::Project.create('github.com/github/github-services')
   Hopper::Project.create('github.com/defunkt/mustache')
-  Hopper::Project.create('github.com/twitter/bootstrap')
+  Hopper::Project.create('github.com/mojombo/jekyll')
   Hopper::Project.create('github.com/rails/rails')
 end
 

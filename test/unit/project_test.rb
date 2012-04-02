@@ -139,7 +139,7 @@ context "Project" do
   end
 
   test "save" do
-    @project.expects(:async_analyze).returns(true)
+    @project.expects(:analyze).returns(true)
 
     assert_equal 0, Project.all.count
     @project.save

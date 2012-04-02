@@ -244,9 +244,12 @@ module Hopper
     #     :probe_name => [all, probe, versions]
     #   }
     def versioned_probes
+      shas = snapshots
       Probe.all.inject({}) do |hash,probe|
         key = probe.name.downcase.to_sym
-        hash[key] = snapshots.map do |snapshot|
+        hash[key] = shas.map do |snapshot|
+          # TODO: Don't checkout revision (add an argument)- we don't need to
+          # run any analysis on this.
           probe.new(self,snapshot)
         end
         hash
@@ -258,6 +261,7 @@ module Hopper
     #
     # Returns nothing.
     def analyze
+      snapshots!
       source.clone
       Probe.analyze(self)
     end

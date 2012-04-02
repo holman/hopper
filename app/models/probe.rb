@@ -114,7 +114,11 @@ module Hopper
     #
     # Returns nothing.
     def self.analyze(project)
-      all.each{|probe| probe.new(project).async_save }
+      all.each do |probe|
+        project.snapshots.each do |snapshot|
+          probe.new(project,snapshot,false).async_save
+        end
+      end
     end
 
     # The key for this probe in redis.

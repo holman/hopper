@@ -1,3 +1,45 @@
+$light:  #fff;
+$mid:    #eee;
+$dark:   #515151;
+$accent: #00B4FF;
+
 * {
-  font-family: Helvetica;
+  font-family: 'Asap', Helvetica, sans-serif;
+  color: $dark;
+}
+
+body {
+  background-color: $light;
+}
+
+.navigation {
+  background-color: $mid;
+  padding: 10px 20px;
+  border-bottom: 1px solid $light;
+  box-shadow: 0px 2px 5px #ccc;
+
+  a {
+    color: $accent;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      color: $dark;
+    }
+  }
+}
+
+.content {
+  width: 900px;
+  margin: 0 auto;
+  font-size: 20px;
+
+  h1 {
+    color: $accent;
+  }
+
+  p {
+    line-height: 1.4em;
+  }
 }

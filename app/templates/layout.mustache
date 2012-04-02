@@ -4,13 +4,21 @@
   <meta charset="utf-8" />
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/base.css">
+  <link href='http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="/js/application.js"></script>
 
   <title>Hopper</title>
 </head>
 
 <body>
-  {{{ yield }}}
+  <section class="navigation">
+    <a href="/">Hopper</a>
+  </section>
+
+  <section class="content">
+    <h1>{{title}}</h1>
+    {{{yield}}}
+  </section>
 </body>
 
 </html>

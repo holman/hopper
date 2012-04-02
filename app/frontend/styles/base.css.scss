@@ -4,7 +4,7 @@ $dark:   #515151;
 $accent: #00B4FF;
 
 * {
-  font-family: 'Asap', Helvetica, sans-serif;
+  font-family: 'Open Sans', Helvetica, sans-serif;
   color: $dark;
 }
 
@@ -23,6 +23,7 @@ body {
     font-size: 24px;
     font-weight: bold;
     text-decoration: none;
+    text-shadow: 1px 1px 0 #fff;
 
     &:hover {
       color: $dark;

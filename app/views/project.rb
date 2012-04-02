@@ -13,8 +13,8 @@ module Hopper
         @project
       end
 
-      def versioned_probes
-        @project.versioned_probes
+      def probes
+        Probe.all
       end
     end
   end

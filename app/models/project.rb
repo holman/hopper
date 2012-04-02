@@ -239,20 +239,22 @@ module Hopper
     # Returns all probes attached to this project, *and* all versions of those
     # probes.
     #
-    # Returns a Hash of the form:
-    #   {
-    #     :probe_name => [all, probe, versions]
-    #   }
+    # Returns an Array of the form:
+    #   [
+    #     OpenStruct(:name, :description, :probes)
+    #   ]
     def versioned_probes
       shas = snapshots
-      Probe.all.inject({}) do |hash,probe|
-        key = probe.name.downcase.to_sym
-        hash[key] = shas.map do |snapshot|
+      Probe.all.map do |probe|
+        struct = OpenStruct.new
+        struct.name = probe.name.downcase.to_sym
+        struct.description = probe.description
+        struct.probes = shas.map do |snapshot|
           # TODO: Don't checkout revision (add an argument)- we don't need to
           # run any analysis on this.
           probe.new(self,snapshot)
         end
-        hash
+        struct
       end
     end
 

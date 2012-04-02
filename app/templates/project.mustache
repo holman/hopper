@@ -4,8 +4,10 @@
   <a href="{{url}}">{{url}}</a>
 {{/project}}
 
-{{#probes}}
+{{#versioned_probes}}
   <h2>{{name}}</h2>
   <p>{{description}}<p>
-  <p>{{data}}</p>
-{{/probes}}
+  {{#probes}}
+    <p>{{data}}</p>
+  {{/probes}}
+{{/versioned_probes}}

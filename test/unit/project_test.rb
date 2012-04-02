@@ -51,6 +51,7 @@ context "Project" do
   test "analyze" do
     Github.any_instance.expects(:clone).returns(true)
     Probe.expects(:analyze).returns(true)
+    @project.expects(:snapshots!).returns(true)
     assert @project.analyze
   end
 
@@ -61,8 +62,8 @@ context "Project" do
     versioned = @project.versioned_probes
     probes = Dir.glob("app/probes/*.rb")
 
-    assert_equal probes.size, versioned.keys.size
-    assert_equal 3, versioned[:branches].size
+    assert_equal probes.size, versioned.size
+    assert_equal 3, versioned.first.probes.size
   end
 
   test "sha1" do

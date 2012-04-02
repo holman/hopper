@@ -249,11 +249,7 @@ module Hopper
         struct = OpenStruct.new
         struct.name = probe.name.downcase.to_sym
         struct.description = probe.description
-        struct.probes = shas.map do |snapshot|
-          # TODO: Don't checkout revision (add an argument)- we don't need to
-          # run any analysis on this.
-          probe.new(self,snapshot)
-        end
+        struct.probes = shas.map { |snapshot| probe.new(self,snapshot,false) }
         struct
       end
     end

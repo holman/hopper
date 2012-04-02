@@ -82,13 +82,17 @@ module Hopper
     #
     # project  - The Project that we're analyzing.
     # revision - The revision (sha1) of the project we're looking at.
+    # checkout - Should we switch our working copy out to the correct branch? If
+    #            you're running analysis, this should be set to `true` (which
+    #            is the default). If you're just loading the Probe for accessing
+    #            data, set it to `false`.
     #
     # Returns a new Probe.
-    def initialize(project,revision=project.head_revision)
+    def initialize(project, revision=project.head_revision, checkout=true)
       @project  = project
       @revision = revision
 
-      checkout_revision
+      checkout_revision if checkout
     end
 
     # Public: Checks out the current revision so we can run operations on the

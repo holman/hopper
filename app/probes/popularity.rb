@@ -2,7 +2,7 @@ module Hopper
   class Popularity < Probe
     exposes :followers, :forks, :open_issues
 
-    def description
+    def self.description
       "The popularity of a project, based on followers, forks, and so on."
     end
 

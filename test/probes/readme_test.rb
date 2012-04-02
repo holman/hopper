@@ -8,10 +8,6 @@ context "README" do
     @probe = Readme.new(@project)
   end
 
-  test "description" do
-    assert_match "READMEs", @probe.description
-  end
-
   test "count" do
     assert_equal 1, @probe.count
   end

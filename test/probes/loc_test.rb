@@ -8,10 +8,6 @@ context "Loc" do
     @probe = Loc.new(@project)
   end
 
-  test "description" do
-    assert_match "lines of code", @probe.description
-  end
-
   test "data" do
     assert !@probe.data.keys.empty?
   end

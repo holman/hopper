@@ -13,7 +13,7 @@ module Hopper
     # The description.
     #
     # Returns a String.
-    def description
+    def self.description
       "A simple lines of code count."
     end
 

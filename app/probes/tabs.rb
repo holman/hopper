@@ -8,7 +8,7 @@ module Hopper
     # The description.
     #
     # Returns a String.
-    def description
+    def self.description
       "Investigates the age-old question of hard or soft tabs."
     end
 

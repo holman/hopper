@@ -142,12 +142,18 @@ module Hopper
       super.split('::').last.capitalize
     end
 
-    # Stub out a description by faking a class and pulling the instance
-    # description.
+    # The description of the probe.
     #
     # Returns a String.
     def self.description
-      self.new(Project.new('stub')).description
+      raise NotImplementedError
+    end
+
+    # Public: The description of the probe.
+    #
+    # Returns a String.
+    def description
+      self.class.description
     end
 
     # Public: The name of the probe, generated from the file name.
@@ -155,13 +161,6 @@ module Hopper
     # Returns a String.
     def name
       self.class.name.split('::').last.capitalize
-    end
-
-    # Public: The description of the probe.
-    #
-    # Returns a String.
-    def description
-      raise NotImplementedError
     end
 
     # Public: Get the Probe to analyze data and store it away.

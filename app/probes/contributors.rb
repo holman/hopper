@@ -7,7 +7,7 @@ module Hopper
     # The description.
     #
     # Returns a String.
-    def description
+    def self.description
       "Explores details about the contributors in a repo."
     end
 

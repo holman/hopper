@@ -5,7 +5,7 @@ module Hopper
     # The description.
     #
     # Returns a String.
-    def description
+    def self.description
       "Analysis of development branches."
     end
 

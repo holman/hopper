@@ -6,7 +6,7 @@ module Hopper
     # The description.
     #
     # Returns a String.
-    def description
+    def self.description
       "Modules and Classes, oh my."
     end
 

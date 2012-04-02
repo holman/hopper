@@ -1,13 +1,22 @@
-<h1>an project!</h1>
+<ul class="selector">
+  {{#versioned_probes}}
+    <li>
+      <strong>{{name}}</strong>
+      {{description}}
+    </li>
+  {{/versioned_probes}}
+</ul>
 
-{{#project}}
-  <a href="{{url}}">{{url}}</a>
-{{/project}}
+<section class="visual">
+  {{#project}}
+    <a href="{{url}}">{{url}}</a>
+  {{/project}}
 
-{{#versioned_probes}}
-  <h2>{{name}}</h2>
-  <p>{{description}}<p>
-  {{#probes}}
-    <p>{{data}}</p>
-  {{/probes}}
-{{/versioned_probes}}
+  {{#versioned_probes}}
+    <h2>{{name}}</h2>
+    <p>{{description}}<p>
+    {{#probes}}
+      <p>{{data}}</p>
+    {{/probes}}
+  {{/versioned_probes}}
+</section>

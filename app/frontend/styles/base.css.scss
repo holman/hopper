@@ -43,4 +43,39 @@ body {
   p {
     line-height: 1.4em;
   }
+
+  .selector {
+    float: left;
+    width: 250px;
+    list-style-type: none;
+    margin-top: 5px;
+    margin-left: 10px;
+    padding: 0;
+
+    li {
+      padding: 5px 10px;
+      border-bottom: 1px solid $mid;
+      color: #555;
+      font-size: 10px;
+
+      strong {
+        font-size: 14px;
+        text-transform: capitalize;
+        display: block;
+      }
+    }
+  }
+
+  .visual {
+    margin-left: 270px;
+  }
+}
+
+.full {
+  width: 100%;
+  margin: 0;
+
+  h1 {
+    display: none;
+  }
 }

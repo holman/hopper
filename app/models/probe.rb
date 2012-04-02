@@ -32,7 +32,7 @@ module Hopper
     def data
       hash = {}
       self.class.exposed.collect do |method|
-        value = $redis.get "#{key}:#{method}:#{project.id}"
+        value = $redis.get "#{key}:#{method}:#{project.id}:#{revision}"
         hash[method.to_sym] = value
       end
       hash
@@ -166,9 +166,12 @@ module Hopper
           result = self.send(method)
 
           # Add the individual record
-          $redis.set "#{key}:#{method}:#{project.id}", result
+          $redis.set "#{key}:#{method}:#{project.id}:#{revision}", result
 
           # Add the aggregate record
+          #
+          # TODO: do we really want to add each revision, or just the head
+          #       revision?
           $redis.rpush "#{key}:#{method}", result
         rescue Exception => e
           puts "Problem saving #{name}:#{method} - #{e}"

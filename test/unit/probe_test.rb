@@ -46,6 +46,10 @@ context "Probe" do
     assert_equal :b_count, results.last.name
   end
 
+  test "clean_probe_name" do
+    assert_equal "Holman count", Probe.clean_probe_name(:holman_count)
+  end
+
   test "save saves attributes" do
     Probe.exposes :name
     @probe.save

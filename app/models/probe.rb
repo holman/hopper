@@ -52,12 +52,21 @@ module Hopper
     #   OpenStruct.new :name => probe_name, :values => values
     def versioned_data
       self.class.exposed.map do |method|
-        os = OpenStruct.new(:name => method)
+        os = OpenStruct.new(:name => Probe.clean_probe_name(method))
         os.values = project.snapshots.map do |snapshot|
           $redis.get "#{key}:#{method}:#{project.id}:#{snapshot}"
         end
         os
       end
+    end
+
+    # Takes a probe name, like line_count, and turns it into "Line count".
+    #
+    # name - A String name to clean up.
+    #
+    # Returns a String.
+    def self.clean_probe_name(name)
+      name.to_s.gsub('_',' ').capitalize
     end
 
     # The aggregate data from all of this mess.

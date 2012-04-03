@@ -84,6 +84,12 @@ a {
       border-bottom: 1px solid $mid;
       font-size: 10px;
 
+      &:hover {
+        span {
+          display: block;
+        }
+      }
+
       a {
         color: #555;
         text-decoration: none;
@@ -93,6 +99,10 @@ a {
         font-size: 14px;
         text-transform: capitalize;
         display: block;
+      }
+
+      span {
+        display: none;
       }
     }
   }

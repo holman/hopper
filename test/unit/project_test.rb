@@ -66,6 +66,16 @@ context "Project" do
     assert_equal 3, versioned.first.probes.size
   end
 
+  test "versioned_probe" do
+    @project.stubs(:snapshots).returns(%w(sha1 sha2 sha3))
+    @project.stubs(:head_revision).returns('sha1')
+    Tabs.any_instance.stubs(:checkout_revision).returns(true)
+
+    versioned = @project.versioned_probe(Tabs)
+
+    assert_equal 3, versioned.size
+  end
+
   test "sha1" do
     @project.url = 'github.com/holman/boom'
     assert_equal 'f40942d357a7df851462c52b15328250ae103879', @project.sha1

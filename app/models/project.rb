@@ -235,6 +235,19 @@ module Hopper
       end
     end
 
+    # Returns all of the versioned, historical Probes for this project for a
+    # specific probe class.
+    #
+    # probe - The Class constant of a Probe, like `Commits`.
+    #
+    # Returns an Array of Probes of all the same subclass (ie, 10 instances of
+    # the Swearing probe).
+    def versioned_probe(probe)
+      snapshots.map do |snapshot|
+        probe.new(self,snapshot,false)
+      end
+    end
+
     # The Great Bambino. Runs through all Probes and gives us an analysis of
     # this Project.
     #

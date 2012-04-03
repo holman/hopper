@@ -32,6 +32,10 @@ module Hopper
       def probe_name
         @probe.name
       end
+
+      def data
+        @project.versioned_probe(@probe).map{|probe| probe.data}
+      end
     end
   end
 end

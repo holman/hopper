@@ -3,5 +3,11 @@
 <section id="visual">
   {{>_probe_meta}}
 
-  {{data}}
+  {{#data}}
+    {{name}}
+
+    {{#values}}
+      {{.}}
+    {{/values}}
+  {{/data}}
 </section>

@@ -39,11 +39,25 @@ module Hopper
     # persisted data we prepared.
     def data
       hash = {}
-      self.class.exposed.collect do |method|
+      self.class.exposed.map do |method|
         value = $redis.get "#{key}:#{method}:#{project.id}:#{revision}"
         hash[method.to_sym] = value
       end
       hash
+    end
+
+    # Public: All of the data across all revision snapshots.
+    #
+    # Returns an Array of OpenStructs, each with the form:
+    #   OpenStruct.new :name => probe_name, :values => values
+    def versioned_data
+      self.class.exposed.map do |method|
+        os = OpenStruct.new(:name => method)
+        os.values = project.snapshots.map do |snapshot|
+          $redis.get "#{key}:#{method}:#{project.id}:#{snapshot}"
+        end
+        os
+      end
     end
 
     # The aggregate data from all of this mess.

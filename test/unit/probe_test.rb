@@ -37,6 +37,15 @@ context "Probe" do
     assert_equal hash, @probe.data
   end
 
+  test "versioned_data" do
+    Probe.exposes :a_count, :b_count
+    results = @probe.versioned_data
+
+    assert_equal 2, results.size
+    assert_equal :a_count, results.first.name
+    assert_equal :b_count, results.last.name
+  end
+
   test "save saves attributes" do
     Probe.exposes :name
     @probe.save

@@ -38,7 +38,7 @@ module Hopper
 
     get '/projects/:id/:probe' do
       @project = Project.find(params[:id])
-      @probe = Probe.find(params[:probe])
+      @probe = @project.probes.select{|probe| probe.name == params[:probe]}.first
       mustache :project_probe, :layout => !request.xhr?
     end
   end

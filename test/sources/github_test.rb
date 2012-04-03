@@ -2,7 +2,7 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Github" do
   setup do
-    @source = Github.new('https://github.com/holman/hopper')
+    @source = Github.new('github.com/holman/hopper')
   end
 
   test "source name" do

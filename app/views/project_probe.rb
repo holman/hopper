@@ -1,28 +1,36 @@
 module Hopper
   module Views
-    class Project < Layout
+    class ProjectProbe < Layout
       def title
-        @project.source.name
+        @probe.name
       end
 
       def width
         'full'
       end
 
-      def project
-        @project
+      def probes
+        Probe.all
       end
 
-      def project_name
-        @project.source.name
+      def project
+        @project
       end
 
       def project_id
         @project.id
       end
 
-      def probes
-        Probe.all
+      def project_name
+        @project.source.name
+      end
+
+      def probe
+        @probe
+      end
+
+      def probe_name
+        @probe.name
       end
     end
   end

@@ -35,5 +35,11 @@ module Hopper
       @project = Project.find(params[:id])
       mustache :project
     end
+
+    get '/projects/:id/:probe' do
+      @project = Project.find(params[:id])
+      @probe = Probe.find(params[:probe])
+      mustache :project_probe, :layout => !request.xhr?
+    end
   end
 end

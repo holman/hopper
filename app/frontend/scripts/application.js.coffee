@@ -8,38 +8,25 @@ $(document).ready () ->
       return false
 
   if $('.graph').length > 0
-    data = $('.bar').data('values').split(' ')
+    $('.bar').each (i,e) ->
+      element = $(e)
+      element.attr('id',"graph-#{i}")
 
-    yScale = d3.scale.linear()
-               .domain([0, d3.max(data)])
-               .range(["10px", "20px"]);
+      data = element.data('values').split(' ')
 
-    graph = d3.selectAll(".graph")
+      yScale = d3.scale.linear()
+                 .domain([0, d3.max(data)])
+                 .range(["10px", "20px"]);
 
-    graph.selectAll('rect')
-          .data(data)
-          .enter()
-          .append('svg')
-          .style('height', yScale)
-          .style('width', 25)
-          .style('box-shadow', '0 0 5px #ccc')
-          .style('border', '3px solid #fff')
-          .style('background-color', '#00B4FF')
+      graph = d3.select("#graph-#{i}")
 
-
-  # if $('.graph').length > 0
-  #   chart = d3.select('.graph')
-  #   data = $('.bar').data('values').split(' ')
-
-  #   x = d3.scale.linear()
-  #         .domain([0, d3.max(data)])
-  #         .range(["0px", "350px"]);
-
-  #   chart
-  #     .selectAll(".bar")
-  #     .data(data)
-  #     .enter()
-  #     .append("div")
-  #     .style("height", x)
-  #     .text (d) ->
-  #       d
+      graph.selectAll('rect')
+            .data(data)
+            .enter()
+            .append('svg')
+            .style('height', yScale)
+            .style('width', 25)
+            .style('box-shadow', '0 0 5px #ccc')
+            .style('border', '3px solid #fff')
+            .style('background-color', '#00B4FF')
+            .attr('alt', (d) -> d)

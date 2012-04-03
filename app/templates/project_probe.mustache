@@ -4,10 +4,12 @@
   {{>_probe_meta}}
 
   {{#data}}
-    {{name}}
+  <section class="graph">
+    <h3>{{name}}</h3>
 
-    {{#values}}
-      {{.}}
-    {{/values}}
+    <div class="bar"
+        data-values="{{#values}}{{.}} {{/values}}">
+    </div>
+  </section>
   {{/data}}
 </section>

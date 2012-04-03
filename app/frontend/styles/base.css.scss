@@ -1,3 +1,5 @@
+//= require graph.css
+
 $light:  #fff;
 $mid:    #eee;
 $dark:   #515151;
@@ -76,6 +78,7 @@ a {
 
   #visual {
     margin-left: 280px;
+    margin-right: 10px;
 
     h2 {
       margin: 0;
@@ -86,6 +89,13 @@ a {
       a {
         text-decoration: none;
       }
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: normal;
+      padding-top: 25px;
+      padding-left: 25px;
     }
 
     .name {

@@ -42,8 +42,8 @@ context "Probe" do
     results = @probe.versioned_data
 
     assert_equal 2, results.size
-    assert_equal :a_count, results.first.name
-    assert_equal :b_count, results.last.name
+    assert_equal "A count", results.first.name
+    assert_equal "B count", results.last.name
   end
 
   test "clean_probe_name" do

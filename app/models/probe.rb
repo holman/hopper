@@ -53,7 +53,7 @@ module Hopper
     def versioned_data
       self.class.exposed.map do |method|
         os = OpenStruct.new(:name => Probe.clean_probe_name(method))
-        os.values = project.snapshots.map do |snapshot|
+        os.values = project.snapshots.reverse.map do |snapshot|
           value = $redis.get("#{key}:#{method}:#{project.id}:#{snapshot}")
           (value == 'NaN') ? 0 : value
         end

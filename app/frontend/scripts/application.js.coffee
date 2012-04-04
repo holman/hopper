@@ -9,12 +9,13 @@ $(document).ready () ->
       return false
 
   if $('.graph').length > 0
-    data = $('.graph li').data('values').split(' ')
+    data = $('.graph li').data('values').split(' ').map((e) -> parseInt(e))
     height = 150
     width = 30
+
     y = d3.scale.linear()
-               .domain([1, d3.max(data)])
-               .range([height, 1]);
+               .domain([0, d3.max(data)])
+               .range([height, 0]);
 
     graph = d3.select(".graph").append("svg")
 
@@ -27,7 +28,7 @@ $(document).ready () ->
       .attr('alt', (d) -> d)
 
     $('.graph li').click () ->
-      data = $(@).data('values').split(' ')
+      data = $(@).data('values').split(' ').map((e) -> parseInt(e))
 
       y = d3.scale.linear()
                .domain([0, d3.max(data)])

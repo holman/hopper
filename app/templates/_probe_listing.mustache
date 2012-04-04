@@ -1,0 +1,10 @@
+<ul class="selector">
+  {{#probes}}
+    <li>
+      <a href="/probes/{{name}}" data-pjax="#visual">
+        <strong>{{name}}</strong>
+        <span>{{description}}</span>
+      </a>
+    </li>
+  {{/probes}}
+</ul>

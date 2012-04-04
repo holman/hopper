@@ -1,11 +1,14 @@
-{{#probe}}
-  <h1>{{name}}</h1>
-  <p>{{description}}</p>
-{{/probe}}
+{{>_probe_listing}}
 
-{{#aggregates}}
-  {{name}}
-  {{#values}}
-    {{.}}
-  {{/values}}
-{{/aggregates}}
+<section id="visual">
+  {{>_probe_meta}}
+
+  <section class="numbers">
+    {{#aggregates}}
+      {{name}}
+      {{#values}}
+        {{.}}
+      {{/values}}
+    {{/aggregates}}
+  </section>
+</section>

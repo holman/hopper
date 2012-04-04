@@ -75,7 +75,7 @@ module Hopper
     # Returns a Hash of Arrays.
     def self.aggregates
       exposed.map do |method|
-        value = $redis.lrange "#{key}:#{method}", 0, 10
+        value = $redis.lrange "#{key}:#{method}", 0, -1
         Hopper::Views::Aggregate.new(method, value)
       end
     end

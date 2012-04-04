@@ -54,7 +54,8 @@ module Hopper
       self.class.exposed.map do |method|
         os = OpenStruct.new(:name => Probe.clean_probe_name(method))
         os.values = project.snapshots.map do |snapshot|
-          $redis.get "#{key}:#{method}:#{project.id}:#{snapshot}"
+          value = $redis.get("#{key}:#{method}:#{project.id}:#{snapshot}")
+          (value == 'NaN') ? 0 : value
         end
         os
       end

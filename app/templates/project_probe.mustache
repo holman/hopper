@@ -3,13 +3,11 @@
 <section id="visual">
   {{>_probe_meta}}
 
-  {{#data}}
   <section class="graph">
-    <h3>{{name}}</h3>
-
-    <div class="bar"
-        data-values="{{#values}}{{.}} {{/values}}">
-    </div>
+    <ul>
+    {{#data}}
+      <li data-values="{{#values}}{{.}} {{/values}}">{{name}}</li>
+    {{/data}}
+    </ul>
   </section>
-  {{/data}}
 </section>

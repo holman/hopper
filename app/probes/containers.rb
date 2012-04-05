@@ -3,6 +3,10 @@ module Hopper
     # The data for this Probe.
     exposes :classes_count, :modules_count
 
+    def self.queue
+      :low
+    end
+
     # The description.
     #
     # Returns a String.

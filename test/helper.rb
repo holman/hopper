@@ -28,9 +28,17 @@ end
 
 # Set the fixture repository for this set of tests.
 def fixture(project)
+  path = "test/examples/#{project}"
+
   Hopper::Project.instance_eval do
     define_method(:path) do
-      "test/examples/#{project}"
+      path
+    end
+  end
+
+  Hopper::Github.instance_eval do
+    define_method(:repo) do
+      Rugged::Repository.new(path)
     end
   end
 end

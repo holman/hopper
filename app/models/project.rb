@@ -230,7 +230,7 @@ module Hopper
         struct = OpenStruct.new
         struct.name = probe.name.downcase.to_sym
         struct.description = probe.description
-        struct.probes = shas.map { |snapshot| probe.new(self,snapshot,false) }
+        struct.probes = shas.map { |snapshot| probe.new(self,snapshot) }
         struct
       end
     end
@@ -244,7 +244,7 @@ module Hopper
     # the Swearing probe).
     def versioned_probe(probe)
       snapshots.map do |snapshot|
-        probe.new(self,snapshot,false)
+        probe.new(self,snapshot)
       end
     end
 

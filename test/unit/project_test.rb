@@ -57,7 +57,6 @@ context "Project" do
 
   test "versioned_probes" do
     @project.stubs(:snapshots).returns(%w(sha1 sha2 sha3))
-    Probe.all.each{|probe| probe.any_instance.stubs(:checkout_revision).returns(true)}
 
     versioned = @project.versioned_probes
     probes = Dir.glob("app/probes/*.rb")

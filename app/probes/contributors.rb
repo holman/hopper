@@ -2,7 +2,7 @@ module Hopper
   # Analysis of the contributors in this repo.
   class Contributors < Probe
     # The data for this Probe.
-    exposes :total_count, :contributors
+    exposes :contributors
 
     # The description.
     #

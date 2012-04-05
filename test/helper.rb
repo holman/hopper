@@ -36,9 +36,5 @@ def fixture(project)
     end
   end
 
-  Hopper::Github.instance_eval do
-    define_method(:repo) do
-      Rugged::Repository.new(path)
-    end
-  end
+  Hopper::Github.any_instance.stubs(:local_path).returns(path)
 end

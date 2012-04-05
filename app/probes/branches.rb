@@ -13,8 +13,7 @@ module Hopper
     #
     # Returns an Integer.
     def count
-      `cd #{project.path} &&
-       git branch -r | tail -n +2 | wc -l`.strip.to_i
+      repo.refs.count{|ref| ref =~ /remotes/ && !(ref =~ /HEAD/) }
     end
   end
 end

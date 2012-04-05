@@ -140,7 +140,7 @@ module Hopper
     #
     # Returns a Source.
     def source
-      Source.new_from_url(url)
+      @source ||= Source.new_from_url(url)
     end
 
     # Saves the project to the database.

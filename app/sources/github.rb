@@ -63,7 +63,8 @@ module Hopper
     #
     # Returns an Array of Strings.
     def revisions
-      `cd #{local_path} && git rev-list --all`.split("\n")
+      walker.push(repo.head.target)
+      walker.map(&:oid)
     end
 
     # The project metadata we fetch from the wire.

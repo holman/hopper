@@ -2,6 +2,7 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Github" do
   setup do
+    fixture :simple
     @source = Github.new('github.com/holman/hopper')
   end
 
@@ -11,6 +12,10 @@ context "Github" do
 
   test "source url" do
     assert_match "https://github.com", Github.url
+  end
+
+  test "revisions" do
+    assert_equal 1, @source.revisions.size
   end
 
   test "name" do
@@ -26,6 +31,6 @@ context "Github" do
   end
 
   test "local_path" do
-    assert_equal "tmp/holman-hopper", @source.local_path
+    assert_equal "test/examples/simple", @source.local_path
   end
 end

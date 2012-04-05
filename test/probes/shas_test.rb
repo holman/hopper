@@ -6,6 +6,7 @@ context "Shas" do
 
     @project = Project.new('github.com')
     @probe = Shas.new(@project)
+    @probe.stubs(:revision).returns('011fa5546dccb754c9afa000e239d6e31fcc6819')
   end
 
   test "longest_string" do

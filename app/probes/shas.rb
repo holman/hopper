@@ -14,7 +14,8 @@ module Hopper
     #
     # Returns a String.
     def longest_string
-      shas = `cd #{project.path} && git log --format="%H"`.split("\n")
+      walker.push(revision)
+      shas = walker.map(&:oid)
       Shamazing.string_from_array(shas)
     end
 
@@ -22,7 +23,8 @@ module Hopper
     #
     # Returns an Integer.
     def longest_integer
-      shas = `cd #{project.path} && git log --format="%H"`.split("\n")
+      walker.push(revision)
+      shas = walker.map(&:oid)
       Shamazing.integer_from_array(shas)
     end
 

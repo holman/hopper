@@ -40,9 +40,11 @@ namespace :redis do
   task :reset do
     $redis.flushdb
   end
+end
 
+namespace :resque do
   desc "Start resque-web"
-  task 'resque-web' do
+  task :web do
     exec 'resque-web -p 8282'
   end
 end

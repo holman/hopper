@@ -41,6 +41,7 @@ GEM
       linecache (>= 0.3)
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
+    rugged (0.16.0)
     sexp_processor (3.1.0)
     shamazing (0.0.4)
     sinatra (1.3.2)
@@ -73,6 +74,7 @@ DEPENDENCIES
   resque
   ruby-debug
   ruby_parser
+  rugged
   shamazing
   sinatra
   sprockets

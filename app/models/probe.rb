@@ -115,16 +115,6 @@ module Hopper
     def initialize(project, revision=project.head_revision, checkout=true)
       @project  = project
       @revision = revision
-
-      checkout_revision if checkout
-    end
-
-    # Public: Checks out the current revision so we can run operations on the
-    # repo without having to switch to it every time.
-    #
-    # Returns nothing.
-    def checkout_revision
-      system("cd #{project.path} && git checkout #{revision} --quiet")
     end
 
     # Public: Searches for a Probe by name.
@@ -193,6 +183,13 @@ module Hopper
     # Returns a String.
     def name
       self.class.name.split('::').last.capitalize
+    end
+
+    # A shortcut to the repo object for this probe.
+    #
+    # Returns an instance of Rugged::Repository.
+    def repo
+      project.source.repo
     end
 
     # The method Resque uses to asynchronously do the dirty.

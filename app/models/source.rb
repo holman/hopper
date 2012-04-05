@@ -82,13 +82,6 @@ module Hopper
       "#{Hopper.temp_dir}/#{directory_name}"
     end
 
-    # The repo object. In this case, the Rugged object with the repo preloaded.
-    #
-    # Returns a Rugged::Repository.
-    def repo
-      Rugged::Repository.new(local_path)
-    end
-
     # Raised if the method hasn't been properly defined in the subclass.
     class NotImplementedError < StandardError ; end
   end

@@ -15,7 +15,8 @@ module Hopper
     #
     # Returns an Integer.
     def total_count
-      `cd #{project.path} && git rev-list --all | wc -l`.strip.to_i
+      walker.push(revision)
+      walker.count
     end
 
     # Commits per day metric.
@@ -27,10 +28,12 @@ module Hopper
 
     # The day this repo was created.
     #
-    # Returns a DateTime.
+    # Returns a Time.
     def birthday
-      date = `cd #{project.path} && git log --reverse --pretty=format:%ad'' | head -1`.strip
-      DateTime.parse(date)
+      walker.sorting(Rugged::SORT_TOPO)
+      walker.push(revision)
+      commit = walker.to_a.last
+      Time.at(commit.time)
     end
 
     # The number of days old this project is.

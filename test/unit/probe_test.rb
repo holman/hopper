@@ -8,7 +8,6 @@ context "Probe" do
 
   test "new defaults to head revision" do
     @project.expects(:head_revision).returns('deadbeef')
-    Probe.any_instance.expects(:checkout_revision).returns(true)
     probe = Probe.new(@project)
     assert_equal 'deadbeef', probe.revision
   end

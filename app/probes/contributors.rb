@@ -11,27 +11,30 @@ module Hopper
       "Explores details about the contributors in a repo."
     end
 
-    # The total number of commits.
-    #
-    # Returns an Integer.
-    def total_count
-      `cd #{project.path} && git shortlog -s | wc -l`.strip.to_i
-    end
-
     # The contributors to this project.
     #
     # Returns an Array of Hashes, with keys as :author, :email, :count.
     def contributors
-      `cd #{project.path} && git shortlog -s -e`.map do |line|
-        count  = line.split("\t").first.to_i
-        email  = line.scan(/<(.*)>/).first.first.strip
-        author = line.scan(/(.*)</).first.first.split("\t").last.strip
-        {
-          :author => author,
-          :email  => email,
-          :count  => count
-        }
+      contributors = {}
+
+      walker.push(revision)
+      walker.each do |commit|
+        author = commit.author
+        email = author[:email]
+        if contributors[email]
+          contributors[email] = {
+            :author => author[:name],
+            :count  => contributors[email][:count] + 1
+          }
+        else
+          contributors[email] = {
+            :author => author[:name],
+            :count  => 1
+          }
+        end
       end
+
+      contributors
     end
   end
 end

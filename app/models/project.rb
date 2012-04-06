@@ -6,9 +6,14 @@ module Hopper
   #
   # Redis Keys:
   #
-  #   hopper:projects                 - All of the Project URLs.
-  #   hopper:projects:#{id}:head      - The HEAD (main) sha to analyze.
-  #   hopper:projects:#{id}:snapshots - A List of shas used for snapshots.
+  #   hopper:projects
+  #     All of the Project URLs.
+  #
+  #   hopper:projects:#{id}:head
+  #     The HEAD (main) sha to analyze.
+  #
+  #   hopper:projects:#{id}:snapshots
+  #     A List of shas used for snapshots. In order, HEAD is position 0. is 0.
   class Project
     # The ID of the Project.
     #

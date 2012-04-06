@@ -100,6 +100,37 @@ module Hopper
     # API.
     class << self
       attr_accessor :exposed
+      attr_accessor :averaged
+    end
+
+    # Public: A convenience method for setting the methods we use to calculate
+    # averages for a Probe.
+    #
+    # exposed - An Array of Symbols that correspond to method names in the Probe
+    #           to query against.
+    #
+    # Examples:
+    #
+    #   # Each Probe can declare the data it exposes by something like:
+    #   exposes :count, :lines, :total
+    #
+    # Sets the Hash as accessibile from `data` and returns as such.
+    def self.averages(*methods)
+      self.averaged = methods
+
+      self.exposed ||= []
+      self.exposed << methods
+    end
+
+    # The averaged values.
+    #
+    # Returns an Array of OpenStructs with attributes :name and :values.
+    def self.averaged
+      @averaged.map do |average|
+        values = $redis.get 'dicks'
+        values = []
+        OpenStruct.new(:name => average, :values => values)
+      end
     end
 
     # Public: Creates a new Probe.

@@ -4,6 +4,12 @@
   {{>_probe_meta}}
 
   <section class="numbers">
+    {{#averages}}
+      {{.}}
+    {{/averages}}
+  </section>
+
+  <section class="numbers">
     {{#aggregates}}
       {{name}}
       {{#values}}

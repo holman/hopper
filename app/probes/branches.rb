@@ -1,6 +1,6 @@
 module Hopper
   class Branches < Probe
-    exposes :count
+    averages :count
 
     # The description.
     #

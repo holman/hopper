@@ -15,10 +15,10 @@ module Hopper
   #
   # Redis Keys:
   #
-  #   hopper:projects:#{probe}
+  #   hopper:probes:#{probe}
   #     A List of the aggregate values for a Probe.
   #
-  #   hopper:projects:#{probe}:#{id}:#{revision}
+  #   hopper:probes:#{probe}:#{id}:#{revision}
   #     The value of a particular probe on a project and revision basis.
   class Probe
     # Public: The Project this Probe is probing.

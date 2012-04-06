@@ -20,6 +20,24 @@ module Hopper
   #
   #   hopper:probes:#{probe}:#{id}:#{revision}
   #     The value of a particular probe on a project and revision basis.
+  #
+  #   hopper:probes:#{probe}:values:#{method}:#{position}
+  #     A List of values associated with a particular revision position for an
+  #     analysis. For example:
+  #
+  #       - probe: Loc
+  #       - method: `total_count`
+  #       - position: 3
+  #
+  #     This would hold the values of all the total count of lines of code
+  #     across every project for a particular snapshot positioning (in this
+  #     case three). That means at that relatively early point in a project —
+  #     the third snapshot — we can aggregate all values across all projects
+  #     quickly.
+  #
+  #   hopper:probes:#{probe}:values:#{method}:#{position}:average
+  #     The average of these values. Basically a cache column we update every
+  #     insert so we can be really cool.
   class Probe
     # Public: The Project this Probe is probing.
     #

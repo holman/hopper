@@ -26,9 +26,16 @@ module Hopper
     #
     # Returns nothing.
     def self.index
-      curl = `curl "http://github.com/api/v2/json/repos/search/fork:0?language=Ruby" --silent`
-      json = Yajl::Parser.parse(curl)
-      import(json)
+      key = "hopper:sources:github:page"
+      page = $redis.get(key).to_i || 0
+
+      # There's something like 6200 pages of unforked Ruby projects. Hax.
+      [page..6200].each do |page|
+        curl = `curl "http://github.com/api/v2/json/repos/search/fork:0?language=Ruby&start_page=#{page}" --silent`
+        json = Yajl::Parser.parse(curl)
+        $redis.set(key, page)
+        import(json)
+      end
     end
 
     # Import projects via JSON.

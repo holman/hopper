@@ -162,8 +162,8 @@ context "Project" do
   end
 
   test "create" do
+    Project.any_instance.expects(:async_save).returns(true)
     project = Project.create('github.com/holman/hopper')
-    assert_equal 1, Project.all.count
   end
 
   test "find" do

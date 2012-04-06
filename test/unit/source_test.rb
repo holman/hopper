@@ -17,12 +17,6 @@ context "Source" do
     end
   end
 
-  test "index raises exception" do
-    assert_raise Source::NotImplementedError do
-      Source.index
-    end
-  end
-
   test "name raises exception" do
     assert_raise Source::NotImplementedError do
       @source.name

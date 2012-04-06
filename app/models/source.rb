@@ -45,6 +45,13 @@ module Hopper
       raise NotImplementedError
     end
 
+    # Index repos from a listing online.
+    #
+    # Returns nothing.
+    def index
+      raise NotImplementedError
+    end
+
     # A unique (for this source) name that we can use.
     #
     # Returns a String.

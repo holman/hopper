@@ -35,8 +35,8 @@ module Hopper
     #
     # path - The String path to this project.
     def initialize(url)
-      @url = url
-      @id  = sha1
+      self.url = url
+      @id      = sha1
     end
 
     # Initializes and saves a new Project.

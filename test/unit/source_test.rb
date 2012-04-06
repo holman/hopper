@@ -19,7 +19,7 @@ context "Source" do
 
   test "index raises exception" do
     assert_raise Source::NotImplementedError do
-      @source.index
+      Source.index
     end
   end
 

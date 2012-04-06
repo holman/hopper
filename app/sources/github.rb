@@ -22,6 +22,26 @@ module Hopper
       url.split('/')[-2..-1].join('/')
     end
 
+    # Spider the API to find non-forked Ruby projects.
+    #
+    # Returns nothing.
+    def self.index
+      curl = `curl "http://github.com/api/v2/json/repos/search/fork:0?language=Ruby" --silent`
+      json = Yajl::Parser.parse(curl)
+      import(json)
+    end
+
+    # Import projects via JSON.
+    #
+    # json - The JSON-formatted return from the GitHub API.
+    #
+    # Returns nothing.
+    def self.import(json)
+      json['repositories'].each do |repository|
+        Project.create(repository['url'])
+      end
+    end
+
     # The Git clone URL that lets us pull down this source.
     #
     # Returns a String.

@@ -27,13 +27,14 @@ module Hopper
     # Returns nothing.
     def self.index
       key = "hopper:sources:github:page"
-      page = $redis.get(key).to_i || 0
+      page = $redis.get(key).to_i || 1
 
       # There's something like 6200 pages of unforked Ruby projects. Hax.
-      [page..6200].each do |page|
-        curl = `curl "http://github.com/api/v2/json/repos/search/fork:0?language=Ruby&start_page=#{page}" --silent`
+      (page..6200).each do |i|
+        curl = `curl "http://github.com/api/v2/json/repos/search/fork:0?language=Ruby&start_page=#{i}" --silent`
         json = Yajl::Parser.parse(curl)
-        $redis.set(key, page)
+
+        $redis.set(key, i)
         import(json)
       end
     end

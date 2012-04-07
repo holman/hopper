@@ -23,9 +23,9 @@ $(document).ready () ->
     graph.selectAll('rect')
       .data(data).enter().append('rect')
       .attr('width', width)
-      .attr('height', (d) -> height - y(d))
+      .attr('height', (d) -> height - y(d) + 1)
       .attr('x', (d, i) -> i * (width + 5))
-      .attr('y', (d) -> y(d))
+      .attr('y', (d) -> y(d) - 1)
       .attr('alt', (d) -> d)
       .attr('data-i', (d, i) -> i)
 
@@ -40,8 +40,8 @@ $(document).ready () ->
         .data(data)
         .transition()
         .duration(500)
-        .attr('height', (d) -> height - y(d))
-        .attr('y', (d) -> y(d))
+        .attr('height', (d) -> height - y(d) + 1)
+        .attr('y', (d) -> y(d) - 1)
         .attr('alt', (d) -> d)
         .attr('data-i', (d, i) -> i)
 

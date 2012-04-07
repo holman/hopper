@@ -10,14 +10,14 @@ $(document).ready () ->
 
   if $('.graph').length > 0
     data = $('.graph li').data('values').split(' ').map((e) -> parseInt(e))
-    height = 150
+    height = 100
     width = 30
 
     y = d3.scale.linear()
                .domain([0, d3.max(data)])
                .range([height, 0]);
 
-    graph = d3.select(".graph").append("svg")
+    graph = d3.select(".graph").insert("svg", ":first-child")
 
     graph.selectAll('rect')
       .data(data).enter().append('rect')

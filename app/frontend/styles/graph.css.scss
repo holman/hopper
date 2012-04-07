@@ -1,21 +1,22 @@
 .graph {
-  margin-top: 30px;
+  background-image: url('http://subtlepatterns.com/patterns/furley_bg.png');
+  background-repeat: repeat;
+  padding: 25px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 
   ul {
-    width: 200px;
-    height: 150px;
-    margin: 0 20px 0 0;
-    padding: 0 10px 0 0;
-    border-right: 1px solid #ccc;
-    float: left;
+    margin: 0 0 -15px 0;
+    padding: 0;
 
     li {
       padding: 0 10px 0 0;
       font-size: 12px;
-      font-weight: bold;
+      font-weight: 100;
       list-style-type: none;
-      text-align: right;
-      color: #999;
+      display: inline;
+      color: #424242;
 
       &:hover {
         color: #00B4FF;
@@ -25,11 +26,11 @@
   }
 
   svg {
-    height: 150px;
-    width: 350px;
+    height: 100px;
+    width: 500px;
 
     rect {
-      fill: #00B4FF;
+      fill: #424242;
     }
   }
 }

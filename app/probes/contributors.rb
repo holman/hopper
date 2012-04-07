@@ -2,7 +2,7 @@ module Hopper
   # Analysis of the contributors in this repo.
   class Contributors < Probe
     # The data for this Probe.
-    exposes :contributors
+    exposes :contributors_count
 
     # The description.
     #
@@ -11,10 +11,19 @@ module Hopper
       "Explores details about the contributors in a repo."
     end
 
+    # The number of contributors to this project.
+    #
+    # Returns an Integer.
+    def contributors_count
+      contributors.size
+    end
+
     # The contributors to this project.
     #
     # Returns an Array of Hashes, with keys as :author, :email, :count.
     def contributors
+      return @contributors if @contributors
+
       contributors = {}
 
       walker.push(revision)
@@ -34,7 +43,7 @@ module Hopper
         end
       end
 
-      contributors
+      @contributors = contributors
     end
   end
 end

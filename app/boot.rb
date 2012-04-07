@@ -19,6 +19,7 @@ require 'app'
 # Models
 require 'models/probe'
 require 'models/project'
+require 'models/repository'
 require 'models/source'
 
 # Non-autoloaded views

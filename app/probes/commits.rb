@@ -39,7 +39,8 @@ module Hopper
     # The number of days old this project is.
     #
     # Returns an Integer.
-    def days_old(to=Time.now)
+    def days_old(to=nil)
+      to ||= repo.lookup(revision).author[:time]
       ((to - birthday) / 60 / 60 / 24).to_i
     end
   end

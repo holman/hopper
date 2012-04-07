@@ -6,6 +6,8 @@ context "Licensing" do
 
     @project = Project.new('github.com')
     @probe = Licensing.new(@project)
+
+    @probe.stubs(:revision).returns('a965377486e0ad522f639bc2b4bcaa1032f92565')
   end
 
   test "present" do

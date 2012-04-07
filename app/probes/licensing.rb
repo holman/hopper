@@ -14,53 +14,57 @@ module Hopper
     #
     # Returns an Integer. 1 if yes, 0 if no.
     def present
-      licenses.size > 0 ? 1 : 0
+      binary_integer licenses
     end
 
     # Does this project use the MIT License?
     #
     # Returns an Integer. 1 if yes, 0 if no.
     def mit
-      count("Permission is hereby granted, free of charge,") > 0 ? 1 : 0
+      binary_integer instances_of("Permission is hereby granted, free of charge,")
     end
 
     # Does this project use GPL?
     #
     # Returns an Integer. 1 if yes, 0 if no.
     def gpl
-      count("GNU GENERAL PUBLIC LICENSE") > 0 ? 1 : 0
+      binary_integer instances_of("GNU GENERAL PUBLIC LICENSE")
     end
 
     # Does this project use LGPL?
     #
     # Returns an Integer. 1 if yes, 0 if no.
     def lgpl
-      count("GNU LESSER GENERAL PUBLIC LICENSE") > 0 ? 1 : 0
+      binary_integer instances_of("GNU LESSER GENERAL PUBLIC LICENSE")
     end
 
     # Does this project use the Apache license?
     #
     # Returns an Integer. 1 if yes, 0 if no.
     def apache
-      count("Apache License") > 0 ? 1 : 0
+      binary_integer instances_of("Apache License")
     end
 
     # Does the project use a BSD-style license?
     #
     # Returns an Integer. 1 if yes, 0 if no.
     def bsd
-      count("Redistribution and use in source and binary forms") > 0 ? 1 : 0
+      binary_integer instances_of("Redistribution and use in source and binary forms")
     end
 
   private
     def licenses
-      `ls #{project.path} | grep -i license`
+      tree = repo.lookup(revision).tree
+      tree.select{|item| item[:name].downcase =~ /license/ }
     end
 
-    def count(string)
-      licenses.select do |license|
-        `cat #{project.path}/#{license.chomp} | grep -i "#{string}"`.chomp.strip != ''
-      end.count
+    def instances_of(string)
+      licenses.map do |license|
+        blob = license[:oid]
+        content = Rugged::Blob.lookup(repo,blob).content
+
+        content.scan(string)
+      end.flatten
     end
   end
 end

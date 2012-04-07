@@ -69,7 +69,10 @@ module Hopper
 
     # Read a file's contents.
     #
-    # path - The path in the Repository to read.
+    # options - A Hash:
+    #           path: The path in the Repository to read (required).
+    #           tree: A Rugged::Tree object that lets us filter down
+    #                 recursively.
     #
     # Returns a String.
     def read(options={})

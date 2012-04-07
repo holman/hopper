@@ -1,9 +1,11 @@
 //= require graph.css
 
-$light:  #fff;
-$mid:    #eee;
-$dark:   #515151;
-$accent: #00B4FF;
+$white:  #fff;
+$light:  #eee;
+$mid:    #BCBCBC;
+$dark:   #424242;
+$black:  #000;
+$accent: #000;
 
 * {
   font-family: 'Open Sans', Helvetica, sans-serif;
@@ -11,25 +13,29 @@ $accent: #00B4FF;
 }
 
 body {
-  background-color: $light;
+  background-color: $white;
 }
 
 a {
   color: $accent;
 }
 
+.wrapper {
+  width: 900px;
+  margin: 0 auto;
+}
+
 .navigation {
   background-color: $mid;
-  padding: 10px 20px;
-  border-bottom: 1px solid $light;
-  box-shadow: 0px 2px 5px #ccc;
+  background-image: url('http://subtlepatterns.com/patterns/furley_bg.png');
+  background-repeat: repeat;
+  padding: 25px 20px;
 
   a {
     color: $accent;
     font-size: 20px;
     font-weight: 700;
     text-decoration: none;
-    text-shadow: 1px 1px 0 #fff;
 
     &:hover {
       color: $dark;
@@ -38,13 +44,13 @@ a {
 
   ul {
     float: right;
-    margin: 0;
+    margin: -3px 0 0 0;
 
     li {
       list-style-type: none;
       float: left;
-      padding: 0 20px;
-      margin-top: 2px;
+      padding: 5px 20px;
+      border-right: 2px solid $mid;
 
       a {
         font-size: 14px;
@@ -55,6 +61,21 @@ a {
         }
       }
     }
+
+    li.last {
+      border: 0;
+    }
+  }
+}
+
+.secondary {
+  padding: 20px 0;
+  background-image: url('http://subtlepatterns.com/patterns/px_by_Gre3g.png');
+  background-repeat: repeat;
+
+  h1 {
+    color: $light;
+    font-weight: 100;
   }
 }
 
@@ -62,10 +83,6 @@ a {
   width: 900px;
   margin: 0 auto;
   font-size: 20px;
-
-  h1 {
-    color: $dark;
-  }
 
   p {
     line-height: 1.4em;
@@ -133,18 +150,9 @@ a {
       font-size: 16px;
       padding-left: 25px;
 
-        a {
-          text-decoration: none;
-        }
+      a {
+        text-decoration: none;
+      }
     }
-  }
-}
-
-.full {
-  width: 100%;
-  margin: 0;
-
-  h1 {
-    display: none;
   }
 }

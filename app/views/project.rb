@@ -5,10 +5,6 @@ module Hopper
         @project.source.name
       end
 
-      def width
-        'full'
-      end
-
       def project
         @project
       end

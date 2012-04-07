@@ -5,10 +5,6 @@ module Hopper
         @probe.name
       end
 
-      def width
-        'full'
-      end
-
       def probes
         Probe.all
       end

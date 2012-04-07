@@ -4,10 +4,6 @@ module Hopper
       def title
         "Hopper"
       end
-
-      def width
-        ''
-      end
     end
   end
 end

@@ -25,8 +25,8 @@ context "Commits" do
   end
 
   test "days_old" do
-    from = Date.parse('2012-01-15')
-      to = Date.parse('2012-01-18')
+    from = Time.at(1333523564)
+      to = Time.at(1333782764)
 
     @probe.stubs(:birthday).returns(from)
 

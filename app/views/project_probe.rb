@@ -21,6 +21,10 @@ module Hopper
         @project.source.name
       end
 
+      def project_url
+        @project.url
+      end
+
       def probe
         @probe
       end

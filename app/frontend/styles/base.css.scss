@@ -140,19 +140,23 @@ a {
   width: 900px;
   margin: 0 auto;
   font-size: 20px;
+  padding-top: 50px;
 
   p {
     line-height: 1.4em;
   }
 
-  #visual {
-    margin-left: 280px;
-    margin-right: 10px;
+  .crumb {
+    margin-bottom: 50px;
 
+    a {
+      text-decoration: none;
+    }
+  }
+
+  #visual {
     h2 {
       margin: 0;
-      padding-top: 50px;
-      padding-left: 25px;
       font-size: 30px;
 
       a {
@@ -164,12 +168,10 @@ a {
       font-size: 18px;
       font-weight: normal;
       padding-top: 25px;
-      padding-left: 25px;
     }
 
     .name {
       font-size: 16px;
-      padding-left: 25px;
 
       a {
         text-decoration: none;

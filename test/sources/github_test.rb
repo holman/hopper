@@ -15,7 +15,7 @@ context "Github" do
   end
 
   test "revisions" do
-    assert_equal 1, @source.revisions.size
+    assert_equal 2, @source.revisions.size
   end
 
   test "name" do

@@ -4,14 +4,15 @@
 
 <section id="visual">
   <section class="graph">
-    <div class="info">
-      An Info
-      <div class="minor">minor</div>
-    </div>
+    <div class="info"></div>
+    <div class="minor"></div>
 
     <ul>
     {{#data}}
-      <li data-values="{{#values}}{{.}} {{/values}}">{{name}}</li>
+      <li data-values="{{#values}}{{.}} {{/values}}"
+          data-snapshots="{{#snapshots}}{{.}} {{/snapshots}}">
+        {{name}}
+      </li>
     {{/data}}
     </ul>
   </section>

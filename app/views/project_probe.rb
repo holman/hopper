@@ -33,6 +33,10 @@ module Hopper
         @probe.name
       end
 
+      def snapshots
+        @project.snapshots
+      end
+
       def data
         @probe.versioned_data
       end

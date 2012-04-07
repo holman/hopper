@@ -1,8 +1,8 @@
 module Hopper
   module Views
     class Probes < Layout
-      def width
-        'full'
+      def title
+        "All Probes"
       end
 
       def probes

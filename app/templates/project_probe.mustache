@@ -1,12 +1,18 @@
-{{>_probe_selector}}
+<section class="crumb">
+  <a href="{{project_url}}">{{project_name}}</a>
+</section>
 
 <section id="visual">
-  {{>_probe_meta}}
-
   <section class="graph">
+    <div class="info"></div>
+    <div class="minor"></div>
+
     <ul>
     {{#data}}
-      <li data-values="{{#values}}{{.}} {{/values}}">{{name}}</li>
+      <li data-values="{{#values}}{{.}} {{/values}}"
+          data-snapshots="{{#snapshots}}{{.}} {{/snapshots}}">
+        {{name}}
+      </li>
     {{/data}}
     </ul>
   </section>

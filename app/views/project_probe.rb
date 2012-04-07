@@ -5,10 +5,6 @@ module Hopper
         @probe.name
       end
 
-      def width
-        'full'
-      end
-
       def probes
         Probe.all
       end
@@ -25,12 +21,20 @@ module Hopper
         @project.source.name
       end
 
+      def project_url
+        @project.url
+      end
+
       def probe
         @probe
       end
 
       def probe_name
         @probe.name
+      end
+
+      def snapshots
+        @project.snapshots
       end
 
       def data

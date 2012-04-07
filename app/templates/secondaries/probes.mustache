@@ -1,0 +1,11 @@
+<ul>
+  {{#probes}}
+    <li>
+      <a href="/probes/{{name}}"
+         data-pjax="#visual"
+         data-description="{{description}}">
+        {{name}}
+      </a>
+    </li>
+  {{/probes}}
+</ul>

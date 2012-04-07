@@ -33,6 +33,7 @@ module Hopper
     def gems_used
       tree = repo.lookup(revision).tree
       gemfile = tree.select{|blob| blob[:name] == 'Gemfile'}.first
+      return 0 if !gemfile
       blob = gemfile[:oid]
 
       content = Rugged::Blob.lookup(repo,blob).content

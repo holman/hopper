@@ -2,7 +2,7 @@ module Hopper
   module Views
     class Index < Layout
       def title
-        "Hopper"
+        "A Ruby community analysis"
       end
     end
   end

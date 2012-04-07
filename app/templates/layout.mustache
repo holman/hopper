@@ -13,16 +13,32 @@
 
 <body>
   <section class="navigation">
-    <a href="/">Hopper</a>
+    <div class="wrapper">
+      <a href="/">Hopper</a>
 
-    <ul>
-      <li><a href="/projects">Projects</a></li>
-      <li><a href="/probes">Probes</a></li>
-    </ul>
+      <ul>
+        <li><a href="/projects">Projects</a></li>
+        <li class="last"><a href="/probes">Probes</a></li>
+      </ul>
+    </div>
   </section>
 
-  <section class="content {{width}}">
-    <h1>{{title}}</h1>
+  <section class="secondary">
+    <div class="wrapper">
+      <h1>
+        <strong>{{{section_link}}}</strong>
+        {{title}}
+      </h1>
+
+      <div class="main">
+        {{{secondaries}}}
+      </div>
+
+      <br class="clear">
+    </div>
+  </section>
+
+  <section class="content">
     {{{yield}}}
   </section>
 </body>

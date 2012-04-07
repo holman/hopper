@@ -12,6 +12,10 @@ module Hopper
       :views => "#{dir}/views"
     }
 
+    before do
+      @path = request.path_info
+    end
+
     get '/' do
       mustache :index
     end

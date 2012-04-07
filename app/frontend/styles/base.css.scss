@@ -1,9 +1,11 @@
 //= require graph.css
 
-$light:  #fff;
-$mid:    #eee;
-$dark:   #515151;
-$accent: #00B4FF;
+$white:  #fff;
+$light:  #eee;
+$mid:    #BCBCBC;
+$dark:   #424242;
+$black:  #000;
+$accent: #000;
 
 * {
   font-family: 'Open Sans', Helvetica, sans-serif;
@@ -11,25 +13,33 @@ $accent: #00B4FF;
 }
 
 body {
-  background-color: $light;
+  background-color: $white;
 }
 
 a {
   color: $accent;
 }
 
+.clear {
+  clear: both;
+}
+
+.wrapper {
+  width: 900px;
+  margin: 0 auto;
+}
+
 .navigation {
-  background-color: $mid;
-  padding: 10px 20px;
-  border-bottom: 1px solid $light;
-  box-shadow: 0px 2px 5px #ccc;
+  background-color: $light;
+  background-image: url('/images/furley_bg.png');
+  background-repeat: repeat;
+  padding: 25px 20px;
 
   a {
     color: $accent;
     font-size: 20px;
     font-weight: 700;
     text-decoration: none;
-    text-shadow: 1px 1px 0 #fff;
 
     &:hover {
       color: $dark;
@@ -38,13 +48,13 @@ a {
 
   ul {
     float: right;
-    margin: 0;
+    margin: -3px 0 0 0;
 
     li {
       list-style-type: none;
       float: left;
-      padding: 0 20px;
-      margin-top: 2px;
+      padding: 5px 20px;
+      border-right: 2px solid $mid;
 
       a {
         font-size: 14px;
@@ -55,50 +65,68 @@ a {
         }
       }
     }
+
+    li.last {
+      border: 0;
+    }
   }
 }
 
-.content {
-  width: 900px;
-  margin: 0 auto;
-  font-size: 20px;
+.secondary {
+  padding: 20px 0;
+  background-color: $black;
+  background-image: url('/images/px.png');
+  background-repeat: repeat;
 
   h1 {
-    color: $dark;
-  }
-
-  p {
-    line-height: 1.4em;
-  }
-
-  .selector {
+    color: $light;
+    font-weight: 100;
     float: left;
-    width: 250px;
-    list-style-type: none;
-    margin-top: 5px;
-    margin-left: 10px;
-    padding: 0;
 
-    li {
-      padding: 5px 10px;
-      border-bottom: 1px solid $mid;
-      font-size: 10px;
-
-      &:hover {
-        span {
-          display: block;
-        }
-      }
+    strong {
+      text-transform: uppercase;
+      display: block;
+      font-size: 12px;
 
       a {
+        color: #999;
         text-decoration: none;
-      }
 
-      strong {
-        color: #777;
-        font-size: 14px;
-        text-transform: capitalize;
-        display: block;
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .main {
+    color: $light;
+    float: left;
+    margin-left: 30px;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      -moz-column-count: 2;
+      -webkit-columns: 2;
+      -moz-column-width: 100px;
+      -webkit-column-width: 100px;
+      height: 125px;
+
+      li {
+        list-style-type: none;
+        padding: 4px 0;
+        -webkit-font-smoothing: antialiased;
+
+        a {
+          color: $light;
+          font-size: 12px;
+          text-decoration: none;
+
+          &:hover {
+            color: $mid;
+          }
+        }
       }
 
       span {
@@ -106,15 +134,29 @@ a {
       }
     }
   }
+}
+
+.content {
+  width: 900px;
+  margin: 0 auto;
+  font-size: 22px;
+  padding-top: 50px;
+
+  p {
+    line-height: 1.5em;
+  }
+
+  .crumb {
+    margin-bottom: 50px;
+
+    a {
+      text-decoration: none;
+    }
+  }
 
   #visual {
-    margin-left: 280px;
-    margin-right: 10px;
-
     h2 {
       margin: 0;
-      padding-top: 50px;
-      padding-left: 25px;
       font-size: 30px;
 
       a {
@@ -126,25 +168,14 @@ a {
       font-size: 18px;
       font-weight: normal;
       padding-top: 25px;
-      padding-left: 25px;
     }
 
     .name {
       font-size: 16px;
-      padding-left: 25px;
 
-        a {
-          text-decoration: none;
-        }
+      a {
+        text-decoration: none;
+      }
     }
-  }
-}
-
-.full {
-  width: 100%;
-  margin: 0;
-
-  h1 {
-    display: none;
   }
 }

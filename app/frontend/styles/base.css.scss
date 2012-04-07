@@ -30,8 +30,8 @@ a {
 }
 
 .navigation {
-  background-color: $mid;
-  background-image: url('http://subtlepatterns.com/patterns/furley_bg.png');
+  background-color: $light;
+  background-image: url('/images/furley_bg.png');
   background-repeat: repeat;
   padding: 25px 20px;
 
@@ -74,7 +74,8 @@ a {
 
 .secondary {
   padding: 20px 0;
-  background-image: url('http://subtlepatterns.com/patterns/px_by_Gre3g.png');
+  background-color: $black;
+  background-image: url('/images/px.png');
   background-repeat: repeat;
 
   h1 {

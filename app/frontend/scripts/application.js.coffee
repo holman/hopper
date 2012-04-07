@@ -17,7 +17,7 @@ $(document).ready () ->
                .domain([0, d3.max(data)])
                .range([height, 0]);
 
-    graph = d3.select(".graph").insert("svg", ":first-child")
+    graph = d3.select(".graph").insert("svg", ":nth-child(2)")
 
     graph.selectAll('rect')
       .data(data).enter().append('rect')

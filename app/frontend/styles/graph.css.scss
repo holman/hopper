@@ -7,6 +7,7 @@
   border-radius: 3px;
 
   ul {
+    clear: both;
     margin: 0 0 -15px 0;
     padding: 0;
 
@@ -34,10 +35,24 @@
 
   svg {
     height: 100px;
-    width: 500px;
+    width: 400px;
 
     rect {
       fill: #424242;
+    }
+  }
+
+  .info {
+    float: right;
+    margin-top: -10px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+
+    .minor {
+      font-size: 16px;
+      font-weight: 100;
+      color: #999;
     }
   }
 }

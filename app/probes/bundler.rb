@@ -13,25 +13,30 @@ module Hopper
     #
     # Returns a binary integer.
     def gemfile_present
-      binary_integer Dir.glob("#{project.path}/Gemfile")
+      tree = repo.lookup(revision).tree
+      gemfiles = tree.select{|item| item[:name] == 'Gemfile' }
+      binary_integer gemfiles
     end
 
     # Is a Gemfile present in this project?
     #
     # Returns a binary integer.
     def gemfile_lock_present
-      binary_integer Dir.glob("#{project.path}/Gemfile.lock")
+      tree = repo.lookup(revision).tree
+      locks = tree.select{|item| item[:name] == 'Gemfile.lock' }
+      binary_integer locks
     end
 
     # The number of gems used in this Gemfile.
     #
     # Returns an Integer.
     def gems_used
-      gemfile = "#{project.path}/Gemfile"
-      return nil if !File.exist?(gemfile)
+      tree = repo.lookup(revision).tree
+      gemfile = tree.select{|blob| blob[:name] == 'Gemfile'}.first
+      blob = gemfile[:oid]
 
-      contents = File.read(gemfile)
-      RubyParser.new.parse(contents).flatten.count(:gem)
+      content = Rugged::Blob.lookup(repo,blob).content
+      RubyParser.new.parse(content).flatten.count(:gem)
     end
   end
 end

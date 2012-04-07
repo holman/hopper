@@ -15,6 +15,9 @@ module Hopper
   #   hopper:projects:#{id}:snapshots
   #     A List of shas used for snapshots. In order, HEAD is position 0. is 0.
   class Project
+    # Highly prioritize.`
+    @queue = :high
+
     # The ID of the Project.
     #
     # Returns a String (the sha).
@@ -40,8 +43,8 @@ module Hopper
     #
     # path - The String path to this project.
     def initialize(url)
-      @url = url
-      @id  = sha1
+      self.url = url
+      @id      = sha1
     end
 
     # Initializes and saves a new Project.
@@ -49,7 +52,7 @@ module Hopper
     # Returns the Project.
     def self.create(url)
       project = new(url)
-      project.save
+      project.async_save
       project
     end
 
@@ -146,6 +149,23 @@ module Hopper
     # Returns a Source.
     def source
       @source ||= Source.new_from_url(url)
+    end
+
+
+    # The method Resque uses to asynchronously do the dirty.
+    #
+    # project_id - The String project_id.
+    #
+    # Returns whatever Resque returns.
+    def self.perform(url)
+      new(url).save
+    end
+
+    # Asynchronously save a model.
+    #
+    # Returns nothing.
+    def async_save
+      Resque.enqueue(Project, url)
     end
 
     # Saves the project to the database.

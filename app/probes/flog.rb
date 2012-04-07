@@ -13,7 +13,7 @@ module Hopper
     #
     # Returns an Integer.
     def method_average
-      flog = ::Flog.new
+      flog = ::Flog.new(:continue => true)
       flog.flog(files)
       flog.average
     end

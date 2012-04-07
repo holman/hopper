@@ -1,6 +1,12 @@
 module Hopper
   # A Source is a place where we can get a Project. Usually a version control
   # host.
+  #
+  # Redis keys:
+  #
+  #   hopper:sources:#{source}:page
+  #     A simple cached reference to the last page from a set of search results
+  #     that we indexed from. Makes for easy continuation.
   class Source
     # Load all sources.
     Dir["app/sources/*.rb"].each {|file| require file }
@@ -36,6 +42,13 @@ module Hopper
     #
     # Returns a String.
     def self.url
+      raise NotImplementedError
+    end
+
+    # Index repos from a listing online.
+    #
+    # Returns nothing.
+    def index
       raise NotImplementedError
     end
 

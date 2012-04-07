@@ -1,1 +1,11 @@
-sup!
+<ul>
+  {{#probes}}
+    <li>
+      <a href="/projects/{{project_id}}/{{name}}"
+         data-pjax="#visual"
+         data-description="{{description}}">
+        {{name}}
+      </a>
+    </li>
+  {{/probes}}
+</ul>

@@ -88,6 +88,36 @@ a {
     color: $light;
     float: left;
     margin-left: 120px;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      -moz-column-count: 2;
+      -webkit-columns: 2;
+      -moz-column-width: 100px;
+      -webkit-column-width: 100px;
+      height: 125px;
+
+      li {
+        list-style-type: none;
+        padding: 4px 0;
+        -webkit-font-smoothing: antialiased;
+
+        a {
+          color: $light;
+          font-size: 12px;
+          text-decoration: none;
+
+          &:hover {
+            color: $mid;
+          }
+        }
+      }
+
+      span {
+        display: none;
+      }
+    }
   }
 }
 
@@ -98,42 +128,6 @@ a {
 
   p {
     line-height: 1.4em;
-  }
-
-  .selector {
-    float: left;
-    width: 250px;
-    list-style-type: none;
-    margin-top: 5px;
-    margin-left: 10px;
-    padding: 0;
-
-    li {
-      padding: 5px 10px;
-      border-bottom: 1px solid $mid;
-      font-size: 10px;
-
-      &:hover {
-        span {
-          display: block;
-        }
-      }
-
-      a {
-        text-decoration: none;
-      }
-
-      strong {
-        color: #777;
-        font-size: 14px;
-        text-transform: capitalize;
-        display: block;
-      }
-
-      span {
-        display: none;
-      }
-    }
   }
 
   #visual {

@@ -5,6 +5,11 @@ module Hopper
         "Hopper"
       end
 
+      def section_link
+        section = @path.split('/')[1]
+        "<a href=\"/#{section}\">#{section}</a>"
+      end
+
       # We have a secondary nav under the main nav. This always looks for
       # secondaries/page_name.mustache.
       def secondaries

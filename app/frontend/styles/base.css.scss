@@ -82,6 +82,21 @@ a {
     font-weight: 100;
     float: left;
     width: 100px;
+
+    strong {
+      text-transform: uppercase;
+      display: block;
+      font-size: 12px;
+
+      a {
+        color: #999;
+        text-decoration: none;
+
+        &:hover {
+          color: $white;
+        }
+      }
+    }
   }
 
   .main {

@@ -20,6 +20,10 @@ a {
   color: $accent;
 }
 
+.clear {
+  clear: both;
+}
+
 .wrapper {
   width: 900px;
   margin: 0 auto;
@@ -76,6 +80,14 @@ a {
   h1 {
     color: $light;
     font-weight: 100;
+    float: left;
+    width: 100px;
+  }
+
+  .main {
+    color: $light;
+    float: left;
+    margin-left: 120px;
   }
 }
 

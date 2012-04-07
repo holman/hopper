@@ -9,7 +9,7 @@ module Hopper
       # secondaries/page_name.mustache.
       def secondaries
         file = self.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase
-        Mustache.render(File.read("app/templates/secondaries/#{file}.mustache"))
+        Mustache.render(File.read("app/templates/secondaries/#{file}.mustache"), self)
       end
     end
   end

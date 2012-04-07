@@ -185,14 +185,14 @@ module Hopper
     #
     # Returns an instance of Rugged::Repository.
     def repo
-      project.source.repo
+      @repo ||= project.source.repo
     end
 
     # A shortcut to the walker object for this probe.
     #
     # Returns an instance of Rugged::Walker.
     def walker
-      project.source.walker
+      @walker ||= project.source.walker
     end
 
     # The method Resque uses to asynchronously do the dirty.

@@ -18,32 +18,34 @@ module Hopper
     #
     # Returns an Integer.
     def classes_count
-      parsed = RubyParser.new.parse(project.ruby_contents_string)
-      return 0 if !parsed
+      repository.files.map do |file|
+        content = repository.read(:path => file)
+        parsed = RubyParser.new.parse(content)
 
-      parsed.flatten.count(:class)
-    rescue Exception => e
-      0
+        !parsed ? 0 : parsed.flatten.count(:class)
+      end.sum
     end
 
     # The total number of modules defined.
     #
     # Returns an Integer.
     def modules_count
-      parsed = RubyParser.new.parse(project.ruby_contents_string)
-      return 0 if !parsed
+      repository.files.map do |file|
+        content = repository.read(:path => file)
+        parsed = RubyParser.new.parse(content)
 
-      parsed.flatten.count(:module)
-    rescue Exception => e
-      0
+        !parsed ? 0 : parsed.flatten.count(:module)
+      end.sum
     end
 
     # Does this project define multiple classes or modules in a file?
     #
     # Returns a binary integer.
     def multiple_per_file
-      binary_integer project.ruby_file_contents.map do |file|
-        parsed = RubyParser.new.parse(file).flatten
+      binary_integer repository.files.map do |file|
+        content = repository.read(:path => file)
+        parsed = RubyParser.new.parse(content)
+
         if parsed.count(:module) > 1 || parsed.count(:class) > 1
            1
         else

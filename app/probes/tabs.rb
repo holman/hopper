@@ -1,7 +1,7 @@
 module Hopper
   class Tabs < Probe
     # The data for this Probe.
-    exposes :tabs_count, :two_spaces_count, :four_spaces_count
+    exposes :tabs_count, :two_spaces_count, :four_spaces_count, :tabs_used
 
     # TODO: expose tabs_used?
 
@@ -16,8 +16,9 @@ module Hopper
     #
     # Returns an Integer.
     def tabs_count
-      project.file_contents.map do |file|
-        file.scan(/\t/).size
+      repository.files.map do |file|
+        content = repository.read(:path => file)
+        content.scan(/\t/).size
       end.sum
     end
 
@@ -25,8 +26,9 @@ module Hopper
     #
     # Returns an Integer.
     def two_spaces_count
-      project.file_contents.map do |file|
-        file.scan(/  /).size
+      repository.files.map do |file|
+        content = repository.read(:path => file)
+        content.scan(/  /).size
       end.sum
     end
 
@@ -34,16 +36,18 @@ module Hopper
     #
     # Returns an Integer.
     def four_spaces_count
-      project.file_contents.map do |file|
-        file.scan(/    /).size
+      repository.files.map do |file|
+        content = repository.read(:path => file)
+        content.scan(/    /).size
       end.sum
     end
 
     # Does the project use tabs?
     #
     # Returns an Integer.
-    def tabs_used?
-      tabs_count > 0 && tabs_count > two_spaces_count
+    def tabs_used
+      result = tabs_count > 0 && tabs_count > two_spaces_count
+      result ? 1 : 0
     end
   end
 end

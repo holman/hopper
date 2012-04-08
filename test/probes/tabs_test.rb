@@ -6,6 +6,8 @@ context "Tabs" do
 
     @project = Project.new('github.com')
     @probe = Tabs.new(@project)
+
+    @probe.stubs(:revision).returns('a965377486e0ad522f639bc2b4bcaa1032f92565')
   end
 
   test "tabs_count" do
@@ -20,7 +22,7 @@ context "Tabs" do
     assert_equal 18, @probe.four_spaces_count
   end
 
-  test "tabs_used?" do
-    assert !@probe.tabs_used?
+  test "tabs_used" do
+    assert_equal 0, @probe.tabs_used
   end
 end

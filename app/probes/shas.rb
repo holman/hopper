@@ -1,7 +1,6 @@
 module Hopper
   class Shas < Probe
-    exposes :longest_string, :longest_string_length,
-            :longest_integer, :longest_integer_length
+    exposes :longest_string_length, :longest_integer_length
 
     # The description.
     #

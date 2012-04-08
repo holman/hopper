@@ -15,7 +15,7 @@ module Hopper
     # Returns an Integer.
     def classes_count
       repository.files(:pattern => /.rb/).map do |file|
-        parse_file(file,:module)
+        parse_file(file,:class)
       end.sum
     end
 

@@ -22,7 +22,7 @@ module Hopper
     # Returns an Integer.
     def lines
       repository.files.map do |file|
-        repository.read(:path => file).lines.count
+        repository.read(file).lines.count
       end.sum
     end
 
@@ -31,7 +31,7 @@ module Hopper
     # Returns an Integer.
     def ruby_lines
       repository.files(:pattern => /.rb/).map do |file|
-        repository.read(:path => file).lines.count
+        repository.read(file).lines.count
       end.sum
     end
 
@@ -40,7 +40,7 @@ module Hopper
     # Returns an Integer.
     def comment_lines
       repository.files.map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         content.lines.map do |line|
           first = line.strip[0]
           first = first.chr if first
@@ -66,6 +66,7 @@ module Hopper
 
   private
     def widths
+      raise
     end
 
     def width_sum

@@ -15,7 +15,7 @@ module Hopper
     # Returns an Integer.
     def define_method_count
       repository.files.map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         content.scan(/define_method/).size
       end.sum
     end
@@ -25,7 +25,7 @@ module Hopper
     # Returns an Integer.
     def send_count
       repository.files.map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         content.scan(/send/).size
       end.sum
     end

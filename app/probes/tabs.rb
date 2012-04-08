@@ -17,7 +17,7 @@ module Hopper
     # Returns an Integer.
     def tabs_count
       repository.files.map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         content ? content.scan(/\t/).size : 0
       end.sum
     end
@@ -27,7 +27,7 @@ module Hopper
     # Returns an Integer.
     def two_spaces_count
       repository.files.map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         content ? content.scan(/  /).size : 0
       end.sum
     end
@@ -37,7 +37,7 @@ module Hopper
     # Returns an Integer.
     def four_spaces_count
       repository.files.map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         content ? content.scan(/    /).size : 0
       end.sum
     end

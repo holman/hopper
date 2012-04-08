@@ -14,7 +14,7 @@ module Hopper
     # Returns an Integer.
     def class_count
       repository.files(:pattern => /.rb/).map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         count_calls(:defs,content)
       end.sum
     end
@@ -24,7 +24,7 @@ module Hopper
     # Returns an Integer.
     def instance_count
       repository.files(:pattern => /.rb/).map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         count_calls(:defn,content)
       end.sum
     end
@@ -34,7 +34,7 @@ module Hopper
     # Returns an Integer.
     def method_name_length
       repository.files(:pattern => /.rb/).map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         count_method_length(:defn,content) + count_method_length(:defs,content)
       end.average
     end

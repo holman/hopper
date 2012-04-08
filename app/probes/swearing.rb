@@ -35,7 +35,7 @@ module Hopper
     def word_count
       repository.files.map do |file|
         words.map do |word|
-          content = repository.read(:path => file)
+          content = repository.read(file)
           content ? content.scan(/\b#{word}\b/).size : 0
         end.sum
       end.sum

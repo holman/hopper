@@ -32,8 +32,8 @@ context "Repository" do
   end
 
   test "can read files" do
-    assert_match /the money, honey/,      @repo.read(:path => 'README.md')
-    assert_match /should_test_something/, @repo.read(:path => 'test/simple_test.rb')
+    assert_match /the money, honey/,      @repo.read('README.md')
+    assert_match /should_test_something/, @repo.read('test/simple_test.rb')
   end
 
   test "revisions" do

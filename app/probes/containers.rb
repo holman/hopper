@@ -19,7 +19,7 @@ module Hopper
     # Returns an Integer.
     def classes_count
       repository.files.map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         parsed = RubyParser.new.parse(content)
 
         !parsed ? 0 : parsed.flatten.count(:class)
@@ -31,7 +31,7 @@ module Hopper
     # Returns an Integer.
     def modules_count
       repository.files.map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         parsed = RubyParser.new.parse(content)
 
         !parsed ? 0 : parsed.flatten.count(:module)
@@ -43,7 +43,7 @@ module Hopper
     # Returns a binary integer.
     def multiple_per_file
       binary_integer repository.files.map do |file|
-        content = repository.read(:path => file)
+        content = repository.read(file)
         parsed = RubyParser.new.parse(content)
 
         if parsed.count(:module) > 1 || parsed.count(:class) > 1

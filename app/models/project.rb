@@ -125,14 +125,18 @@ module Hopper
     #
     # Returns nothing.
     def snapshots!
-      count = source.commit_count
+      repo = Rugged::Repository.new(path)
+      walker = Rugged::Walker.new(repo)
+      walker.push(repo.head.target)
+      revisions = walker.map(&:oid)
+
+      count = revisions.length
 
       if count >= 10
         slice_at  = count / 10
-        revisions = source.revisions.each_slice(slice_at).map(&:first)[0..9]
+        revisions = revisions.each_slice(slice_at).map(&:first)[0..9]
         save_snapshots(revisions)
       else
-        revisions = source.revisions
         save_snapshots(revisions)
       end
 
@@ -145,7 +149,6 @@ module Hopper
     def source
       @source ||= Source.new_from_url(url)
     end
-
 
     # The method Resque uses to asynchronously do the dirty.
     #

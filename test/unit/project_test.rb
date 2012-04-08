@@ -68,7 +68,6 @@ context "Project" do
   test "versioned_probe" do
     @project.stubs(:snapshots).returns(%w(sha1 sha2 sha3))
     @project.stubs(:head_revision).returns('sha1')
-    Tabs.any_instance.stubs(:checkout_revision).returns(true)
 
     versioned = @project.versioned_probe(Tabs)
 
@@ -88,8 +87,8 @@ context "Project" do
             314b1708a8b063d3cf762383a89e6707b06539ad"
     array = shas.split("\n").map{|sha| sha.strip}
 
-    Github.any_instance.expects(:revisions).returns(shas)
-    Github.any_instance.expects(:commit_count).returns(5)
+    Repository.any_instance.expects(:revisions).returns(shas)
+    Repository.any_instance.expects(:commit_count).returns(5)
     @project.snapshots!
 
     assert_equal 5,           @project.snapshots.size
@@ -134,8 +133,8 @@ context "Project" do
               1d970d29256b8e937f5f6492fffe9b163cb023d5
             )
 
-    Github.any_instance.expects(:revisions).returns(shas)
-    Github.any_instance.expects(:commit_count).returns(22)
+    Repository.any_instance.expects(:revisions).returns(shas)
+    Repository.any_instance.expects(:commit_count).returns(22)
     @project.snapshots!
 
     assert_equal 10,          @project.snapshots.size

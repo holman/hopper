@@ -33,8 +33,11 @@ module Hopper
     #
     # Returns an Integer.
     def word_count
-      words.map do |word|
-        project.file_contents.join(' ').scan(/\b#{word}\b/).size
+      repository.files.map do |file|
+        words.map do |word|
+          content = repository.read(:path => file)
+          content.scan(/\b#{word}\b/).size
+        end.sum
       end.sum
     end
   end

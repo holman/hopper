@@ -192,7 +192,7 @@ module Hopper
     #
     # Returns an instance of Rugged::Walker.
     def walker
-      @walker ||= project.source.walker
+      @walker ||= repository.walker
     end
 
     # The method Resque uses to asynchronously do the dirty.

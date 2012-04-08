@@ -13,7 +13,7 @@ module Hopper
     #
     # Returns an Integer. 1 if present, 0 if not.
     def present
-      tree = repo.lookup(revision).tree
+      tree = repository.repo.lookup(revision).tree
       specs = tree.select{|item| item[:name] =~ /\.gemspec/ }
       binary_integer specs
     end

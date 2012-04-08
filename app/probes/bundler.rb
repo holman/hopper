@@ -13,7 +13,7 @@ module Hopper
     #
     # Returns a binary integer.
     def gemfile_present
-      tree = repo.lookup(revision).tree
+      tree = repository.repo.lookup(revision).tree
       gemfiles = tree.select{|item| item[:name] == 'Gemfile' }
       binary_integer gemfiles
     end
@@ -22,7 +22,7 @@ module Hopper
     #
     # Returns a binary integer.
     def gemfile_lock_present
-      tree = repo.lookup(revision).tree
+      tree = repository.repo.lookup(revision).tree
       locks = tree.select{|item| item[:name] == 'Gemfile.lock' }
       binary_integer locks
     end
@@ -31,12 +31,12 @@ module Hopper
     #
     # Returns an Integer.
     def gems_used
-      tree = repo.lookup(revision).tree
+      tree = repository.repo.lookup(revision).tree
       gemfile = tree.select{|blob| blob[:name] == 'Gemfile'}.first
       return 0 if !gemfile
       blob = gemfile[:oid]
 
-      content = Rugged::Blob.lookup(repo,blob).content
+      content = Rugged::Blob.lookup(repository.repo,blob).content
       RubyParser.new.parse(content).flatten.count(:gem)
     end
   end

@@ -54,14 +54,14 @@ module Hopper
 
   private
     def licenses
-      tree = repo.lookup(revision).tree
+      tree = repository.repo.lookup(revision).tree
       tree.select{|item| item[:name].downcase =~ /license/ }
     end
 
     def instances_of(string)
       licenses.map do |license|
         blob = license[:oid]
-        content = Rugged::Blob.lookup(repo,blob).content
+        content = Rugged::Blob.lookup(repository.repo,blob).content
 
         content.scan(string)
       end.flatten

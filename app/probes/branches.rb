@@ -13,7 +13,7 @@ module Hopper
     #
     # Returns an Integer.
     def count
-      repo.refs.count{|ref| ref =~ /remotes/ && !(ref =~ /HEAD/) }
+      repository.repo.refs.count{|ref| ref =~ /remotes/ && !(ref =~ /HEAD/) }
     end
   end
 end

@@ -40,14 +40,6 @@ context "Project" do
     assert_equal 'test/examples/simple', @project.path
   end
 
-  test "files" do
-    app     = File.join(@project.path, 'app.rb')
-    gemspec = File.join(@project.path, 'example.gemspec')
-    readme  = File.join(@project.path, 'README.md')
-    license = File.join(@project.path, 'LICENSE')
-    assert_equal [app,gemspec,license,readme], @project.files
-  end
-
   test "analyze" do
     Github.any_instance.expects(:clone).returns(true)
     Probe.expects(:analyze).returns(true)

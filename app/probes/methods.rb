@@ -13,26 +13,29 @@ module Hopper
     #
     # Returns an Integer.
     def class_count
-      project.ruby_file_contents.inject(0) do |total,file|
-        total += count_calls(:defs,file)
-      end
+      repository.files(:pattern => /.rb/).map do |file|
+        content = repository.read(:path => file)
+        count_calls(:defs,content)
+      end.sum
     end
 
     # The number of methods in a project.
     #
     # Returns an Integer.
     def instance_count
-      project.ruby_file_contents.inject(0) do |total,file|
-        total += count_calls(:defn,file)
-      end
+      repository.files(:pattern => /.rb/).map do |file|
+        content = repository.read(:path => file)
+        count_calls(:defn,content)
+      end.sum
     end
 
     # The average length of method names in this project.
     #
     # Returns an Integer.
     def method_name_length
-      project.ruby_file_contents.map do |file|
-        count_method_length(:defn,file) + count_method_length(:defs,file)
+      repository.files(:pattern => /.rb/).map do |file|
+        content = repository.read(:path => file)
+        count_method_length(:defn,content) + count_method_length(:defs,content)
       end.average
     end
 

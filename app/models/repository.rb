@@ -92,11 +92,11 @@ module Hopper
       end
 
       subtree.each_tree do |item|
-        path = path.split('/')
-        path.shift
+        search = path.split('/')
+        search.shift
 
         subtree = repo.lookup(item[:oid])
-        return read(:path => path.join('/'), :tree => subtree)
+        read(:path => search, :tree => subtree)
       end
     end
 

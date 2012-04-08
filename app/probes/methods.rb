@@ -52,7 +52,7 @@ module Hopper
     def count_calls(call,file)
       code = RubyParser.new.parse(file)
       code ? code.flatten.count(call) : 0
-    rescue Racc::ParseError => e
+    rescue Exception => e
       0
     end
 

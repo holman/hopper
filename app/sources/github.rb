@@ -64,21 +64,6 @@ module Hopper
       "git clone #{clone_url} #{local_path}"
     end
 
-    # The number of commits in this repository.
-    #
-    # Returns an Integer.
-    def commit_count
-      revisions.length
-    end
-
-    # The revisions in this repository.
-    #
-    # Returns an Array of Strings.
-    def revisions
-      walker.push(repo.head.target)
-      walker.map(&:oid)
-    end
-
     # The project metadata we fetch from the wire.
     #
     # TODO: This is getting run multiple times on each `metadata` call.

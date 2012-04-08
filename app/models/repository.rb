@@ -99,5 +99,20 @@ module Hopper
         return read(:path => path.join('/'), :tree => subtree)
       end
     end
+
+    # The number of commits in this repository.
+    #
+    # Returns an Integer.
+    def commit_count
+      revisions.length
+    end
+
+    # The revisions in this repository.
+    #
+    # Returns an Array of Strings.
+    def revisions
+      walker.push(repo.head.target)
+      walker.map(&:oid)
+    end
   end
 end

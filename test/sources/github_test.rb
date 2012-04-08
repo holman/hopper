@@ -14,10 +14,6 @@ context "Github" do
     assert_match "https://github.com", Github.url
   end
 
-  test "revisions" do
-    assert_equal 2, @source.revisions.size
-  end
-
   test "name" do
     assert_match "holman/hopper", @source.name
   end

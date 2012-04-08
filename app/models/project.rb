@@ -182,52 +182,6 @@ module Hopper
       source.local_path
     end
 
-    # All files in this project.
-    #
-    # Returns an Array of String paths.
-    def files
-      Dir.glob("#{path}/**/*")
-    end
-
-    # All Ruby files in this project.
-    #
-    # Returns an Array of String paths.
-    def ruby_files
-      Dir.glob("#{path}/**/*.rb")
-    end
-
-    # All of the contents of each file in this project.
-    #
-    # Returns an Array of Strings.
-    def file_contents
-      files.map do |file|
-        File.directory?(file) ? '' : File.read(file)
-      end
-    end
-
-    # All of the contents of each Ruby file in this project.
-    #
-    # Returns an Array of Strings.
-    def ruby_file_contents
-      ruby_files.map do |file|
-        File.directory?(file) ? '' : File.read(file)
-      end
-    end
-
-    # The entire project as one big String. Yeah, we'll go with that for now.
-    #
-    # Returns a String.
-    def file_contents_string
-      file_contents.join("\n")
-    end
-
-    # All Ruby project files as one big String.
-    #
-    # Returns a String.
-    def ruby_contents_string
-      ruby_file_contents.join("\n")
-    end
-
     # Access this project's probes (which should be all probes available).
     #
     # Returns an Array of Probe instances.

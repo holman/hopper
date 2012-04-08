@@ -64,22 +64,6 @@ module Hopper
       "git clone #{clone_url} #{local_path}"
     end
 
-    # The repo object. In this case, the Rugged object with the repo preloaded.
-    #
-    # Returns a Rugged::Repository.
-    def repo
-      return @repo if @repo
-      @repo = Rugged::Repository.new(local_path)
-    end
-
-    # A Walker object to let us walk through commits.
-    #
-    # Returns a Rugged::Walker object.
-    def walker
-      return @walker if @walker
-      @walker = Rugged::Walker.new(repo)
-    end
-
     # The number of commits in this repository.
     #
     # Returns an Integer.

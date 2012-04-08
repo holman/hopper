@@ -14,6 +14,7 @@ context "Repository" do
     assert_equal 'test/examples/simple', repo.path
     assert repo.repo.kind_of?(Rugged::Repository)
     assert repo.tree.kind_of?(Rugged::Tree)
+    assert repo.walker.kind_of?(Rugged::Walker)
   end
 
   def test_files

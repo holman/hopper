@@ -181,11 +181,11 @@ module Hopper
       self.class.name.split('::').last.capitalize
     end
 
-    # A shortcut to the repo object for this probe.
+    # A shortcut to the repository object for this probe.
     #
-    # Returns an instance of Rugged::Repository.
-    def repo
-      @repo ||= project.source.repo
+    # Returns a Repository instance.
+    def repository
+      @repository ||= Repository.new(:path => project.path, :revision => revision)
     end
 
     # A shortcut to the walker object for this probe.

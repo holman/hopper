@@ -25,6 +25,11 @@ module Hopper
     # Returns an instance of Rugged::Tree.
     attr_accessor :tree
 
+    # The walker object we use to walk all over the commit tree.
+    #
+    # Returns an instance of Rugged::Walker.
+    attr_accessor :walker
+
     # Make a new Repository instance.
     #
     # Returns a new Repository instance.
@@ -33,6 +38,7 @@ module Hopper
       @path     = options[:path]
       @repo     = Rugged::Repository.new(@path)
       @tree     = @repo.lookup(revision).tree
+      @walker   = Rugged::Walker.new(repo)
     end
 
     # All of the files in this repository. Can also be filtered by a regex.

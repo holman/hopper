@@ -21,8 +21,8 @@ module Hopper
     #
     # Returns an Integer.
     def lines
-      project.files.map do |file|
-        File.directory?(file) ? 0 : File.read(file).lines.count
+      repository.files.map do |file|
+        repository.read(:path => file).lines.count
       end.sum
     end
 
@@ -30,8 +30,8 @@ module Hopper
     #
     # Returns an Integer.
     def ruby_lines
-      project.files.map do |file|
-        File.extname(file) != '.rb' ? 0 : File.read(file).lines.count
+      repository.files(:pattern => /.rb/).map do |file|
+        repository.read(:path => file).lines.count
       end.sum
     end
 
@@ -39,16 +39,13 @@ module Hopper
     #
     # Returns an Integer.
     def comment_lines
-      project.files.map do |file|
-        if File.directory?(file)
-          0
-        else
-          File.read(file).lines.map do |line|
-            first = line.strip[0]
-            first = first.chr if first
-            first == '#' ? 1 : 0
-          end.sum
-        end
+      repository.files.map do |file|
+        content = repository.read(:path => file)
+        content.lines.map do |line|
+          first = line.strip[0]
+          first = first.chr if first
+          first == '#' ? 1 : 0
+        end.sum
       end.sum
     end
 
@@ -69,9 +66,6 @@ module Hopper
 
   private
     def widths
-      project.file_contents.map do |line|
-        line.size
-      end
     end
 
     def width_sum

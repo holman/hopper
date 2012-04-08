@@ -6,6 +6,8 @@ context "README" do
 
     @project = Project.new('github.com')
     @probe = Readme.new(@project)
+
+    @probe.stubs(:revision).returns('a965377486e0ad522f639bc2b4bcaa1032f92565')
   end
 
   test "count" do

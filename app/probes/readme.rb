@@ -16,8 +16,8 @@ module Hopper
     #
     # Returns an Integer.
     def count
-      project.files.collect do |file|
-        File.basename(file).match(/readme/i) ? 1 : 0
+      repository.files.map do |file|
+        file.match(/readme/i) ? 1 : 0
       end.sum
     end
 
@@ -25,14 +25,15 @@ module Hopper
     #
     # Returns an Integer.
     def markdown_format_count
-      readmes.select do |file|
-        %w(.md .markdown .mdown .markd .mkd).include?(File.extname(file.chomp).downcase)
-      end.count
-    end
-
-  private
-    def readmes
-      `ls #{project.path} | grep -i readme`
+      repository.files.map do |file|
+        if file.match(/readme/i)
+          %w(.md .markdown .mdown .markd .mkd).map do |ext|
+            file.match(/#{ext}/) ? 1 : 0
+          end.sum
+        else
+          0
+        end
+      end.sum
     end
   end
 end

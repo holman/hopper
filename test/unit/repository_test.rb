@@ -26,8 +26,8 @@ context "Repository" do
     assert_equal 1, files.size
   end
 
-  def test_files_can_take_a_filter
-    files = @repo.files(:filter => /\.rb/)
+  def test_files_can_take_a_pattern
+    files = @repo.files(:pattern => /\.rb/)
     assert_equal 2, files.size
   end
 

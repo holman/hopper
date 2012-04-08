@@ -44,17 +44,17 @@ module Hopper
     # All of the files in this repository. Can also be filtered by a regex.
     #
     # options - A Hash of options:
-    #           filter: A Regular Expression that can be used to selectively
-    #                   filter out unwanted files.
-    #           tree:   A Rugged::Tree object that lets us filter down (used
-    #                   recursively).
-    #           prefix: A String to prefix to a path.
+    #           pattern: A Regular Expression that can be used to selectively
+    #                    filter out unwanted files.
+    #           tree:    A Rugged::Tree object that lets us filter down (used
+    #                    recursively).
+    #           prefix:  A String to prefix to a path.
     #
     # Returns an Array of Strings.
     def files(options={})
       # Are we using an existing subtree? Otherwise, just use the repo's tree.
       subtree = options[:tree] || tree
-      filter  = options[:filter]
+      pattern = options[:pattern]
       prefix  = options[:prefix]
 
       files = subtree.map do |item|
@@ -66,8 +66,8 @@ module Hopper
         end
       end.flatten
 
-      if filter
-        files.select{|file| file =~ filter}
+      if pattern
+        files.select{|file| file =~ pattern}
       else
         files
       end

@@ -81,9 +81,13 @@ module Hopper
     def read(path)
       tree = Rugged::Commit.lookup(repo, revision).tree
       subtree = tree.get_subtree(path)
-      blob_data = subtree.get_entry(File.basename path)
-      blob = Rugged::Blob.lookup(repo, blob_data[:oid])
-      blob.content
+      blob_data = subtree.get_entry(File.basename(path))
+      if blob_data && blob_data[:type]
+        blob = Rugged::Blob.lookup(repo, blob_data[:oid])
+        blob.content
+      else
+        ''
+      end
     end
 
     # The number of commits in this repository.

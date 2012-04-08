@@ -3,10 +3,6 @@ module Hopper
     # The data for this Probe.
     exposes :classes_count, :modules_count
 
-    def self.queue
-      :low
-    end
-
     # The description.
     #
     # Returns a String.
@@ -18,7 +14,7 @@ module Hopper
     #
     # Returns an Integer.
     def classes_count
-      repository.files.map do |file|
+      repository.files(:pattern => /.rb/).map do |file|
         content = repository.read(file)
         parsed = RubyParser.new.parse(content)
 
@@ -30,7 +26,7 @@ module Hopper
     #
     # Returns an Integer.
     def modules_count
-      repository.files.map do |file|
+      repository.files(:pattern => /.rb/).map do |file|
         content = repository.read(file)
         parsed = RubyParser.new.parse(content)
 
@@ -42,7 +38,7 @@ module Hopper
     #
     # Returns a binary integer.
     def multiple_per_file
-      binary_integer repository.files.map do |file|
+      binary_integer repository.files(:pattern => /.rb/).map do |file|
         content = repository.read(file)
         parsed = RubyParser.new.parse(content)
 

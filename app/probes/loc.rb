@@ -66,7 +66,11 @@ module Hopper
 
   private
     def widths
-      raise
+      repository.files.map do |file|
+        file.lines.map do |line|
+          line.length
+        end
+      end.flatten
     end
 
     def width_sum

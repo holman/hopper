@@ -75,29 +75,15 @@ module Hopper
 
     # Read a file's contents.
     #
-    # options - A Hash:
-    #           path: The path in the Repository to read (required).
-    #           tree: A Rugged::Tree object that lets us filter down
-    #                 recursively.
+    # path - A String path to a a file.
     #
     # Returns a String.
-    def read(options={})
-      path = options[:path]
-      subtree = options[:tree] || tree
-
-      subtree.each_blob do |item|
-        if item[:name] == path
-          return Rugged::Blob.lookup(repo,item[:oid]).content
-        end
-      end
-
-      subtree.each_tree do |item|
-        search = path.split('/')
-        search.shift
-
-        subtree = repo.lookup(item[:oid])
-        read(:path => search, :tree => subtree)
-      end
+    def read(path)
+      tree = Rugged::Commit.lookup(repo, revision).tree
+      subtree = tree.get_subtree(path)
+      blob_data = subtree.get_entry(File.basename path)
+      blob = Rugged::Blob.lookup(repo, blob_data[:oid])
+      blob.content
     end
 
     # The number of commits in this repository.

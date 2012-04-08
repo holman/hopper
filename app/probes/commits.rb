@@ -40,7 +40,7 @@ module Hopper
     #
     # Returns an Integer.
     def days_old(to=nil)
-      to ||= repo.lookup(revision).author[:time]
+      to ||= repository.repo.lookup(revision).author[:time]
       ((to - birthday) / 60 / 60 / 24).to_i
     end
   end

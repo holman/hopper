@@ -6,15 +6,15 @@ context "Commits" do
 
     @project = Project.new('github.com/holman/play')
     @probe = Commits.new(@project)
+
+    @probe.stubs(:revision).returns('011fa5546dccb754c9afa000e239d6e31fcc6819')
   end
 
   test "total_count" do
-    @probe.stubs(:revision).returns('011fa5546dccb754c9afa000e239d6e31fcc6819')
     assert_equal 1, @probe.total_count
   end
 
   test "birthday" do
-    @probe.stubs(:revision).returns('011fa5546dccb754c9afa000e239d6e31fcc6819')
     assert_equal 3, @probe.birthday.month
   end
 

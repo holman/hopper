@@ -3,7 +3,7 @@
 
 $(document).ready () ->
   # The probe selector
-  $('.selector a')
+  $('.secondary a')
     .pjax('#visual', {fragment: '#visual'})
     .live 'click', () ->
       return false

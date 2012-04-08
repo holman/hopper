@@ -55,7 +55,7 @@ module Hopper
         os = OpenStruct.new(:name => Probe.clean_probe_name(method))
         os.values = project.snapshots.reverse.map do |snapshot|
           value = $redis.get("#{key}:#{method}:#{project.id}:#{snapshot}")
-          (value == 'NaN') ? 0 : value
+          (value == 'NaN' || !value) ? 0 : value
         end
         os
       end

@@ -15,10 +15,7 @@ module Hopper
     # Returns an Integer.
     def classes_count
       repository.files(:pattern => /.rb/).map do |file|
-        content = repository.read(file)
-        parsed = RubyParser.new.parse(content)
-
-        !parsed ? 0 : parsed.flatten.count(:class)
+        parse_file(file,:module)
       end.sum
     end
 
@@ -27,10 +24,7 @@ module Hopper
     # Returns an Integer.
     def modules_count
       repository.files(:pattern => /.rb/).map do |file|
-        content = repository.read(file)
-        parsed = RubyParser.new.parse(content)
-
-        !parsed ? 0 : parsed.flatten.count(:module)
+        parse_file(file,:module)
       end.sum
     end
 
@@ -43,11 +37,21 @@ module Hopper
         parsed = RubyParser.new.parse(content)
 
         if parsed.count(:module) > 1 || parsed.count(:class) > 1
-           1
+          1
         else
           0
         end
       end
+    end
+
+  private
+    def parse_file(file,object)
+      content = repository.read(file)
+      parsed = RubyParser.new.parse(content)
+
+      !parsed ? 0 : parsed.flatten.count(object)
+    rescue Exception => e
+      0
     end
   end
 end

@@ -18,7 +18,7 @@ module Hopper
     def tabs_count
       repository.files.map do |file|
         content = repository.read(:path => file)
-        content.scan(/\t/).size
+        content ? content.scan(/\t/).size : 0
       end.sum
     end
 
@@ -28,7 +28,7 @@ module Hopper
     def two_spaces_count
       repository.files.map do |file|
         content = repository.read(:path => file)
-        content.scan(/  /).size
+        content ? content.scan(/  /).size : 0
       end.sum
     end
 
@@ -38,7 +38,7 @@ module Hopper
     def four_spaces_count
       repository.files.map do |file|
         content = repository.read(:path => file)
-        content.scan(/    /).size
+        content ? content.scan(/    /).size : 0
       end.sum
     end
 

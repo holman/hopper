@@ -1,6 +1,6 @@
 module Hopper
   class Rakefile < Probe
-    exposes :rakefile_present, :default_task
+    exposes :rakefile_present
 
     # The description.
     #

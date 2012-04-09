@@ -110,5 +110,15 @@ module Hopper
       walker.push(repo.head.target)
       walker.map(&:oid)
     end
+
+    # The commit messages in this repository.
+    #
+    # Returns an Array of Strings.
+    def commit_messages
+      revisions.map do |revision|
+        commit = repo.lookup(revision)
+        commit.message
+      end
+    end
   end
 end

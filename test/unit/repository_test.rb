@@ -37,7 +37,11 @@ context "Repository" do
   end
 
   test "revisions" do
-    assert_equal 3, @repo.revisions.size
+    assert_equal 5, @repo.revisions.size
+  end
+
+  test "commit_messages" do
+    assert @repo.commit_messages.include?("An checkin\n")
   end
 
   test "file_exists?" do

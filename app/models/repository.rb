@@ -86,8 +86,14 @@ module Hopper
         blob = Rugged::Blob.lookup(repo, blob_data[:oid])
         blob.content
       else
-        ''
+        nil
       end
+    end
+
+    def file_exists?(path)
+      !!read(path)
+    rescue RuntimeError
+      false
     end
 
     # The number of commits in this repository.

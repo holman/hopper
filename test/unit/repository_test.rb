@@ -39,4 +39,12 @@ context "Repository" do
   test "revisions" do
     assert_equal 3, @repo.revisions.size
   end
+
+  test "file_exists?" do
+    assert  @repo.file_exists?('app.rb')
+    assert  @repo.file_exists?('LICENSE')
+    assert  @repo.file_exists?('test/simple_test.rb')
+    assert !@repo.file_exists?('lolNOPPPPPPEEEEE')
+    assert !@repo.file_exists?('lib/NOOOOPPPE')
+  end
 end

@@ -27,14 +27,12 @@ def app
 end
 
 # Set the fixture repository for this set of tests.
+#
+# This also sets up instance variables for accessing that repository. It grabs
+# the HEAD revision of the repo and preps probes to use that.
 def fixture(project)
   path = "test/examples/#{project}"
 
-  Hopper::Project.instance_eval do
-    define_method(:path) do
-      path
-    end
-  end
-
+  Hopper::Project.any_instance.stubs(:path).returns(path)
   Hopper::Github.any_instance.stubs(:local_path).returns(path)
 end

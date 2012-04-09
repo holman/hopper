@@ -3,7 +3,6 @@ require File.expand_path("../../helper", __FILE__)
 context "Project" do
   setup do
     fixture :simple
-    @project = Project.new('github.com/holman/hopper')
   end
 
   test "initializes" do

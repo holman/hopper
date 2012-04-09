@@ -3,10 +3,6 @@ require File.expand_path("../../helper", __FILE__)
 context "Shas" do
   setup do
     fixture :simple
-
-    @project = Project.new('github.com')
-    @probe = Shas.new(@project)
-    @probe.stubs(:revision).returns('011fa5546dccb754c9afa000e239d6e31fcc6819')
   end
 
   test "longest_string" do
@@ -18,10 +14,10 @@ context "Shas" do
   end
 
   test "longest_integer" do
-    assert_equal 6819, @probe.longest_integer
+    assert_equal 80115575894, @probe.longest_integer
   end
 
   test "longest_integer_length" do
-    assert_equal 4, @probe.longest_integer_length
+    assert_equal 11, @probe.longest_integer_length
   end
 end

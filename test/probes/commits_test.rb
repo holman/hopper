@@ -3,15 +3,10 @@ require File.expand_path("../../helper", __FILE__)
 context "Commits" do
   setup do
     fixture :simple
-
-    @project = Project.new('github.com/holman/play')
-    @probe = Commits.new(@project)
-
-    @probe.stubs(:revision).returns('011fa5546dccb754c9afa000e239d6e31fcc6819')
   end
 
   test "total_count" do
-    assert_equal 1, @probe.total_count
+    assert_equal 3, @probe.total_count
   end
 
   test "birthday" do

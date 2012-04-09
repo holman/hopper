@@ -1,13 +1,8 @@
 require File.expand_path("../../helper", __FILE__)
 
-context "README" do
+context "Readme" do
   setup do
     fixture :simple
-
-    @project = Project.new('github.com')
-    @probe = Readme.new(@project)
-
-    @probe.stubs(:revision).returns('a965377486e0ad522f639bc2b4bcaa1032f92565')
   end
 
   test "count" do

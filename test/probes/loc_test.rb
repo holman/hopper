@@ -3,11 +3,6 @@ require File.expand_path("../../helper", __FILE__)
 context "Loc" do
   setup do
     fixture :simple
-
-    @project = Project.new('github.com')
-    @probe = Loc.new(@project)
-
-    @probe.stubs(:revision).returns('a965377486e0ad522f639bc2b4bcaa1032f92565')
   end
 
   test "data" do
@@ -15,11 +10,11 @@ context "Loc" do
   end
 
   test "all lines" do
-    assert_equal 69, @probe.lines
+    assert_equal 74, @probe.lines
   end
 
   test "ruby lines" do
-    assert_equal 14, @probe.ruby_lines
+    assert_equal 19, @probe.ruby_lines
   end
 
   test "comment lines" do

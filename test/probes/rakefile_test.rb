@@ -7,6 +7,8 @@ context "Rakefile" do
 
     @project = Project.new('github.com')
     @probe = Hopper::Rakefile.new(@project)
+
+    @probe.stubs(:revision).returns('f46243f23d75b699eee5b586ab884a034dee2638')
   end
 
   test "rakefile_present" do

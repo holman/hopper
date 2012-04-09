@@ -13,14 +13,14 @@ module Hopper
     #
     # Returns a binary integer.
     def rakefile_present
-      binary_integer Dir.glob("#{project.path}/Rakefile")
+      repository.file_exists?('Rakefile') ? 1 : 0
     end
 
     # Try to glean what the default task is set to.
     #
     # Returns a String.
     def default_task
-      file = File.read("#{project.path}/Rakefile")
+      file = repository.read('Rakefile')
       default = nil
       RubyParser.new.parse(file).each_of_type(:call) do |node|
         if node[2] == :task

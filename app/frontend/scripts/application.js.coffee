@@ -9,7 +9,7 @@ $(document).ready () ->
       return false
 
   if $('.graph').length > 0
-    data = $('.graph li').data('values').split(' ').map((e) -> parseInt(e))
+    data = $('.graph li').data('values').split(' ').map((e) -> parseFloat(e))
     shas = $('.graph li').data('snapshots').split(' ')
     height = 100
     width = 30
@@ -30,7 +30,7 @@ $(document).ready () ->
       .attr('data-i', (d, i) -> i)
 
     $('.graph li').click () ->
-      data = $(@).data('values').split(' ').map((e) -> parseInt(e))
+      data = $(@).data('values').split(' ').map((e) -> parseFloat(e))
 
       y = d3.scale.linear()
                .domain([0, d3.max(data)])
@@ -47,7 +47,7 @@ $(document).ready () ->
 
     $('.graph rect').hover () ->
       value = $(@).attr('alt')
-      $('.info').text(value)
+      $('.info').text(parseFloat(parseFloat(value).toFixed(3)))
 
       i = $(@).data('i')
       $('.minor').text(shas[i])

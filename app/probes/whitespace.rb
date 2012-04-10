@@ -13,10 +13,16 @@ module Hopper
     #
     # Returns an Integer.
     def trailing_count
-      repository.files.map do |file|
-        repository.read(file).lines.map do |line|
-          line.scan(/[ \t]+$/).size
-        end.sum
+      repository.files.map do |path|
+        file = repository.read(path)
+
+        if file
+          file.lines.map do |line|
+            line.scan(/[ \t]+$/).size
+          end.sum
+        else
+          0
+        end
       end.sum
     end
 
@@ -24,8 +30,13 @@ module Hopper
     #
     # Returns a Float.
     def trailing_percent
-      total = repository.files.map do |file|
-        repository.read(file).lines.count
+      total = repository.files.map do |path|
+        file = repository.read(path)
+        if file
+          file.lines.count
+        else
+          0
+        end
       end.sum
 
       trailing_count.to_f / total

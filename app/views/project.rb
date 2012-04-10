@@ -18,7 +18,7 @@ module Hopper
       end
 
       def probes
-        Probe.all
+        @project.completed_probes
       end
     end
   end

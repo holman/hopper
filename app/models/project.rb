@@ -206,8 +206,8 @@ module Hopper
     #
     # Returns an Array of Probe instances.
     def completed_probes
-      probes = $redis.sadd "#{Hopper.redis_namespace}:projects:#{project.id}:complete", self.name
-      probes.each do |probe|
+      probes = $redis.smembers "#{Hopper.redis_namespace}:projects:#{id}:complete"
+      probes.map do |probe|
         Hopper.const_get(probe).new(self)
       end
     end

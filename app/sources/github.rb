@@ -14,6 +14,8 @@ module Hopper
       "https://github.com"
     end
 
+    @queue = :index
+
     # An informal, unique name that we can give it. For GitHub, that's our
     # favorite nwo, like holman/hopper.
     #
@@ -27,16 +29,46 @@ module Hopper
     # Returns nothing.
     def self.index
       key = "hopper:sources:github:page"
-      page = $redis.get(key).to_i || 1
+      page = $redis.get(key) || 1
 
       # There's something like 6200 pages of unforked Ruby projects. Hax.
       (page..6200).each do |i|
+        return if !indexing?
+
         curl = `curl "http://github.com/api/v2/json/repos/search/fork:0?language=Ruby&start_page=#{i}" --silent`
         json = Yajl::Parser.parse(curl)
 
         $redis.set(key, i)
         import(json)
       end
+    end
+
+    # Resque job to start up indexing.
+    #
+    # Returns nothing.
+    def self.async_index
+      Resque.enqueue(Github)
+    end
+
+    # The method Resque uses to asynchronously do the dirty.
+    #
+    # Returns whatever Resque returns.
+    def self.perform
+      Github.index
+    end
+
+    # Are we currently indexing new projects?
+    #
+    # Returns true or false.
+    def self.indexing?
+      $redis.get("hopper:sources:github:indexing") == "true"
+    end
+
+    # Should we continue to index new projects?
+    #
+    # Returns nothing.
+    def self.indexing(value)
+      $redis.set("hopper:sources:github:indexing", !!value)
     end
 
     # Import projects via JSON.

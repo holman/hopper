@@ -6,6 +6,17 @@ context "Github" do
     @source = Github.new('github.com/holman/hopper')
   end
 
+  test "indexing?" do
+    assert !Github.indexing?
+  end
+
+  test "indexing" do
+    Github.indexing(true)
+    assert Github.indexing?
+    Github.indexing(false)
+    assert !Github.indexing?
+  end
+
   test "source name" do
     assert_match "GitHub", Github.name
   end

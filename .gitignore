@@ -1,2 +1,7 @@
 test/examples/simple
 tmp
+
+# Bundler
+/.bundle
+/bin
+/vendor/gems

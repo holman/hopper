@@ -83,6 +83,7 @@ a {
     font-weight: 100;
     float: left;
     min-width: 300px;
+    margin: 50px 0;
 
     strong {
       text-transform: uppercase;
@@ -112,7 +113,7 @@ a {
       -webkit-columns: 2;
       -moz-column-width: 100px;
       -webkit-column-width: 100px;
-      height: 125px;
+      height: 150px;
 
       li {
         list-style-type: none;

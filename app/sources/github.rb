@@ -35,7 +35,7 @@ module Hopper
       (page..6200).each do |i|
         return if !indexing?
 
-        curl = `curl "http://github.com/api/v2/json/repos/search/fork:0?language=Ruby&start_page=#{i}" --silent`
+        curl = `curl "http://github.com/api/v2/json/repos/search/fork:0?language=Ruby&start_page=#{i}" -A 'holman/hopper' --silent`
         json = Yajl::Parser.parse(curl)
 
         $redis.set(key, i)
@@ -102,7 +102,7 @@ module Hopper
     #
     # Returns a Hash
     def metadata
-      Yajl::Parser.parse(`curl https://api.github.com/repos/#{name} --silent`)
+      Yajl::Parser.parse(`curl https://api.github.com/repos/#{name} -A 'holman/hopper' --silent`)
     end
 
     # The number of followers for this project.

@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 gem 'flay'
 gem 'flog'
+gem 'foreman'
 gem 'mustache'
 gem 'rake'
 gem 'redis'

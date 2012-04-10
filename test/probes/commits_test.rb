@@ -6,7 +6,7 @@ context "Commits" do
   end
 
   test "total_count" do
-    @probe.total_count
+    @probe.total_count # calling it twice to avoid segfaults on ruby_parser
     assert_equal 6, @probe.total_count
   end
 

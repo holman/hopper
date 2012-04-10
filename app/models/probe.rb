@@ -210,7 +210,7 @@ module Hopper
     #
     # Returns a Symbol.
     def self.queue
-      :mid
+      :jobs
     end
 
     # Queue up a job to analyze this project. The queue is defaulted to :high,

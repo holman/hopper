@@ -11,7 +11,7 @@ module Hopper
   #   hopper:projects:#{id}:snapshots - A List of shas used for snapshots.
   class Project
     # Highly prioritize.`
-    @queue = :high
+    @queue = :jobs
 
     # The ID of the Project.
     #

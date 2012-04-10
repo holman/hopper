@@ -9,13 +9,13 @@ gem 'ruby_parser'
 gem 'rugged'
 gem 'shamazing'
 gem 'sinatra'
-gem 'SystemTimer'
+gem 'SystemTimer', :platforms => :mri_18
 gem 'sprockets'
 gem 'yajl-ruby'
 
 group :test do
   gem 'rack-test'
   gem 'redgreen'
-  gem 'ruby-debug'
+  gem 'ruby-debug', :platforms => :mri_18
   gem 'mocha'
 end

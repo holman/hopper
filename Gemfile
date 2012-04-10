@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+gem 'coffee-script'
 gem 'flay'
 gem 'flog'
 gem 'foreman'
@@ -8,6 +9,7 @@ gem 'redis'
 gem 'resque'
 gem 'ruby_parser'
 gem 'rugged'
+gem 'sass'
 gem 'shamazing'
 gem 'sinatra'
 gem 'SystemTimer', :platforms => :mri_18

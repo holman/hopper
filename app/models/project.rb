@@ -6,9 +6,17 @@ module Hopper
   #
   # Redis Keys:
   #
-  #   hopper:projects                 - All of the Project URLs.
-  #   hopper:projects:#{id}:head      - The HEAD (main) sha to analyze.
-  #   hopper:projects:#{id}:snapshots - A List of shas used for snapshots.
+  #   hopper:projects
+  #     All of the Project URLs.
+  #
+  #   hopper:projects:#{id}:head
+  #     The HEAD (main) sha to analyze.
+  #
+  #   hopper:projects:#{id}:snapshots
+  #     A List of shas used for snapshots.
+  #
+  #   hopper:projects:#{id}:complete
+  #     A Set of the Probes that we've completed analysis on for this project.
   class Project
     # Highly prioritize.`
     @queue = :index
@@ -191,6 +199,16 @@ module Hopper
     def probes
       Probe.all.map do |probe|
         probe.new(self)
+      end
+    end
+
+    # The list of completed probes for this project.
+    #
+    # Returns an Array of Probe instances.
+    def completed_probes
+      probes = $redis.sadd "#{Hopper.redis_namespace}:projects:#{project.id}:complete", self.name
+      probes.each do |probe|
+        Hopper.const_get(probe).new(self)
       end
     end
 

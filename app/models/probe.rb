@@ -15,11 +15,14 @@ module Hopper
   #
   # Redis Keys:
   #
-  #   hopper:projects:#{probe}
+  #   hopper:probes:#{probe}
   #     A List of the aggregate values for a Probe.
   #
-  #   hopper:projects:#{probe}:#{id}:#{revision}
+  #   hopper:probes:#{probe}:#{id}:#{revision}
   #     The value of a particular probe on a project and revision basis.
+  #
+  #   hopper:projects:#{id}:complete
+  #     A List of the Probes that we've completed analysis on.
   class Probe
     # Public: The Project this Probe is probing.
     #
@@ -239,6 +242,9 @@ module Hopper
           # TODO: do we really want to add each revision, or just the head
           #       revision?
           $redis.rpush "#{key}:#{method}", result
+
+          # Keep track of what we've analyzed.
+          $redis.sadd "#{Hopper.redis_namespace}:projects:#{project.id}:complete", self.name
         rescue Exception => e
           puts "Problem saving #{name}:#{method} - #{e}"
         end

@@ -1,7 +1,8 @@
 //= require jquery.pjax
 //= require d3.v2.min
+//= require pageupdate
 
-$(document).ready () ->
+$(document).pageUpdate ->
   # The probe selector
   $('.secondary a')
     .pjax('#visual', {fragment: '#visual'})
@@ -9,6 +10,11 @@ $(document).ready () ->
       return false
 
   if $('.graph').length > 0
+    # Removing any existing graphs (ie, pjax). We should eventually reset the
+    # values instead of removing the graph, so we can get nice animations for it
+    # and the pjax melts into cool animations.
+    $('svg').remove()
+
     data = $('.graph li').data('values').split(' ').map((e) -> parseFloat(e))
     shas = $('.graph li').data('snapshots').split(' ')
     height = 100

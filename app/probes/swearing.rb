@@ -25,6 +25,7 @@ module Hopper
         fucked
         fucking
         ass
+        asshole
         cunt
         dick
         cock

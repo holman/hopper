@@ -37,7 +37,7 @@ context "Repository" do
   end
 
   test "revisions" do
-    assert_equal 5, @repo.revisions.size
+    assert_equal 6, @repo.revisions.size
   end
 
   test "commit_messages" do

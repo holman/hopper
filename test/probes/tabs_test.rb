@@ -10,7 +10,7 @@ context "Tabs" do
   end
 
   test "two_spaces_count" do
-    assert_equal 69, @probe.two_spaces_count
+    assert_equal 71, @probe.two_spaces_count
   end
 
   test "four_spaces_count" do

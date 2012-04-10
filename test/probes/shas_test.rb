@@ -6,11 +6,11 @@ context "Shas" do
   end
 
   test "longest_string" do
-    assert_equal 'dccb', @probe.longest_string
+    assert_equal 'dceed', @probe.longest_string
   end
 
   test "longest_string_length" do
-    assert_equal 4, @probe.longest_string_length
+    assert_equal 5, @probe.longest_string_length
   end
 
   test "longest_integer" do

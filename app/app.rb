@@ -20,6 +20,20 @@ module Hopper
       mustache :index
     end
 
+    get '/comparisons' do
+      @probes = Probe.all
+      mustache :comparisons
+    end
+
+    get '/compare' do
+      @probe_a = Probe.find(params[:probe_a])
+      @probe_b = Probe.find(params[:probe_b])
+
+      @a_values = @probe_a.values_for(params[:method_a])
+      @b_values = @probe_b.values_for(params[:method_b])
+      mustache :compare
+    end
+
     get '/probes' do
       @probes = Probe.all
       mustache :probes

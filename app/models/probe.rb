@@ -80,6 +80,13 @@ module Hopper
       end
     end
 
+    # Return the values for a particular method on this Probe.
+    #
+    # Returns an Array of values.
+    def self.values_for(method)
+      $redis.lrange "#{key}:#{method}", 0, -1
+    end
+
     # Public: A convenience method for setting the methods we use to populate
     # the `data` Hash for each Probe.
     #

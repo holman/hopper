@@ -22,7 +22,7 @@ module Hopper
     # Returns an Integer.
     def lines
       repository.files.map do |file|
-        repository.read(file).lines.count
+        repository.read(file).to_s.lines.count
       end.sum
     end
 
@@ -31,7 +31,7 @@ module Hopper
     # Returns an Integer.
     def ruby_lines
       repository.files(:pattern => /.rb/).map do |file|
-        repository.read(file).lines.count
+        repository.read(file).to_s.lines.count
       end.sum
     end
 
@@ -41,7 +41,7 @@ module Hopper
     def comment_lines
       repository.files.map do |file|
         content = repository.read(file)
-        content.lines.map do |line|
+        content.to_s.lines.map do |line|
           first = line.strip[0]
           first = first.chr if first
           first == '#' ? 1 : 0

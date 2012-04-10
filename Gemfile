@@ -14,6 +14,10 @@ gem 'SystemTimer', :platforms => :mri_18
 gem 'sprockets'
 gem 'yajl-ruby'
 
+group :development do
+  gem 'shotgun'
+end
+
 group :test do
   gem 'rack-test'
   gem 'redgreen'

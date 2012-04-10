@@ -4,7 +4,7 @@ module Hopper
   # No really. Just fucking tell me already.
   class Swearing < Probe
     # The data for this Probe.
-    exposes :word_count
+    exposes :word_count, :commit_count
 
     # The description.
     #
@@ -20,7 +20,10 @@ module Hopper
     def words
       %w(
         shit
+        shitty
         fuck
+        fucked
+        fucking
         ass
         cunt
         dick
@@ -37,6 +40,17 @@ module Hopper
         words.map do |word|
           content = repository.read(file)
           content ? content.scan(/\b#{word}\b/).size : 0
+        end.sum
+      end.sum
+    end
+
+    # The count of all swear words in the commit log of the project.
+    #
+    # Returns an Integer.
+    def commit_count
+      repository.commit_messages.map do |message|
+        words.map do |word|
+          message.scan(/\b#{word}\b/).size
         end.sum
       end.sum
     end

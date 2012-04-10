@@ -6,7 +6,7 @@ context "Commits" do
   end
 
   test "total_count" do
-    assert_equal 3, @probe.total_count
+    assert_equal 5, @probe.total_count
   end
 
   test "birthday" do

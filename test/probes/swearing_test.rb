@@ -8,4 +8,8 @@ context "Swearing" do
   test "count" do
     assert_equal 1, @probe.word_count
   end
+
+  test "commit_count" do
+    assert_equal 3, @probe.commit_count
+  end
 end

@@ -102,7 +102,7 @@ module Hopper
     #
     # Returns a Hash
     def metadata
-      Yajl::Parser.parse(`curl https://api.github.com/repos/#{name} -A 'holman/hopper' --silent`)
+      @metadata ||= Yajl::Parser.parse(`curl https://api.github.com/repos/#{name} -A 'holman/hopper' --silent`)
     end
 
     # The number of followers for this project.

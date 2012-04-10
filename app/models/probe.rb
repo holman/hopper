@@ -206,11 +206,11 @@ module Hopper
       new(project, revision).save
     end
 
-    # Default all queues to be :mid.
+    # Default all queues to be :probes.
     #
     # Returns a Symbol.
     def self.queue
-      :jobs
+      :probe
     end
 
     # Queue up a job to analyze this project. The queue is defaulted to :high,

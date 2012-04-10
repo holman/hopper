@@ -14,7 +14,7 @@ module Hopper
       "https://github.com"
     end
 
-    @queue = :index
+    @queue = :download
 
     # An informal, unique name that we can give it. For GitHub, that's our
     # favorite nwo, like holman/hopper.
@@ -22,6 +22,13 @@ module Hopper
     # Returns a String.
     def name
       url.split('/')[-2..-1].join('/')
+    end
+
+    # The current page we're indexing.
+    #
+    # Returns a String.
+    def self.page
+      $redis.get("hopper:sources:github:page")
     end
 
     # Spider the API to find non-forked Ruby projects.
@@ -32,7 +39,7 @@ module Hopper
       page = $redis.get(key) || 1
 
       # There's something like 6200 pages of unforked Ruby projects. Hax.
-      (page..6200).each do |i|
+      (page.to_i..6200).each do |i|
         return if !indexing?
 
         curl = `curl "http://github.com/api/v2/json/repos/search/fork:0?language=Ruby&start_page=#{i}" -A 'holman/hopper' --silent`

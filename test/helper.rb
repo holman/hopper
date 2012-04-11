@@ -38,7 +38,7 @@ def fixture(project)
   Project.any_instance.stubs(:path).returns(path)
   Github.any_instance.stubs(:local_path).returns(path)
 
-  @project = Hopper::Project.new('github.com/holman/hopper')
+  @project = Hopper::Project.new('github.com/holman/play')
 
   # Don't create a new project if we're actually *testing* Project.
   if klass != Hopper::Project

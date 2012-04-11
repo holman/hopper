@@ -4,8 +4,8 @@ Bundler.setup(:default, :test)
 Bundler.require(:default, :test)
 
 require 'test/unit'
-require 'test/spec/mini'
 require 'rack/test'
+require_relative 'spec/mini'
 
 ENV['RACK_ENV'] = 'test'
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'app'))

@@ -9,7 +9,10 @@ module Hopper
   #     that we indexed from. Makes for easy continuation.
   class Source
     # Load all sources.
-    Dir["app/sources/*.rb"].each {|file| require file }
+    Dir["app/sources/*.rb"].each do |file|
+      path = File.basename(file)
+      require_relative "../sources/#{path}"
+    end
 
     # The URL of the Project.
     #

@@ -17,18 +17,18 @@ require 'yajl'
 require 'app'
 
 # Models
-require 'models/probe'
-require 'models/project'
-require 'models/repository'
-require 'models/source'
+require_relative 'models/probe'
+require_relative 'models/project'
+require_relative 'models/repository'
+require_relative 'models/source'
 
 # Non-autoloaded views
-require 'app/views/layout'
-require 'app/views/aggregate'
-require 'app/views/project'
+require_relative 'views/layout'
+require_relative 'views/aggregate'
+require_relative 'views/project'
 
 # Extensions
-require 'lib/ext/array'
+require_relative '../lib/ext/array'
 
 # Connect to Redis
 $redis = Redis.connect(:url => 'redis://127.0.0.1', :thread_safe => true)

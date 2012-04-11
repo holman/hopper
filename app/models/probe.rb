@@ -265,6 +265,9 @@ module Hopper
     class NotImplementedError < StandardError ; end
 
     # Load all probes.
-    Dir["app/probes/*.rb"].each {|file| require file }
+    Dir["app/probes/*.rb"].each do |file|
+      file = File.basename(file)
+      require_relative "../probes/#{file}"
+    end
   end
 end

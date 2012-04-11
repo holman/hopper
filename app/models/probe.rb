@@ -258,7 +258,7 @@ module Hopper
     #
     # Returns 1 if values present, 0 if not.
     def binary_integer(result)
-      result.empty? ? 0 : 1
+      result.any? ? 1 : 0
     end
 
     # Public: Raised if the method hasn't been properly defined in the subclass.

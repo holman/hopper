@@ -1,6 +1,6 @@
 module Hopper
   class Methods < Probe
-    exposes :class_count, :instance_count, :average_name_length
+    exposes :class_count, :instance_count
 
     # The description.
     #
@@ -25,18 +25,8 @@ module Hopper
     def instance_count
       repository.files(:pattern => /.rb/).map do |file|
         content = repository.read(file)
-        count_calls(:defn,content)
+        count_calls(:def,content)
       end.sum
-    end
-
-    # The average length of method names in this project.
-    #
-    # Returns an Integer.
-    def average_name_length
-      repository.files(:pattern => /.rb/).map do |file|
-        content = repository.read(file)
-        count_method_length(:defn,content) + count_method_length(:defs,content)
-      end.average
     end
 
   private
@@ -50,24 +40,10 @@ module Hopper
     #
     # Returns an Integer of the number of occurances found.
     def count_calls(call,file)
-      code = RubyParser.new.parse(file)
+      code = Ripper.sexp(file)
       code ? code.flatten.count(call) : 0
     rescue Exception => e
       0
-    end
-
-    def count_method_length(target,file)
-      total = []
-      RubyParser.new.parse(file).each_of_type(target) do |method|
-        if target == :defn
-          total << method[1].to_s.length
-        else
-          total << method[2].to_s.length
-        end
-      end
-      total
-    rescue Exception
-      []
     end
   end
 end

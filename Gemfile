@@ -23,7 +23,7 @@ end
 
 group :test do
   gem 'rack-test'
-  gem 'redgreen'
+  gem 'redgreen', :platforms => :mri_18
   gem 'ruby-debug', :platforms => :mri_18
   gem 'mocha'
 end

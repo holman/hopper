@@ -12,8 +12,4 @@ context "Methods" do
   test "instance_count" do
     assert_equal 2, @probe.instance_count
   end
-
-  test "method_name_length" do
-    assert_equal 14, @probe.average_name_length.to_i
-  end
 end

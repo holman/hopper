@@ -20,6 +20,9 @@ def context(*args, &block)
       # Clear the redis db each time
       $redis.flushdb
 
+      # Clear all mocks and stubs
+      Mocha::Mockery.instance.stubba.unstub_all
+
       # Initialize the setups
       @setups ||= []
     end

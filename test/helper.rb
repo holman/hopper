@@ -31,8 +31,6 @@ end
 # This also sets up instance variables for accessing that repository. It grabs
 # the HEAD revision of the repo and preps probes to use that.
 def fixture(project)
-  Mocha::Mockery.instance.stubba.unstub_all
-
   klass = Hopper.const_get(self.class.name)
   path = "test/examples/#{project}"
   repo = Rugged::Repository.new(path)

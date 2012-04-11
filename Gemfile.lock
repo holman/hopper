@@ -93,7 +93,6 @@ DEPENDENCIES
   redis
   resque
   ruby-debug
-  ruby_parser
   rugged
   sass
   shamazing

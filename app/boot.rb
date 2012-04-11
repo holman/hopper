@@ -9,7 +9,6 @@ require 'sinatra/base'
 require 'mustache/sinatra'
 require 'redis'
 require 'resque'
-require 'ruby_parser'
 require 'rugged'
 require 'yajl'
 

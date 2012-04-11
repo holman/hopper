@@ -37,7 +37,7 @@ module Hopper
       blob = gemfile[:oid]
 
       content = Rugged::Blob.lookup(repository.repo,blob).content
-      RubyParser.new.parse(content).flatten.count(:gem)
+      Ripper.sexp(content).flatten.count(:gem)
     end
   end
 end

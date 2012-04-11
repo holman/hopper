@@ -135,6 +135,7 @@ module Hopper
     def snapshots!
       repo = Rugged::Repository.new(path)
       walker = Rugged::Walker.new(repo)
+      walker.sorting(Rugged::SORT_TOPO)
       walker.push(repo.head.target)
       revisions = walker.map(&:oid)
 

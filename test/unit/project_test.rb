@@ -152,7 +152,7 @@ context "Project" do
 
   test "create" do
     Project.any_instance.expects(:async_save).returns(true)
-    project = Project.create('github.com/holman/hopper')
+    project = Project.create('github.com/holman/play')
   end
 
   test "find" do

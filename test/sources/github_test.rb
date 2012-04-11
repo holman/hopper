@@ -3,7 +3,7 @@ require File.expand_path("../../helper", __FILE__)
 context "Github" do
   setup do
     fixture :simple
-    @source = Github.new('github.com/holman/hopper')
+    @source = Github.new('github.com/holman/play')
   end
 
   test "indexing?" do
@@ -26,15 +26,15 @@ context "Github" do
   end
 
   test "name" do
-    assert_match "holman/hopper", @source.name
+    assert_match "holman/play", @source.name
   end
 
   test "clone_url" do
-    assert_match "https://github.com/holman/hopper.git", @source.clone_url
+    assert_match "https://github.com/holman/play.git", @source.clone_url
   end
 
   test "directory_name" do
-    assert_equal "holman-hopper", @source.directory_name
+    assert_equal "holman-play", @source.directory_name
   end
 
   test "local_path" do

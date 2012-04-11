@@ -20,9 +20,9 @@ context "App" do
   end
 
   test "/projects/:id" do
-    project = Project.new('github.com/holman/hopper')
+    project = Project.new('github.com/holman/play')
     project.save
     get "/projects/#{project.id}"
-    assert_match 'holman/hopper', last_response.body.strip
+    assert_match 'holman/play', last_response.body.strip
   end
 end

@@ -107,6 +107,7 @@ module Hopper
     #
     # Returns an Array of Strings.
     def revisions
+      walker.sorting(Rugged::SORT_TOPO)
       walker.push(repo.head.target)
       walker.map(&:oid)
     end

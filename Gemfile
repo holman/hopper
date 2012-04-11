@@ -1,7 +1,5 @@
 source 'http://rubygems.org'
 gem 'coffee-script'
-gem 'flay'
-gem 'flog'
 gem 'foreman'
 gem 'mustache'
 gem 'rake', '0.9.2.2'

@@ -260,6 +260,8 @@ module Hopper
     #
     # Returns nothing.
     def save_snapshots(revisions)
+      $redis.del snapshots_key
+
       revisions.each do |revision|
         $redis.rpush snapshots_key, revision.strip
       end

@@ -1,6 +1,6 @@
 module Hopper
   class Methods < Probe
-    exposes :class_count, :instance_count, :method_name_length
+    exposes :class_count, :instance_count, :average_name_length
 
     # The description.
     #
@@ -32,7 +32,7 @@ module Hopper
     # The average length of method names in this project.
     #
     # Returns an Integer.
-    def method_name_length
+    def average_name_length
       repository.files(:pattern => /.rb/).map do |file|
         content = repository.read(file)
         count_method_length(:defn,content) + count_method_length(:defs,content)

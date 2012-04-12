@@ -42,13 +42,6 @@ namespace :redis do
   end
 end
 
-namespace :resque do
-  desc "Start resque-web"
-  task :web do
-    exec 'resque-web -p 8282'
-  end
-end
-
 namespace :test do
   namespace :git do
     desc "Package repos"

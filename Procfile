@@ -1,4 +1,4 @@
-web: bundle exec rackup
+web: bundle exec unicorn --port $PORT
 
 jobs:     bundle exec rake resque:work QUEUE=*
 

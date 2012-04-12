@@ -11,6 +11,7 @@ gem 'shamazing'
 gem 'sinatra'
 gem 'SystemTimer', :platforms => :mri_18
 gem 'sprockets'
+gem 'unicorn'
 gem 'yajl-ruby'
 
 group :development do

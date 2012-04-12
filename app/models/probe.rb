@@ -246,7 +246,7 @@ module Hopper
           # Keep track of what we've analyzed.
           $redis.sadd "#{Hopper.redis_namespace}:projects:#{project.id}:complete", self.name
         rescue Exception => e
-          puts "Problem saving #{name}:#{method} - #{e}"
+          raise e, "Problem saving #{name}:#{method}"
         end
       end
     end

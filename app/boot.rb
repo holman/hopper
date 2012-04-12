@@ -30,7 +30,9 @@ require_relative 'views/project'
 require_relative '../lib/ext/array'
 
 # Connect to Redis
-$redis = Redis.connect(:url => 'redis://127.0.0.1', :thread_safe => true)
+$redis = Redis.connect \
+          :url => ENV["REDISTOGO_URL"] || 'redis://127.0.0.1',
+          :thread_safe => true
 Resque.redis = $redis
 
 module Hopper

@@ -4,11 +4,6 @@ require 'sprockets'
 require 'resque/server'
 
 Resque::Server.class_eval do
-  url = ENV["REDISTOGO_URL"]
-  if url
-    Resque.redis = url
-  end
-
   use Rack::Auth::Basic do |login, password|
     login == 'admin' && password == ENV["PASSWORD"].to_s
   end

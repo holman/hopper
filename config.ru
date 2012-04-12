@@ -6,7 +6,7 @@ require 'resque/server'
 Resque::Server.class_eval do
   url = ENV["REDISTOGO_URL"]
   if url
-    Resque.redis = Redis.connect(url)
+    Resque.redis = url
   end
 
   use Rack::Auth::Basic do |login, password|

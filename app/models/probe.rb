@@ -229,6 +229,12 @@ module Hopper
     #
     # Returns nothing.
     def save
+      # Re-clone the repo if it doesn't exist on-disk. This is mostly for
+      # running multiple worker processes who don't share disk. If this same
+      # worker process has already run #clone, then #clone will bail out early
+      # without re-cloning.
+      project.source.clone
+
       self.class.exposed.collect do |method|
         begin
           # Cache the result

@@ -2,7 +2,7 @@ require File.expand_path("../../helper", __FILE__)
 
 context "Probe" do
   setup do
-    @project = Project.new('github.com')
+    @project = Project.new('github.com/holman/play')
     @probe   = Probe.new(@project)
   end
 
@@ -31,6 +31,8 @@ context "Probe" do
 
   test "exposes data" do
     Probe.exposes :name
+    @probe.expects(:clone).returns(true)
+
     hash = {:name => 'Probe'}
     @probe.save
     assert_equal hash, @probe.data

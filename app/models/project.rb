@@ -9,6 +9,9 @@ module Hopper
   #   hopper:projects
   #     All of the Project URLs.
   #
+  #   hopper:projects:#{id}:name
+  #     The name of the Project.
+  #
   #   hopper:projects:#{id}:head
   #     The HEAD (main) sha to analyze.
   #
@@ -65,6 +68,11 @@ module Hopper
     def self.find(id)
       hash = $redis.hgetall("#{Project.key}:#{id}")
       new(hash['url'])
+    end
+
+    def self.find_by_name(name)
+      sha = Digest::SHA1.hexdigest("github.com/#{name}")
+      find(sha)
     end
 
     # The main redis key.
@@ -180,6 +188,9 @@ module Hopper
     # Returns nothing.
     def save
       $redis.sadd Project.key, id
+
+      # Remember the name
+      $redis.set "#{Project.key}:#{id}:name", source.name
 
       hash_id = "#{Project.key}:#{id}"
       $redis.hset hash_id, :url, url

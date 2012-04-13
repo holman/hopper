@@ -19,4 +19,9 @@ map('/resque') { run Resque::Server.new }
 map("/css")    { run stylesheets }
 map("/js")     { run javascripts }
 
+# Temporarily shut errrrrbody out
+use Rack::Auth::Basic, "codestat.us" do |login, password|
+  login == 'admin' && password == ENV["PASSWORD"].to_s
+end
+
 map('/')    { run Hopper::App }

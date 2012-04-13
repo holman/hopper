@@ -6,7 +6,7 @@ module Hopper
       end
 
       def probes
-        Probe.all
+        Hopper::Probe.all
       end
 
       def project

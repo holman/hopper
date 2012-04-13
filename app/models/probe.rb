@@ -152,7 +152,7 @@ module Hopper
     #
     # Returns an Array of Constants.
     def self.all
-      names = Dir["app/probes/*.rb"].map{|file| File.basename(file,'.rb')}
+      names = Dir["app/probes/*.rb"].map{|file| File.basename(file,'.rb')}.sort
       names.map{|klass| Hopper.const_get(klass.capitalize)}
     end
 

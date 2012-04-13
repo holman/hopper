@@ -70,6 +70,11 @@ module Hopper
       new(hash['url'])
     end
 
+    # Finds a Project by name.
+    #
+    # name - The String nwo to look for, ie, defunkt/mustache.
+    #
+    # Returns a Project if found.
     def self.find_by_name(name)
       sha = Digest::SHA1.hexdigest("github.com/#{name}")
       find(sha)

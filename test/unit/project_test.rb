@@ -23,6 +23,12 @@ context "Project" do
     assert !@project.snapshots_key.empty?
   end
 
+  test "find_by_name" do
+    project = Project.new('github.com/holman/spark')
+    project.save
+    assert_equal project.url, Project.find_by_name(project.source.name).url
+  end
+
   test "url saves without protocol" do
     @project.url = 'https://github.com/holman/boom'
     assert_equal 'github.com/holman/boom', @project.url

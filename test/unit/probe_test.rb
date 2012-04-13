@@ -47,6 +47,18 @@ context "Probe" do
     assert_equal "B count", results.last.name
   end
 
+  test "averages" do
+    Probe.exposes :count
+    $redis.rpush "#{Probe.key}:count", 10
+    $redis.rpush "#{Probe.key}:count", 30
+
+    results = Probe.averages
+
+    assert_equal 1,       results.size
+    assert_equal 'Count', results.first.name
+    assert_equal 20,      results.first.average
+  end
+
   test "clean_probe_name" do
     assert_equal "Holman count", Probe.clean_probe_name(:holman_count)
   end

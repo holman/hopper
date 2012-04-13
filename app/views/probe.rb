@@ -16,6 +16,10 @@ module Hopper
       def aggregates
         @probe.aggregates
       end
+
+      def averages
+        @probe.averages
+      end
     end
   end
 end

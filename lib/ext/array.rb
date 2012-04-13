@@ -6,7 +6,7 @@ class Array
   #
   # Returns an Integer.
   def sum
-    self.inject(0) { |sum,i| sum + i }
+    self.inject(0) { |sum,i| sum + i.to_f }
   end
 
   # Average out the values of a collection of Arrays. The array gets flattened,

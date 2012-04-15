@@ -17,8 +17,8 @@ module Hopper
         @probe.aggregates
       end
 
-      def averages
-        @probe.averages
+      def metrics
+        @probe.metrics
       end
     end
   end

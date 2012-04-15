@@ -1,9 +1,13 @@
 <section id="visual">
 
   <section class="numbers">
-    {{#averages}}
-      {{name}}
-      {{average}}
-    {{/averages}}
+    {{#metrics}}
+      <strong>{{name}}</strong>
+      <ul>
+        <li>Mean: {{mean}}</li>
+        <li>Median: {{median}}</li>
+        <li>Mode: {{mode}}</li>
+      </ul>
+    {{/metrics}}
   </section>
 </section>

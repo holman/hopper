@@ -86,12 +86,15 @@ module Hopper
     # Collect all the averages!
     #
     # Returns an Array of OpenStructs (defined with :name and :average).
-    def self.averages
+    def self.metrics
       exposed.map do |method|
         values = $redis.lrange "#{key}:#{method}", 0, -1
+        values = values.map{|value| value.to_f}
         OpenStruct.new \
-          :name => Probe.clean_probe_name(method),
-          :average => values.average
+          :name    => Probe.clean_probe_name(method),
+          :mean    => values.average,
+          :median  => values.median,
+          :mode    => values.mode.first
       end
     end
 

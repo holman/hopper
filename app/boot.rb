@@ -9,6 +9,7 @@ require 'mustache/sinatra'
 require 'redis'
 require 'resque'
 require 'ripper'
+require 'rstats'
 require 'rugged'
 require 'yajl'
 

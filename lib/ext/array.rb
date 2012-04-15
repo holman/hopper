@@ -12,6 +12,9 @@ class Array
   # Average out the values of a collection of Arrays. The array gets flattened,
   # so you can safely toss it a stack of Arrays.
   #
+  # This is present in the rstats gem we use, but I'd rather use our #sum method
+  # because it can handle strings.
+  #
   # Examples:
   #   [[2,4],[6],8] # => 5
   #

@@ -282,6 +282,9 @@ module Hopper
       result.any? ? 1 : 0
     end
 
+    # Export the raw data to CSV.
+    #
+    # Returns a String.
     def self.to_csv
       exposed.map do |method|
         values = $redis.lrange "#{key}:#{method}", 0, -1

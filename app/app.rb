@@ -20,6 +20,10 @@ module Hopper
       mustache :index
     end
 
+    get '/stats' do
+      mustache :stats
+    end
+
     get '/probes' do
       @probes = Probe.all
       mustache :probes

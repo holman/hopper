@@ -34,6 +34,11 @@ module Hopper
       mustache :probe, :layout => !request.xhr?
     end
 
+    get '/probes/:id/raw' do
+      @probe = Probe.find(params[:id])
+      @probe.to_csv
+    end
+
     get '/projects' do
       @projects = Project.all
       mustache :projects

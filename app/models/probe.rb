@@ -282,6 +282,13 @@ module Hopper
       result.any? ? 1 : 0
     end
 
+    def self.to_csv
+      exposed.map do |method|
+        values = $redis.lrange "#{key}:#{method}", 0, -1
+        values.map{|value| value.to_f}.join("\n")
+      end.join("")
+    end
+
     # Public: Raised if the method hasn't been properly defined in the subclass.
     class NotImplementedError < StandardError ; end
 

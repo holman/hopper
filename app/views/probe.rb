@@ -13,6 +13,10 @@ module Hopper
         @probe
       end
 
+      def name
+        @probe.name
+      end
+
       def aggregates
         @probe.aggregates
       end

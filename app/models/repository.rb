@@ -90,6 +90,11 @@ module Hopper
       end
     end
 
+    # Does the file exist?
+    #
+    # path - The String relative path to the file.
+    #
+    # Returns true if exists, false if not.
     def file_exists?(path)
       !!read(path)
     rescue RuntimeError

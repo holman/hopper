@@ -26,6 +26,10 @@ of a programming project? Has our style writing of code changed over time?
 
 ## Installation
 
+First, install redis. This might be as easy for you as `brew install redis`.
+
+Next, install Hopper:
+
     git clone https://github.com/holman/hopper.git
     script/server
 
@@ -43,10 +47,39 @@ each specific probe inherits from the Probe class, which is a standard interface
 that we can access to run all of these probes. An example might be an LOC Probe,
 which counts the lines of code in a project.
 
-Probes are kicked off... somehow.
-
 Reporting is all done via the web app. This is where all of the adorable graphs
 and pretty statistics get gathered.
+
+## Indexing
+
+Indexing is a little more complex. First, if you just want some data to play
+around with, run:
+
+    rake setup
+
+This will clone down six repos locally for you to play with.
+
+If you want to index other projects, run:
+
+    rake console
+    Hopper::Github.indexing(true)
+    Hopper::Github.async_index
+
+This will kick of jobs to index projects from GitHub. To actually start the
+jobs, run:
+
+    foreman start jobs
+
+This will run one worker on all queues. Since the indexing job will go forever,
+you'll want to [monitor Resque](http://localhost:9393/resque) and see until a
+reasonable about of `Index` and `Probe` jobs are queued up. When you've reached
+a reasonable level:
+
+    rake console
+    Hopper::Github.indexing(false)
+
+That will end the download job, so your one worker will then go on to process
+your new `Index` and `Probe` jobs.
 
 ## Hopper
 

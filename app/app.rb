@@ -40,8 +40,18 @@ module Hopper
     end
 
     get '/projects' do
-      @projects = Project.all
       mustache :projects
+    end
+
+    # whatever, deal with this monstrocity later
+    get '/projects/jump' do
+      path = params[:url].gsub('https://github.com/','')
+      @project = Project.find_by_name(path)
+      if @project
+        redirect "/projects/#{@project.id}"
+      else
+        redirect :projects
+      end
     end
 
     get '/projects/:id' do

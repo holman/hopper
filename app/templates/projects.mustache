@@ -1,3 +1,8 @@
-{{#projects}}
-  <p><a href="/projects/{{.}}">{{.}}</a></p>
-{{/projects}}
+<h3>Jump to a Project</h3>
+
+<form action="/projects/jump">
+  <label for="url">GitHub URL</label>
+  <br />
+  <input type="text" id="url" name="url" value="https://github.com/" />
+  <input type="submit" />
+</form>

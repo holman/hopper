@@ -57,7 +57,10 @@ around with, run:
 
     rake setup
 
-This will clone down six repos locally for you to play with.
+This will clone down six repos locally for you to play with. You'll then want to
+start up the Resque job server:
+
+    foreman start jobs
 
 If you want to index other projects, run:
 

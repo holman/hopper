@@ -27,12 +27,12 @@ task :setup do
   Rake::Task['redis:reset'].invoke
 
   puts "Generating some test data"
-  #Hopper::Project.create('github.com/holman/boom')
-  #Hopper::Project.create('github.com/holman/play')
-  #Hopper::Project.create('github.com/github/github-services')
+  Hopper::Project.create('github.com/holman/boom')
+  Hopper::Project.create('github.com/holman/play')
+  Hopper::Project.create('github.com/github/github-services')
   Hopper::Project.create('github.com/defunkt/mustache')
-  #Hopper::Project.create('github.com/mojombo/jekyll')
-  #Hopper::Project.create('github.com/rails/rails')
+  Hopper::Project.create('github.com/mojombo/jekyll')
+  Hopper::Project.create('github.com/rails/rails')
 end
 
 namespace :redis do

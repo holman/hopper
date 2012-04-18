@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# server
+
+set -e
+
+bundle exec shotgun

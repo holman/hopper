@@ -29,7 +29,9 @@ of a programming project? Has our style writing of code changed over time?
     git clone https://github.com/holman/hopper.git
     script/server
 
-You should be up and running on [http://localhost:3000](http://localhost:3000).
+You should be up and running on [http://localhost:9393](http://localhost:9393).
+This loads up the development environment (with `shotgun`), so you'll need to
+adjust the command to use Unicorn in production.
 
 ## The App
 

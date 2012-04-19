@@ -67,7 +67,7 @@ module Hopper
     # Returns the Project.
     def self.find(id)
       hash = $redis.hgetall("#{Project.key}:#{id}")
-      new(hash['url'])
+      new(hash['url']) if hash.has_key?('url')
     end
 
     # Finds a Project by name.

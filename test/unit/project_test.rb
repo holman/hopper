@@ -165,4 +165,8 @@ context "Project" do
     @project.save
     assert_equal @project.url, Project.find(@project.id).url
   end
+
+  test 'find (with non-existent id)' do
+    assert_nil Project.find('123')
+  end
 end

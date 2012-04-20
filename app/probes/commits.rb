@@ -44,6 +44,9 @@ module Hopper
       ((to - birthday) / 60 / 60 / 24).to_i
     end
 
+    # The number of emojis present in the commits messages.
+    #
+    # Returns an Integer.
     def emojis_count
       emoji_regex = /:\w+:/
       repository.commit_messages.map do |m|

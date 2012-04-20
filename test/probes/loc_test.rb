@@ -10,7 +10,7 @@ context "Loc" do
   end
 
   test "all lines" do
-    assert_equal 74, @probe.lines
+    assert_equal 78, @probe.lines
   end
 
   test "ruby lines" do
@@ -18,7 +18,7 @@ context "Loc" do
   end
 
   test "comment lines" do
-    assert_equal 4, @probe.comment_lines
+    assert_equal 5, @probe.comment_lines
   end
 
   test "average_width" do

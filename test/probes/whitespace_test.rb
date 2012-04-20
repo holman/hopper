@@ -10,6 +10,6 @@ context "Whitespace" do
   end
 
   test "trailing_percent" do
-    assert_equal "0.02702702702702703", @probe.trailing_percent.to_s
+    assert_equal "0.02564102564102564", @probe.trailing_percent.to_s
   end
 end

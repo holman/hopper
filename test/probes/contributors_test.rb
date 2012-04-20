@@ -6,7 +6,7 @@ context "Contributors" do
   end
 
   test "contributors_count" do
-    assert_equal 1, @probe.contributors_count
+    assert_equal 2, @probe.contributors_count
   end
 
   test "contributors" do

@@ -83,7 +83,7 @@ module Hopper
       end
     end
 
-    # Collect all the statistical base metric!
+    # Collect all the statistical base metrics!
     #
     # Returns an Array of OpenStructs (defined with :name and :average).
     def self.metrics

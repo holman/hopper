@@ -30,4 +30,20 @@ context "App" do
     get "/projects/#{project.id}"
     assert_match 'holman/play', last_response.body.strip
   end
+
+  test '/projects/jump' do
+    project = Project.new('github.com/holman/play')
+    project.save
+    get "/projects/jump", :url => 'https://github.com/holman/play'
+
+    assert last_response.redirect?
+    assert_match "/projects/#{project.id}", last_response.location
+  end
+
+  test '/projects/jump (with non-existent project url)' do
+    get "/projects/jump", :url => 'https://github.com/non/existent'
+
+    assert last_response.redirect?
+    assert_match "/projects", last_response.location
+  end
 end

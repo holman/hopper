@@ -14,6 +14,8 @@ module Hopper
 
     before do
       @path = request.path_info
+
+      halt mustache(:dead)
     end
 
     get '/' do

@@ -6,6 +6,7 @@ module Hopper
       end
 
       def section_link
+        @path ||= ''
         section = @path.split('/')[1]
         "<a href=\"/#{section}\">#{section}</a>"
       end

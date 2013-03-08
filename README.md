@@ -5,6 +5,7 @@
 Hopper is:
 
 - Dennis Hopper.
+- Grace Hopper - Pioneered [COBOL](http://en.wikipedia.org/wiki/COBOL) and high level progamming languages. Wrote the first compiler.
 - A young, low-level drug dealer.
 - A funnel-shaped chamber or bin in which loose material, as grain or coal, is
   stored temporarily.

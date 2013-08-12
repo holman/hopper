@@ -33,6 +33,7 @@ a {
   background-color: $light;
   background-image: url('/images/furley_bg.png');
   background-repeat: repeat;
+  background-position: 50% 0;
   padding: 25px 20px;
 
   a {
@@ -76,6 +77,7 @@ a {
   padding: 20px 0;
   background-color: $black;
   background-image: url('/images/px.png');
+  background-position: 50% 0;
   background-repeat: repeat;
 
   h1 {

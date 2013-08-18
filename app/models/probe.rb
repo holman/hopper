@@ -83,7 +83,7 @@ module Hopper
       end
     end
 
-    # Collect all the averages!
+    # Collect all the statistical base metrics!
     #
     # Returns an Array of OpenStructs (defined with :name and :average).
     def self.metrics
@@ -95,6 +95,7 @@ module Hopper
           :mean    => values.average,
           :median  => values.median,
           :mode    => values.mode.first
+          :stdiv   => values.standard_deviation
       end
     end
 

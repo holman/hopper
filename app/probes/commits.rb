@@ -2,7 +2,7 @@ module Hopper
   # Analysis of the commits that go into this repo.
   class Commits < Probe
     # The data for this Probe.
-    exposes :total_count, :commits_per_day, :days_old
+    exposes :total_count, :commits_per_day, :days_old, :emojis_count
 
     # The description.
     #
@@ -42,6 +42,16 @@ module Hopper
     def days_old(to=nil)
       to ||= repository.repo.lookup(revision).author[:time]
       ((to - birthday) / 60 / 60 / 24).to_i
+    end
+
+    # The number of emojis present in the commits messages.
+    #
+    # Returns an Integer.
+    def emojis_count
+      emoji_regex = /:\w+:/
+      repository.commit_messages.map do |m|
+        m.scan(emoji_regex).size
+      end.sum
     end
   end
 end

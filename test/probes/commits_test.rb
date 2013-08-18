@@ -7,7 +7,7 @@ context "Commits" do
 
   test "total_count" do
     @probe.total_count # calling it twice to avoid segfaults on ruby_parser
-    assert_equal 6, @probe.total_count
+    assert_equal 7, @probe.total_count
   end
 
   test "birthday" do
@@ -27,5 +27,9 @@ context "Commits" do
     @probe.stubs(:birthday).returns(from)
 
     assert_equal 3, @probe.days_old(to)
+  end
+
+  test "emojis_count" do
+    assert_equal 2, @probe.emojis_count
   end
 end
